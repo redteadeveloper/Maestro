@@ -1,13 +1,28 @@
 {
-    "name": "my-bot",
-    "version": "1.0.0",
-    "main": "index.js",
-    "dependencies": {
-        "@discordjs/opus": "^0.3.2",
-        "discord.js": "^12.2.0",
-        "ffmpeg": "0.0.4",
-        "ffmpeg-static": "^4.2.5",
-        "fluent-ffmpeg": "^2.1.2",
-        "ytdl-core": "^2.1.7"
-    }
+  "name": "harmony",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.2",
+    "discord.js": "^12.2.0",
+    "ffmpeg": "0.0.4",
+    "ffmpeg-static": "^4.2.5",
+    "fluent-ffmpeg": "^2.1.2",
+    "ytdl-core": "^2.1.7"
+  },
+  "description": "music bot",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calvinjung/Harmony.git"
+  },
+  "author": "redtea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calvinjung/Harmony/issues"
+  },
+  "homepage": "https://github.com/calvinjung/Harmony#readme"
 }
