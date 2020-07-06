@@ -12,4 +12,4 @@ client.on("message", msg => {
     }
 })
 
-client.login("YOUR_TOKEN")
+client.login("NzI5NDg0OTAzNDc2ODg3Njcy.XwJofA.cBtX9WIzfN05MZF3rP44ZYELaRE")
