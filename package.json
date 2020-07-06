@@ -2,6 +2,9 @@
   "name": "harmony",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "12.17.0"
+  },
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
     "discord.js": "^12.2.0",
@@ -12,6 +15,7 @@
   },
   "description": "music bot",
   "devDependencies": {},
+  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
