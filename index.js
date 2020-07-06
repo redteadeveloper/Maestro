@@ -36,12 +36,17 @@ client.on("message", async message => {
     } else if (message.content.startsWith(`${prefix}stop`)) {
         stop(message, serverQueue);
     }});
+
+    const novc = new Discord.MessageEmbed()
+        .setColor('#00ff00')
+        .setTitle('Join a voice channel first!')
+        .setDescription('You need to be in a voice channel to play music.')
   
     async function execute(message, serverQueue) {
         const args = message.content.split(" ");
     
         const voiceChannel = message.member.voice.channel;
-        if (!voiceChannel) return message.channel.send("You need to be in a voice channel to play music!");
+        if (!voiceChannel) return message.channel.send(novc);
     
         const songInfo = await ytdl.getInfo(args[1]);
         const song = {
@@ -75,15 +80,30 @@ client.on("message", async message => {
 
     } else {
         serverQueue.songs.push(song);
-        return message.channel.send(`**${song.title}** has been added to the queue!`);
+        const addedsong = new Discord.MessageEmbed()
+            .setColor('#00ff00')
+            .setTitle('Song added!')
+            .setDescription(`**${song.title}** has been added to the queue!`)
+        return message.channel.send(addedsong);
     }}
   
     function skip(message, serverQueue) {
-        if (!message.member.voice.channel)
-        return message.channel.send("You have to be in a voice channel to stop the music!");
-        if (!serverQueue)
-        return message.channel.send("There is no song that I could skip!");
-        serverQueue.connection.dispatcher.end();
+        if (!message.member.voice.channel) {
+            const novcstop = new Discord.MessageEmbed()
+                .setColor('#00ff00')
+                .setTitle('Join a voice channel first!')
+                .setDescription("You have to be in a voice channel to stop the music.")
+            return message.channel.send(novcstop);
+        }
+        if (!serverQueue) {
+            const noaddedsong = new Discord.MessageEmbed()
+                .setColor('#00ff00')
+                .setTitle('No more songs to play!')
+                .setDescription("There is no song that I could skip.")
+            message.channel.send(noaddedsong);
+            serverQueue.connection.dispatcher.end();
+            return
+        }
     }
     
     function stop(message, serverQueue) {
@@ -104,8 +124,8 @@ client.on("message", async message => {
     const dispatcher = serverQueue.connection
       .play(ytdl(song.url))
       .on("finish", () => {
-        serverQueue.songs.shift();
-        play(guild, serverQueue.songs[0]);
+            serverQueue.songs.shift();
+            play(guild, serverQueue.songs[0]);
       })
       .on("error", error => console.error(error));
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
