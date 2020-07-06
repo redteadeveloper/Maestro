@@ -6,8 +6,10 @@ client.on("ready", () => {
     client.user.setActivity("YT | =help", {type: "WATCHING"});
 })
 
+var prefix = "="
+
 client.on("message", msg => {
-    if (msg.content === "ping") {
+    if (msg.content == prefix + "ping") {
         msg.reply("Pong!")
     }
 })
