@@ -3,7 +3,7 @@ const client = new Discord.Client()
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity("YT | =help", {type: "WATCHING"});
+    client.user.setActivity("YouTube", {type: "WATCHING"});
 })
 
 var prefix = "="
