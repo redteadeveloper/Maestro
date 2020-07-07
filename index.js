@@ -47,16 +47,36 @@ client.on("message", async message => {
     }
     });
 
-    const novc = new Discord.MessageEmbed()
-        .setColor('#00ff00')
-        .setTitle('Join a voice channel first!')
-        .setDescription('You need to be in a voice channel to play music.')
+    
   
     async function execute(message, serverQueue) {
+
+        const novc = new Discord.MessageEmbed()
+            .setColor('#FFA500')
+            .setTitle('Join a voice channel first!')
+            .setDescription('You need to be in a voice channel to play music.')
+    
+        const diffvc = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`You are not in the same VC with me!`)
+            .setDescription(`You have to be in the same vc with me to play music.`)
+
         const args = message.content.split(" ");
+
+        if(!args) {
+            const nosongembed = new Discord.MessageEmbed()
+                .setColor(`#b19cd9`)
+                .setTitle(`Play command`)
+                .setDescription(`Usage: =play [youtube link]`)
+            message.channel.send(nosongembed)
+            return
+        }
     
         const voiceChannel = message.member.voice.channel;
         if (!voiceChannel) return message.channel.send(novc);
+
+        if(message.author.voice.channel && client.user.voice.channel && message.author.voice.channel != client.user.voice.channel) 
+            return message.channel.send(diffvc)
     
         const songInfo = await ytdl.getInfo(args[1]);
         const song = {
@@ -100,26 +120,39 @@ client.on("message", async message => {
     function skip(message, serverQueue) {
 
         const novcskip = new Discord.MessageEmbed()
-            .setColor('#00ff00')
+            .setColor('#FFA500')
             .setTitle('Join a voice channel first!')
-            .setDescription("You have to be in a voice channel to skip the music.")
+            .setDescription("You have to be in a voice channel to skip music.")
 
         const nosongskip = new Discord.MessageEmbed()
-            .setColor('#00ff00')
+            .setColor('#FFA500')
             .setTitle('No song anymore!')
             .setDescription('There is no song that I can skip.')
 
+        const diffvcskip = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`You are not in the same VC with me!`)
+            .setDescription(`You have to be in the same vc with me to skip music.`)
+
         if (!message.member.voice.channel) return message.channel.send(novcskip);
+        if(message.author.voice.channel && client.user.voice.channel && message.author.voice.channel != client.user.voice.channel) 
+            return message.channel.send(diffvcskip)
         if (!serverQueue) return message.channel.send(nosongskip);
         serverQueue.connection.dispatcher.end();
     }
     
     function stop(message, serverQueue) {
         const novcstop = new Discord.MessageEmbed()
-            .setColor('#00ff00')
+            .setColor('#FFA500')
             .setTitle('Join a voice channel first!')
             .setDescription("You have to be in a voice channel to stop the music.")
+        const diffvcstop = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`You are not in the same VC with me!`)
+            .setDescription(`You have to be in the same vc with me to skip music.`)
         if (!message.member.voice.channel) return message.channel.send(novcstop);
+        if(message.author.voice.channel && client.user.voice.channel && message.author.voice.channel != client.user.voice.channel) 
+            return message.channel.send(diffvcstop)
         serverQueue.songs = [];
         serverQueue.connection.dispatcher.end();
     }
