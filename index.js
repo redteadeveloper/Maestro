@@ -93,7 +93,7 @@ client.on("message", async message => {
         const addedsong = new Discord.MessageEmbed()
             .setColor('#00ff00')
             .setTitle('Song added!')
-            .setDescription(`**${song.title}** has been added to the queue!`)
+            .setDescription("``" + song.title + "`` has been added to the queue!")
         return message.channel.send(addedsong);
     }}
   
@@ -133,7 +133,7 @@ client.on("message", async message => {
     }
   
     const dispatcher = serverQueue.connection
-        .play(ytdl(song.url))
+        .play(ytdl(song.url, { quality: 'highestaudio', filter: 'audioonly' }))
         dispatcher.on("finish", () => {
                 serverQueue.songs.shift();
                 play(guild, serverQueue.songs[0]);
@@ -143,7 +143,7 @@ client.on("message", async message => {
     const playing = new Discord.MessageEmbed()
             .setColor('#00ff00')
             .setTitle('Playing music!')
-            .setDescription(`Playing **${song.title}** Now! :notes:`)
+            .setDescription("Playing ``" + song.title + "`` Now! :notes:")
     serverQueue.textChannel.send(playing);
 
 }
