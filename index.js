@@ -7,16 +7,8 @@ const queue = new Map();
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity("YouTube", {type: "WATCHING"});
+    client.user.setActivity("songs | =help", {type: "Playing"});
 })
-
-client.once("reconnecting", () => {
-    console.log("Reconnecting!");
-  });
-  
-client.once("disconnect", () => {
-    console.log("Disconnect!");
-});
 
 var prefix = "="
   
@@ -44,11 +36,8 @@ client.on("message", async message => {
             .setTitle(`**Command list**`)
             .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.")
         message.channel.send(helpembed)
-    }
-    });
+    }});
 
-    
-  
     async function execute(message, serverQueue) {
 
         const novc = new Discord.MessageEmbed()
@@ -77,6 +66,15 @@ client.on("message", async message => {
 
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvc)
+
+        if(ytdl.validateURL(args[1]) == false) {
+            const wronglink = new Discord.MessageEmbed()
+                .setColor(`#FFA500`)
+                .setTitle(`Provide a valid YouTube link!`)
+                .setDescription(`The link you provided is not valid.`)
+            message.channel.send(wronglink)
+            return
+        }
     
         const songInfo = await ytdl.getInfo(args[1]);
         const song = {
@@ -170,15 +168,15 @@ client.on("message", async message => {
     const dispatcher = serverQueue.connection
         .play(ytdl(song.url, { filter: 'audioonly' }))
         dispatcher.on("finish", () => {
-                serverQueue.songs.shift();
-                play(guild, serverQueue.songs[0]);
+            serverQueue.songs.shift();
+            play(guild, serverQueue.songs[0]);
         })
         .on("error", error => console.error(error));
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
     const playing = new Discord.MessageEmbed()
             .setColor('#00ff00')
             .setTitle('Playing music!')
-            .setDescription("Playing ``" + song.title + "`` Now! :notes:")
+            .setDescription("Playing ``" + song.title + "`` now! :notes:")
     serverQueue.textChannel.send(playing);
 
 }
