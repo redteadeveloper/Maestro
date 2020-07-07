@@ -40,9 +40,9 @@ client.on("message", async message => {
         stop(message, serverQueue);
     } else if (command.startsWith(`help`)) {
         const helpembed = new Discord.MessageEmbed()
-            .setColor(`#1520a6`)
+            .setColor(`#1167b1`)
             .setTitle(`**Command list**`)
-            .setDescription("``=play``: Plays music.\n``=stop``: Stops playing music.\n``=skip``: Skips music.\n``=help``: This command.")
+            .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.")
         message.channel.send(helpembed)
     }
     });
