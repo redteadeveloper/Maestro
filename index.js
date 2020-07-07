@@ -61,12 +61,8 @@ client.on("message", async message => {
         const songInfo = await ytdl.getInfo(args[1]);
         const song = {
             title: songInfo.title,
-            url: songInfo.video_url,
-            duration: songInfo.length_seconds
+            url: songInfo.video_url
         };
-
-        var minutes = parseInt( duration / 60 )
-        var seconds = duration % 60
   
         if (!serverQueue) {
         const queueContruct = {
@@ -98,7 +94,6 @@ client.on("message", async message => {
             .setColor('#00ff00')
             .setTitle('Song added!')
             .setDescription(`**${song.title}** has been added to the queue!`)
-            .setFooter(`Song duration: ${minutes} minutes ${seconds} seconds`)
         return message.channel.send(addedsong);
     }}
   
@@ -149,7 +144,6 @@ client.on("message", async message => {
             .setColor('#00ff00')
             .setTitle('Playing music!')
             .setDescription(`Playing **${song.title}** Now! :notes:`)
-            .setFooter(`Song duration: ${minutes} minutes ${seconds} seconds`)
     serverQueue.textChannel.send(playing);
 
 }
