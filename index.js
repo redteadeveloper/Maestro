@@ -137,7 +137,7 @@ client.on("message", async message => {
             return message.channel.send(diffvcskip)
         if (!serverQueue) return message.channel.send(nosongskip);
         serverQueue.connection.dispatcher.end();
-    }
+    } 
     
     function stop(message, serverQueue) {
         const novcstop = new Discord.MessageEmbed()
