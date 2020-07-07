@@ -168,7 +168,7 @@ client.on("message", async message => {
     }
   
     const dispatcher = serverQueue.connection
-        .play(ytdl(song.url, { quality: 'highestaudio', filter: 'audioonly' }))
+        .play(ytdl(song.url, { filter: 'audioonly' }))
         dispatcher.on("finish", () => {
                 serverQueue.songs.shift();
                 play(guild, serverQueue.songs[0]);
