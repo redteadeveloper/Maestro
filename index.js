@@ -23,19 +23,29 @@ var prefix = "="
 client.on("message", async message => {
 
     if (message.author.bot) return;
-    if (!message.content.startsWith(prefix)) return;
+    if (message.content.indexOf(prefix) !== 0) return;
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
   
     const serverQueue = queue.get(message.guild.id);
   
-    if (message.content.startsWith(`${prefix}play`)) {
+    if (command.startsWith(`play`)) {
         execute(message, serverQueue);
         return;
-    } else if (message.content.startsWith(`${prefix}skip`)) {
+    } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
         return;
-    } else if (message.content.startsWith(`${prefix}stop`)) {
+    } else if (command.startsWith(`stop`)) {
         stop(message, serverQueue);
-    }});
+    } else if (command.startsWith(`help`)) {
+        const helpembed = new Discord.MessageEmbed()
+            .setColor(`#1520a6`)
+            .setTitle(`**Command list**`)
+            .setDescription("``=play``: Plays music.\n``=stop``: Stops playing music.\n``=skip``: Skips music.\n``=help``: This command.")
+        message.channel.send(helpembed)
+    }
+    });
 
     const novc = new Discord.MessageEmbed()
         .setColor('#00ff00')
