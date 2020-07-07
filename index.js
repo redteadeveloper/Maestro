@@ -7,7 +7,7 @@ const queue = new Map();
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity("songs | =help", {type: "Playing"});
+    client.user.setActivity("songs | =help", {type: "PLAYING"});
 })
 
 var prefix = "="
