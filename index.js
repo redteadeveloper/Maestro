@@ -75,7 +75,7 @@ client.on("message", async message => {
         const voiceChannel = message.member.voice.channel;
         if (!voiceChannel) return message.channel.send(novc);
 
-        if(message.member.voice.channel && client.user.voice.channel && message.member.voice.channel != client.user.voice.channel) 
+        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvc)
     
         const songInfo = await ytdl.getInfo(args[1]);
@@ -135,7 +135,7 @@ client.on("message", async message => {
             .setDescription(`You have to be in the same vc with me to skip music.`)
 
         if (!message.member.voice.channel) return message.channel.send(novcskip);
-        if(message.member.voice.channel && client.user.voice.channel && message.member.voice.channel != client.user.voice.channel) 
+        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcskip)
         if (!serverQueue) return message.channel.send(nosongskip);
         serverQueue.connection.dispatcher.end();
@@ -151,7 +151,7 @@ client.on("message", async message => {
             .setTitle(`You are not in the same VC with me!`)
             .setDescription(`You have to be in the same vc with me to skip music.`)
         if (!message.member.voice.channel) return message.channel.send(novcstop);
-        if(message.member.voice.channel && client.user.voice.channel && message.member.voice.channel != client.user.voice.channel) 
+        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcstop)
         serverQueue.songs = [];
         serverQueue.connection.dispatcher.end();
