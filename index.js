@@ -7,10 +7,10 @@ const queue = new Map();
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity("songs | =help", {type: "PLAYING"});
+    client.user.setActivity("songs | m!help", {type: "PLAYING"});
 })
 
-var prefix = "="
+var prefix = "m!"
   
 client.on("message", async message => {
 
