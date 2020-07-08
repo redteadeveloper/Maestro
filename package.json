@@ -5,9 +5,9 @@
   "engines": {
     "node": "12.17.0"
   },
-  
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
+    "discord-youtube-api": "^0.1.0",
     "discord.js": "^12.2.0",
     "ffmpeg": "0.0.4",
     "ffmpeg-static": "^4.2.5",
@@ -16,7 +16,6 @@
   },
   "description": "music bot",
   "devDependencies": {},
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"

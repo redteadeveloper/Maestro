@@ -1,9 +1,12 @@
 const Discord = require("discord.js")
 const ytdl = require("ytdl-core");
+const YouTube = require("discord-youtube-api");
 
 const client = new Discord.Client()
 
 const queue = new Map();
+
+const youtube = new YouTube("AIzaSyCz2eWaiih_tD1Rei1kj0hKvaV_TFwphYU");
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
@@ -82,9 +85,10 @@ client.on("message", async message => {
             .setTitle(`You are not in the same VC with me!`)
             .setDescription(`You have to be in the same vc with me to play music.`)
 
-        const args = message.content.split(" ");
+            const args = msg.content.split(' ').slice(1); 
+            const video = args.join(' '); 
 
-        if(!args) {
+        if(!video) {
             const nosongembed = new Discord.MessageEmbed()
                 .setColor(`#b19cd9`)
                 .setTitle(`Play command`)
@@ -99,53 +103,90 @@ client.on("message", async message => {
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvc)
 
-        if(ytdl.validateURL(args[1]) == false) {
-            const wronglink = new Discord.MessageEmbed()
-                .setColor(`#FFA500`)
-                .setTitle(`Provide a valid YouTube link!`)
-                .setDescription(`The link you provided is not valid.`)
-            message.channel.send(wronglink)
-            return
-        }
-    
-        const songInfo = await ytdl.getInfo(args[1]);
-        const song = {
-            title: songInfo.title,
-            url: songInfo.video_url
-        };
-  
-        if (!serverQueue) {
-        const queueContruct = {
-            textChannel: message.channel,
-            voiceChannel: voiceChannel,
-            connection: null,
-            songs: [],
-            volume: 5,
-            playing: true
-        };
-    
-        queue.set(message.guild.id, queueContruct);
-    
-        queueContruct.songs.push(song);
-    
-        try {
-            var connection = await voiceChannel.join();
-            queueContruct.connection = connection;
-            play(message.guild, queueContruct.songs[0]);
-        } catch (err) {
-            console.log(err);
-            queue.delete(message.guild.id);
-            return message.channel.send(err);
-        }
+        if(ytdl.validateURL(video) == false) {
 
-    } else {
-        serverQueue.songs.push(song);
-        const addedsong = new Discord.MessageEmbed()
-            .setColor('#00ff00')
-            .setTitle('Song added!')
-            .setDescription("``" + song.title + "`` has been added to the queue!")
-        return message.channel.send(addedsong);
-    }}
+            var keyword = encodeURI(video)
+            const videosearched = await youtube.searchVideos(keyword);
+
+            const songInfo = await ytdl.getInfo(videosearched.url);
+            const songyt = {
+                title: songInfo.title,
+                url: songInfo.video_url
+            };
+  
+            if (!serverQueue) {
+            const queueContruct = {
+                textChannel: message.channel,
+                voiceChannel: voiceChannel,
+                connection: null,
+                songs: [],
+                volume: 5,
+                playing: true
+            };
+        
+            queue.set(message.guild.id, queueContruct);
+        
+            queueContruct.songs.push(songyt);
+        
+            try {
+                var connection = await voiceChannel.join();
+                queueContruct.connection = connection;
+                play(message.guild, queueContruct.songs[0]);
+            } catch (err) {
+                console.log(err);
+                queue.delete(message.guild.id);
+                return message.channel.send(err);
+            }
+
+        } else {
+            
+            serverQueue.songs.push(song);
+            const addedsong = new Discord.MessageEmbed()
+                .setColor('#00ff00')
+                .setTitle('Song added!')
+                .setDescription("``" + song.title + "`` has been added to the queue!")
+            return message.channel.send(addedsong);
+            }
+        
+            const songInfo = await ytdl.getInfo(video);
+            const song = {
+                title: songInfo.title,
+                url: songInfo.video_url
+            };
+    
+            if (!serverQueue) {
+            const queueContruct = {
+                textChannel: message.channel,
+                voiceChannel: voiceChannel,
+                connection: null,
+                songs: [],
+                volume: 5,
+                playing: true
+            };
+        
+            queue.set(message.guild.id, queueContruct);
+        
+            queueContruct.songs.push(song);
+        
+            try {
+                var connection = await voiceChannel.join();
+                queueContruct.connection = connection;
+                play(message.guild, queueContruct.songs[0]);
+            } catch (err) {
+                console.log(err);
+                queue.delete(message.guild.id);
+                return message.channel.send(err);
+            }
+
+        } else {
+            serverQueue.songs.push(song);
+            const addedsong = new Discord.MessageEmbed()
+                .setColor('#00ff00')
+                .setTitle('Song added!')
+                .setDescription("``" + song.title + "`` has been added to the queue!")
+            return message.channel.send(addedsong);
+        }}
+    }
   
     function skip(message, serverQueue) {
 
