@@ -185,10 +185,6 @@ client.on("message", async message => {
         queue.delete(guild.id);
         return;
     }
-
-    function queueprint(message, serverQueue) {
-       
-    }
   
     const dispatcher = serverQueue.connection
         .play(ytdl(song.url, { filter: 'audioonly' }))
