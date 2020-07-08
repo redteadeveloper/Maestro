@@ -31,7 +31,26 @@ client.on("message", async message => {
     } else if (command.startsWith(`stop`)) {
         stop(message, serverQueue);
     } else if (command == `queue`) {
-        queueprint(message, serverQueue);
+
+        var songsarray = [];
+        for (var i = 0; i < serverQueue.songs.length; i++) {
+            songsarray.push(serverQueue.songs[i].title);
+        }
+
+        if(songs.length > 0) {
+            if(songs.length === 1){
+                message.channel.send("**Queue - Playlist**\n**Playing:** " + serverQueue.songs[0]);
+            } else {
+                var firstSong = serverQueue.songs.shift();
+                for (var i = 0; i < songs.length; i++) {
+                    songs[i] = "**" + (i+1) + ". **"+ songs[i];
+                }
+                message.channel.send("**Queue - Playlist**\n**Playing:** " + firstSong + "\n\n" + songsarray.join("\n"));
+                }
+        } else { 
+            message.channel.send("No songs queued") 
+        }
+
     } else if (command.startsWith(`help`)) {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
@@ -168,23 +187,7 @@ client.on("message", async message => {
     }
 
     function queueprint(message, serverQueue) {
-        var songsarray = [];
-  		for (var i = 0; i < serverQueue.songs.length; i++) {
-  			songsarray.push(serverQueue.songs[i].title);
-  		}
-
-  		if(songs.length > 0){
-  			if(songs.length === 1){
-  				message.channel.send("**Queue - Playlist**\n**Playing:** " + serverQueue.songs[0]);
-  			} else{
-  				var firstSong = serverQueue.songs.shift();
-  				for (var i = 0; i < songs.length; i++) {
-  					songs[i] = "**" + (i+1) + ". **"+ songs[i];
-  				}
-  				message.channel.send("**Queue - Playlist**\n**Playing:** " + firstSong + "\n\n" + songsarray.join("\n"));
-  			}
-  		} else
-  			message.channel.send("No songs queued");
+       
     }
   
     const dispatcher = serverQueue.connection
