@@ -108,10 +108,10 @@ client.on("message", async message => {
             var keyword = encodeURI(video)
             const videosearched = await youtube.searchVideos(keyword);
 
-            const songInfo = await ytdl.getInfo(videosearched.url);
+            const songInfoa = await ytdl.getInfo(videosearched.url);
             const songyt = {
-                title: songInfo.title,
-                url: songInfo.video_url
+                title: songInfoa.title,
+                url: songInfoa.video_url
             };
   
             if (!serverQueue) {
@@ -140,13 +140,14 @@ client.on("message", async message => {
 
         } else {
             
-            serverQueue.songs.push(song);
+            serverQueue.songs.push(songyt);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setTitle('Song added!')
-                .setDescription("``" + song.title + "`` has been added to the queue!")
+                .setDescription("``" + songyt.title + "`` has been added to the queue!")
             return message.channel.send(addedsong);
             }
+        }
         
             const songInfo = await ytdl.getInfo(video);
             const song = {
@@ -185,7 +186,7 @@ client.on("message", async message => {
                 .setTitle('Song added!')
                 .setDescription("``" + song.title + "`` has been added to the queue!")
             return message.channel.send(addedsong);
-        }}
+        }
     }
   
     function skip(message, serverQueue) {
