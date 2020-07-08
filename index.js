@@ -157,9 +157,9 @@ client.on("message", async message => {
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcskip)
         if (!serverQueue) return message.channel.send(nosongskip);
-        
+
         serverQueue.songs.shift();
-        play(guild, serverQueue.songs[0]);
+        play(message.guild, serverQueue.songs[0]);
     } 
     
     function stop(message, serverQueue) {
