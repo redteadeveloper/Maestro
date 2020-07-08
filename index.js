@@ -43,7 +43,7 @@ client.on("message", async message => {
             } else {
                 var firstSong = serverQueue.songs.shift();
                 for (var i = 0; i < songsarray.length; i++) {
-                    songs[i] = "**" + (i+1) + ". **"+ songs[i];
+                    songsarray[i] = "**" + (i+1) + ". **"+ songsarray[i];
                 }
                 message.channel.send("**Queue - Playlist**\n**Playing:** " + firstSong + "\n\n" + songsarray.join("\n"));
                 }
