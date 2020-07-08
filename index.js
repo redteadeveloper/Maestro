@@ -85,7 +85,7 @@ client.on("message", async message => {
             .setTitle(`You are not in the same VC with me!`)
             .setDescription(`You have to be in the same vc with me to play music.`)
 
-            const args = msg.content.split(' ').slice(1); 
+            const args = message.content.split(' ').slice(1); 
             const video = args.join(' '); 
 
         if(!video) {
