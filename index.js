@@ -50,7 +50,7 @@ client.on("message", async message => {
             if(songsarray.length === 1){
                 message.channel.send("**Queue**\n**Playing:** " + songsarray[0]);
             } else {
-                for (var i = 1; i < songsarray.length; i++) {
+                for (var i = 0; i < songsarray.length; i++) {
                     songsarray[i] = "**" + (i+1) + ".** ``"+ songsarray[i] + "``";
                 }
                 const queueembed = new Discord.MessageEmbed()
