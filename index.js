@@ -32,6 +32,15 @@ client.on("message", async message => {
         stop(message, serverQueue);
     } else if (command == `queue`) {
 
+        if(!serverQueue.songs) {
+            const notplayingqueue = new Discord.MessageEmbed()
+                .setColor(`#FFA500`)
+                .setTitle(`Not playing!`)
+                .setDescription(`I'm not playing songs now.`)
+            message.channel.send(notplayingqueue)
+            return;
+        }
+
         var songsarray = [];
         for (var i = 0; i < serverQueue.songs.length; i++) {
             songsarray.push(serverQueue.songs[i].title);
