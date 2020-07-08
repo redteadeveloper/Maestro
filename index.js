@@ -68,7 +68,7 @@ client.on("message", async message => {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`**Command list**`)
-            .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.")
+            .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.\n``=queue`` Displays queue.")
         message.channel.send(helpembed)
     }});
 
