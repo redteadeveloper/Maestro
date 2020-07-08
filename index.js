@@ -51,7 +51,7 @@ client.on("message", async message => {
                 message.channel.send("**Queue**\n**Playing:** " + songsarray[0]);
             } else {
                 for (var j = 0; j < 1; j++) {
-                    songsarray[j] = "**" + "1." + "** ``" + songsarray[j] + "`` ◀ Now playing!"
+                    songsarray[j] = "**" + "1." + "** ``" + songsarray[j] + "`` ◄ Now playing!"
                 }
                 for (var i = 1; i < songsarray.length; i++) {
                     songsarray[i] = "**" + (i+1) + ".** ``"+ songsarray[i] + "``";
