@@ -37,7 +37,7 @@ client.on("message", async message => {
             songsarray.push(serverQueue.songs[i].title);
         }
 
-        if(songs.length > 0) {
+        if(songsarray.length > 0) {
             if(songs.length === 1){
                 message.channel.send("**Queue - Playlist**\n**Playing:** " + serverQueue.songs[0]);
             } else {
