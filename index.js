@@ -168,7 +168,6 @@ client.on("message", async message => {
     }
 
     function queueprint(message, serverQueue) {
-        const serverQueue = queue.get(message.guild.id);
         var songsarray = [];
   		for (var i = 0; i < serverQueue.songs.length; i++) {
   			songsarray.push(serverQueue.songs[i].title);
