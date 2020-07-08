@@ -189,6 +189,7 @@ client.on("message", async message => {
             return message.channel.send(diffvcstop)
         serverQueue.songs = [];
         serverQueue.connection.dispatcher.end();
+        message.react(`👋`)
     }
   
     function play(guild, song) {
