@@ -52,7 +52,7 @@ client.on("message", async message => {
         if(songsarray.length > 0) {
             
             for (var j = 0; j < 1; j++) {
-                songsarray[j] = "**" + "1." + "** ``" + songsarray[j] + "`` ◄ Now playing"
+                songsarray[j] = "⏯︎ **" + "1." + "** ``" + songsarray[j] + "`` ◄ Now playing"
             }
             for (var i = 1; i < songsarray.length; i++) {
                 songsarray[i] = "**" + (i+1) + ".** ``"+ songsarray[i] + "``";
@@ -147,7 +147,7 @@ client.on("message", async message => {
                 .setDescription("``" + songyt.title + "`` has been added to the queue!")
             return message.channel.send(addedsong);
             }
-        }
+        } else {
         
             const songInfo = await ytdl.getInfo(video);
             const song = {
@@ -186,7 +186,7 @@ client.on("message", async message => {
                 .setTitle('Song added!')
                 .setDescription("``" + song.title + "`` has been added to the queue!")
             return message.channel.send(addedsong);
-        }
+        }}
     }
   
     function skip(message, serverQueue) {
