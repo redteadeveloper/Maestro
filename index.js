@@ -50,14 +50,13 @@ client.on("message", async message => {
             if(songsarray.length === 1){
                 message.channel.send("**Queue**\n**Playing:** " + songsarray[0]);
             } else {
-                var firstSong = songsarray[0];
                 for (var i = 1; i < songsarray.length; i++) {
-                    songsarray[i] = "**" + (i+1) + ". **"+ songsarray[i];
+                    songsarray[i] = "**" + (i+1) + ".** ``"+ songsarray[i] + "``";
                 }
                 const queueembed = new Discord.MessageEmbed()
                     .setColor(`#00ff00`)
                     .setTitle(`**Queue**`)
-                    .setDescription(`**1.** ${firstSong} - Now playing\n\n${songsarray.join("\n")}`)
+                    .setDescription(`Now playing: ${songsarray.join("\n")}`)
                 message.channel.send(queueembed);
                 }
         } else { 
