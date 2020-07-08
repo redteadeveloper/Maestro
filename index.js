@@ -39,13 +39,13 @@ client.on("message", async message => {
 
         if(songsarray.length > 0) {
             if(songsarray.length === 1){
-                message.channel.send("**Queue - Playlist**\n**Playing:** " + songsarray[0]);
+                message.channel.send("**Queue**\n**Playing:** " + songsarray[0]);
             } else {
-                var firstSong = serverQueue.songs.shift();
+                var firstSong = songsarray[0];
                 for (var i = 0; i < songsarray.length; i++) {
                     songsarray[i] = "**" + (i+1) + ". **"+ songsarray[i];
                 }
-                message.channel.send("**Queue - Playlist**\n**Playing:** " + firstSong + "\n\n" + songsarray.join("\n"));
+                message.channel.send("**Queue**\n**Playing:** " + firstSong + "\n\n" + songsarray.join("\n"));
                 }
         } else { 
             message.channel.send("No songs queued") 
@@ -157,7 +157,9 @@ client.on("message", async message => {
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcskip)
         if (!serverQueue) return message.channel.send(nosongskip);
-        serverQueue.connection.dispatcher.end();
+        
+        serverQueue.songs.shift();
+        play(guild, serverQueue.songs[0]);
     } 
     
     function stop(message, serverQueue) {
