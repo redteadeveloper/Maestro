@@ -32,7 +32,7 @@ client.on("message", async message => {
         stop(message, serverQueue);
     } else if (command == `queue`) {
 
-        if(!serverQueue.songs) {
+        if(!serverQueue) {
             const notplayingqueue = new Discord.MessageEmbed()
                 .setColor(`#FFA500`)
                 .setTitle(`Not playing!`)
