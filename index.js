@@ -22,7 +22,7 @@ client.on("message", async message => {
   
     const serverQueue = queue.get(message.guild.id);
   
-    if (command.startsWith(`play`)) {
+    if (command.startsWith(`play`) || command.startsWith(`p`)) {
         execute(message, serverQueue);
         return;
     } else if (command.startsWith(`skip`)) {
@@ -30,7 +30,7 @@ client.on("message", async message => {
         return;
     } else if (command.startsWith(`stop`)) {
         stop(message, serverQueue);
-    } else if (command == `queue`) {
+    } else if (command == `queue`|| command == `q`) {
 
         if(!serverQueue) {
             const notplayingqueue = new Discord.MessageEmbed()
@@ -51,13 +51,13 @@ client.on("message", async message => {
                 message.channel.send("**Queue**\n**Playing:** " + songsarray[0]);
             } else {
                 var firstSong = songsarray[0];
-                for (var i = 0; i < songsarray.length; i++) {
+                for (var i = 1; i < songsarray.length; i++) {
                     songsarray[i] = "**" + (i+1) + ". **"+ songsarray[i];
                 }
                 const queueembed = new Discord.MessageEmbed()
                     .setColor(`#00ff00`)
                     .setTitle(`**Queue**`)
-                    .setDescription(`${firstSong} - Now playing\n${songsarray.join("\n")}`)
+                    .setDescription(`**1.** ${firstSong} - Now playing\n\n${songsarray.join("\n")}`)
                 message.channel.send(queueembed);
                 }
         } else { 
