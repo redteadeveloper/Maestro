@@ -31,7 +31,7 @@ client.on("message", async message => {
     } else if (command.startsWith(`stop`)) {
         stop(message, serverQueue);
     } else if (command == `queue`) {
-        queueprint(message, serverQueue)
+        queueprint(message, serverQueue);
     } else if (command.startsWith(`help`)) {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
