@@ -7,10 +7,10 @@ const queue = new Map();
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity("songs | m!help", {type: "PLAYING"});
+    client.user.setActivity("songs | =help", {type: "PLAYING"});
 })
 
-var prefix = "m!"
+var prefix = "="
   
 client.on("message", async message => {
 
@@ -47,24 +47,19 @@ client.on("message", async message => {
         }
 
         if(songsarray.length > 0) {
-            if(songsarray.length === 1){
-                message.channel.send("**Queue**\n**Playing:** " + songsarray[0]);
-            } else {
-                for (var j = 0; j < 1; j++) {
-                    songsarray[j] = "**" + "1." + "** ``" + songsarray[j] + "`` ◄ Now playing"
-                }
-                for (var i = 1; i < songsarray.length; i++) {
-                    songsarray[i] = "**" + (i+1) + ".** ``"+ songsarray[i] + "``";
-                }
-                const queueembed = new Discord.MessageEmbed()
-                    .setColor(`#00ff00`)
-                    .setTitle(`**Queue**`)
-                    .setDescription(`${songsarray.join("\n")}`)
-                    .setTimestamp()
-                message.channel.send(queueembed);
-                }
-        } else { 
-            message.channel.send("No songs queued") 
+            
+            for (var j = 0; j < 1; j++) {
+                songsarray[j] = "**" + "1." + "** ``" + songsarray[j] + "`` ◄ Now playing"
+            }
+            for (var i = 1; i < songsarray.length; i++) {
+                songsarray[i] = "**" + (i+1) + ".** ``"+ songsarray[i] + "``";
+            }
+            const queueembed = new Discord.MessageEmbed()
+                .setColor(`#00ff00`)
+                .setTitle(`**Queue**`)
+                .setDescription(`${songsarray.join("\n")}`)
+                .setTimestamp()
+            message.channel.send(queueembed);
         }
 
     } else if (command.startsWith(`help`)) {
