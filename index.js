@@ -38,7 +38,7 @@ client.on("message", async message => {
         }
 
         if(songsarray.length > 0) {
-            if(songs.length === 1){
+            if(songsarray.length === 1){
                 message.channel.send("**Queue - Playlist**\n**Playing:** " + serverQueue.songs[0]);
             } else {
                 var firstSong = serverQueue.songs.shift();
