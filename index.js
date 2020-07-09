@@ -31,9 +31,9 @@ client.on("message", async message => {
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
         return;
-    } else if (command.startsWith(`stop`)) {
+    } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
-    } else if (command == `join`|| command == `summon`) {
+    } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
             .setColor('#FFA500')
@@ -230,12 +230,12 @@ client.on("message", async message => {
         const novcstop = new Discord.MessageEmbed()
             .setColor('#FFA500')
             .setTitle('Join a voice channel first!')
-            .setDescription("You have to be in a voice channel to stop the music.")
+            .setDescription("You have to be in a voice channel to disconnect me.")
 
         const diffvcstop = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
             .setTitle(`You are not in the same VC with me!`)
-            .setDescription(`You have to be in the same VC with me to stop music.`)
+            .setDescription(`You have to be in the same VC with me to disconnect me.`)
 
         if (!message.member.voice.channel) return message.channel.send(novcstop);
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
