@@ -245,7 +245,7 @@ client.on("message", async message => {
             serverQueue.connection.dispatcher.end();
             }
         catch (e) {
-            message.guild.me.voice.channel.disconnect()
+            message.member.voice.channel.disconnect()
         }
         message.react(`👋`) 
     }
