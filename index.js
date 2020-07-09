@@ -240,7 +240,11 @@ client.on("message", async message => {
         if (!message.member.voice.channel) return message.channel.send(novcstop);
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcstop)
-        serverQueue.songs = [];
+        try {
+            serverQueue.songs = [];
+            }
+        catch (e) {
+        }
         serverQueue.connection.dispatcher.end();
         message.react(`👋`) 
     }
