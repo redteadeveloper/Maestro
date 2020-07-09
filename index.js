@@ -238,15 +238,17 @@ client.on("message", async message => {
             .setDescription(`You have to be in the same VC with me to disconnect me.`)
 
         if (!message.member.voice.channel) return message.channel.send(novcstop);
+
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcstop)
-        try {
+
+        if (!serverQueue) {
+            message.member.voice.channel.leave()
+        } else {
             serverQueue.songs = [];
             serverQueue.connection.dispatcher.end();
-            }
-        catch (e) {
-            message.member.voice.channel.leave()
         }
+        
         message.react(`👋`) 
     }
   
