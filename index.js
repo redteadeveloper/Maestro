@@ -63,10 +63,10 @@ client.on("message", async message => {
         if(songsarray.length > 0) {
             
             for (var j = 0; j < 1; j++) {
-                songsarray[j] = "⏯︎ ``" + songsarray[j] + "``"
+                songsarray[j] = "⏯︎ ``" + songsarray[j] + "``\n"
             }
             for (var i = 1; i < songsarray.length; i++) {
-                songsarray[i] = "**" + (i+1) + ".** ``"+ songsarray[i] + "``";
+                songsarray[i] = "**" + (i) + ".** ``"+ songsarray[i] + "``";
             }
             const queueembed = new Discord.MessageEmbed()
                 .setColor(`#00ff00`)
