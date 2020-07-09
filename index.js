@@ -242,10 +242,11 @@ client.on("message", async message => {
             return message.channel.send(diffvcstop)
         try {
             serverQueue.songs = [];
+            serverQueue.connection.dispatcher.end();
             }
         catch (e) {
+            message.guild.me.voice.channel.disconnect()
         }
-        serverQueue.connection.dispatcher.end();
         message.react(`👋`) 
     }
   
