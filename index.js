@@ -33,6 +33,17 @@ client.on("message", async message => {
         return;
     } else if (command.startsWith(`stop`)) {
         stop(message, serverQueue);
+    } else if (command == `join`|| command == `summon`) {
+
+        const novcjoin = new Discord.MessageEmbed()
+            .setColor('#FFA500')
+            .setTitle('Join a voice channel first!')
+            .setDescription("You have to be in a voice channel to make me join.")
+
+        if (!message.member.voice.channel) return message.channel.send(novcjoin);
+        message.member.voice.channel.join()
+        message.react(`✅`)
+
     } else if (command == `queue`|| command == `q`) {
 
         if(!serverQueue) {
