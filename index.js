@@ -63,8 +63,9 @@ client.on("message", async message => {
         
         const invr = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
-            .setTitle(`Provide an invalid number!`)
-            .setDescription(`Please give me a valid music number..`)
+            .setTitle(`You provided an invalid music number!`)
+            .setDescription(`Please give me a valid music number.`)
+            .setFooter(`Type =q to view music number.`)
 
         const args1 = message.content.split(' ').slice(1); 
         const amount = args1.join(' '); 
@@ -74,9 +75,16 @@ client.on("message", async message => {
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcr)
 
-        if(isNaN(amount) || amount > serverQueue.songs.length || !amount) return message.channel.send(invr)
+        if(isNaN(amount) || amount > serverQueue.songs.length || !amount ||  amount <= 0 ) return message.channel.send(invr)
 
         serverQueue.songs = serverQueue.songs.splice(amount, 1)
+
+        const removed = new Discord.MessageEmbed()
+            .setColor(`00ff00`)
+            .setTitle(`Removed music!`)
+            .setDescription(`Successfully removed music ${amount} from the queue.`)
+
+        message.channel.send(removed)
 
     } else if (command == `queue`|| command == `q`) {
 
