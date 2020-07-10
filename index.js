@@ -44,6 +44,40 @@ client.on("message", async message => {
         message.member.voice.channel.join()
         message.react(`✅`)
 
+    } else if (command == `remove` || command == `r`) {
+
+        const novcr = new Discord.MessageEmbed()
+            .setColor('#FFA500')
+            .setTitle('Join a voice channel first!')
+            .setDescription("You have to be in a voice channel to remove music.")
+
+        const diffvcr = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`You are not in the same VC with me!`)
+            .setDescription(`You have to be in the same VC with me to remove music.`)
+
+        const noqr = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`No queue!`)
+            .setDescription(`I have no song to remove.`)
+        
+        const invr = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`Provide an invalid number!`)
+            .setDescription(`Please give me a valid music number..`)
+
+        const args1 = message.content.split(' ').slice(1); 
+        const amount = args1.join(' '); 
+
+        if(!serverQueue) return message.channel.send(noqr)
+
+        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
+            return message.channel.send(diffvcr)
+
+        if(isNaN(amount) || amount > serverQueue.length || !amount) return message.channel.send(invr)
+
+        serverQueue.songs = serverQueue.songs.splice(amount, 1)
+
     } else if (command == `queue`|| command == `q`) {
 
         if(!serverQueue) {
