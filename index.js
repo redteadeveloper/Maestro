@@ -77,7 +77,7 @@ client.on("message", async message => {
 
         if(isNaN(amount) || amount >= serverQueue.songs.length || !amount ||  amount <= 0 ) return message.channel.send(invr)
 
-        serverQueue.songs = serverQueue.songs.splice(amount+1, 1)
+        serverQueue.songs = serverQueue.songs.splice(amount, 1)
         console.log(serverQueue.songs.join("\n"))
 
         const removed = new Discord.MessageEmbed()
