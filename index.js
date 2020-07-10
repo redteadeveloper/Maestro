@@ -33,6 +33,8 @@ client.on("message", async message => {
         return;
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
+    } else if (command == `ping`) {
+        message.channel.send(`Pong: ${client.ws.ping}`)
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
