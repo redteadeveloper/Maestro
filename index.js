@@ -67,6 +67,12 @@ client.on("message", async message => {
             .setDescription(`Please give me a valid music number.`)
             .setFooter(`Type =q to view music number.`)
 
+        const infor = new Discord.MessageEmbed()
+            .setColor(`#b19cd9`)
+            .setTitle(`Remove command`)
+            .setDescription(`Usage: =remove [song number]`)
+            .setFooter(`Type =q to view music number.`)
+
         const args1 = message.content.split(' ').slice(1); 
         const amount = args1.join(' '); 
 
@@ -79,8 +85,8 @@ client.on("message", async message => {
 
         const removed = new Discord.MessageEmbed()
             .setColor(`00ff00`)
-            .setTitle(`Removed music!`)
-            .setDescription("Successfully removed ```" + serverQueue.songs[amount].title + "``` from the queue.")
+            .setTitle(`Removed song!`)
+            .setDescription("Successfully removed `" + serverQueue.songs[amount].title + "` from queue.")
 
         await serverQueue.songs.splice(amount, 1)
 
@@ -129,7 +135,7 @@ client.on("message", async message => {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`**Command list**`)
-            .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.\n``=queue`` Displays queue.")
+            .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.")
         message.channel.send(helpembed)
     }});
 
@@ -152,7 +158,7 @@ client.on("message", async message => {
             const nosongembed = new Discord.MessageEmbed()
                 .setColor(`#b19cd9`)
                 .setTitle(`Play command`)
-                .setDescription(`Usage: =play [youtube link]`)
+                .setDescription(`Usage: =play [youtube link or search word]`)
             message.channel.send(nosongembed)
             return
         }
