@@ -33,7 +33,7 @@ client.on("message", async message => {
         return;
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
-    } else if (command == `stop` || command == `disconnect` || command == `dc`) {
+    } else if (command == `volume` || command == `vol` || command == `v`) {
         volume(message, serverQueue)
     } else if (command == `join` || command == `summon`) {
 
