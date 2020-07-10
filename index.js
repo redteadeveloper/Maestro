@@ -33,6 +33,8 @@ client.on("message", async message => {
         return;
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
+    } else if (command == `stop` || command == `disconnect` || command == `dc`) {
+        volume(message, serverQueue)
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
@@ -266,6 +268,35 @@ client.on("message", async message => {
         queue.delete(guild.id);
         return;
     }
+
+    function volume(message, serverQueue) {
+        const novcvol = new Discord.MessageEmbed()
+            .setColor('#FFA500')
+            .setTitle('Join a voice channel first!')
+            .setDescription("You have to be in a voice channel to change volume.")
+
+        const diffvcvol = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`You are not in the same VC with me!`)
+            .setDescription(`You have to be in the same VC with me to change volume.`)
+
+        const nobotvcvol = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`You are not in the same VC with me!`)
+            .setDescription(`You have to be in the same VC with me to change volume.`)
+
+        if (!message.member.voice.channel) return message.channel.send(novcvol);
+
+        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
+            return message.channel.send(diffvcvol)
+
+        if(!dispatcher) return message.channel.send(nobotvcvol)
+
+        if(isNaN(message.args[1])) return message.channel.send("Give me a number")
+        if(message.args[1] <= 0 || message.args[1] > 100) return message.channel.send("Volume should be a number between a and 100.")
+
+        dispatcher.setVolume(message.args[1])
+    }  
   
     const dispatcher = serverQueue.connection
         .play(ytdl(song.url, { filter: 'audioonly' }))
@@ -280,6 +311,8 @@ client.on("message", async message => {
             .setTitle('Playing music!')
             .setDescription("Playing ``" + song.title + "`` now! :notes:")
     serverQueue.textChannel.send(playing);
+
+
 
 }
 
