@@ -24,8 +24,11 @@ client.on("message", async message => {
     const command = args.shift().toLowerCase();
   
     const serverQueue = queue.get(message.guild.id);
-  
-    if (command.startsWith(`play`) || command.startsWith(`p`)) {
+
+    if(command == `ping`) {
+        message.channel.send(`Pong: ${client.ws.ping}`)
+        return
+    } else if (command.startsWith(`play`) || command.startsWith(`p`)) {
         execute(message, serverQueue);
         return;
     } else if (command.startsWith(`skip`)) {
@@ -33,8 +36,6 @@ client.on("message", async message => {
         return;
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
-    } else if (command == `ping`) {
-        message.channel.send(`Pong: ${client.ws.ping}`)
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
