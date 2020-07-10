@@ -70,7 +70,7 @@ client.on("message", async message => {
         if(songsarray.length > 0) {
             
             for (var j = 0; j < 1; j++) {
-                songsarray[j] = "⏯︎ ``" + songsarray[j] + "``\n"
+                songsarray[j] = ":play_pause: ``" + songsarray[j] + "``\n"
             }
             for (var i = 1; i < songsarray.length; i++) {
                 songsarray[i] = "**" + (i) + ".** ``"+ songsarray[i] + "``";
