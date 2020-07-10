@@ -76,7 +76,7 @@ client.on("message", async message => {
         const args1 = message.content.split(' ').slice(1); 
         const amount = args1.join(' '); 
 
-        if(!amount) message.channel.send(infor)
+        if(!amount) return message.channel.send(infor)
 
         if(!serverQueue) return message.channel.send(noqr)
 
