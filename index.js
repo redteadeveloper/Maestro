@@ -33,8 +33,6 @@ client.on("message", async message => {
         return;
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
-    } else if (command == `clearqueue` || command == `cq`) {
-        clearqueue(message, serverQueue)
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
@@ -48,12 +46,19 @@ client.on("message", async message => {
 
     } else if (command == `queue`|| command == `q`) {
 
-        if(!serverQueue.songs) {
+        if(!serverQueue) {
             const notplayingqueue = new Discord.MessageEmbed()
                 .setColor(`#FFA500`)
                 .setTitle(`Not playing!`)
                 .setDescription(`I'm not playing songs now.`)
             message.channel.send(notplayingqueue)
+            return;
+        } else if ( serverQueue.songs == [] ) {
+            const notplayingqueuea = new Discord.MessageEmbed()
+                .setColor(`#FFA500`)
+                .setTitle(`Not playing!`)
+                .setDescription(`I'm not playing songs now.`)
+            message.channel.send(notplayingqueuea)
             return;
         }
 
@@ -252,15 +257,6 @@ client.on("message", async message => {
         }
         
         message.react(`👋`) 
-    }
-
-    function clearqueue(message, serverQueue) {
-        if(serverQueue) {
-            serverQueue.songs = [];
-            message.react(`✅`)
-        } else {
-            message.react(`✅`)
-        }
     }
   
     function play(guild, song) {
