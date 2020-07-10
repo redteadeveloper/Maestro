@@ -77,13 +77,12 @@ client.on("message", async message => {
 
         if(isNaN(amount) || amount >= serverQueue.songs.length || !amount ||  amount <= 0 ) return message.channel.send(invr)
 
-        serverQueue.songs = serverQueue.songs.splice(amount, 1)
-        console.log(serverQueue.songs.join("\n"))
+        serverQueue.songs.splice(amount, 1)
 
         const removed = new Discord.MessageEmbed()
             .setColor(`00ff00`)
             .setTitle(`Removed music!`)
-            .setDescription(`Successfully removed music ${amount} from the queue.`)
+            .setDescription("Successfully removed ```" + serverQueue.songs[amount].title + "``` from the queue.")
 
         message.channel.send(removed)
 
