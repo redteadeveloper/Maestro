@@ -59,10 +59,10 @@ client.on("message", async message => {
 
         if(!dispatchera) return message.channel.send(nobotvcvol)
 
-        if(isNaN(message.args[1])) return message.channel.send("Give me a number")
-        if(message.args[1] <= 0 || message.args[1] > 100) return message.channel.send("Volume should be a number between a and 100.")
+        if(isNaN(message.content.args[1])) return message.channel.send("Give me a number")
+        if(message.content.args[1] <= 0 || message.content.args[1] > 100) return message.channel.send("Volume should be a number between a and 100.")
 
-        dispatchera.setVolume(message.args[1])
+        dispatchera.setVolume(message.content.args[1])
 
     } else if (command == `join` || command == `summon`) {
 
