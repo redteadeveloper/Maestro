@@ -48,7 +48,7 @@ client.on("message", async message => {
 
     } else if (command == `queue`|| command == `q`) {
 
-        if(!serverQueue) {
+        if(!serverQueue.songs) {
             const notplayingqueue = new Discord.MessageEmbed()
                 .setColor(`#FFA500`)
                 .setTitle(`Not playing!`)
