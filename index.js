@@ -33,40 +33,6 @@ client.on("message", async message => {
         return;
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
-    } else if (command == `volume` || command == `vol` || command == `v`) {
-
-        const novcvol = new Discord.MessageEmbed()
-            .setColor('#FFA500')
-            .setTitle('Join a voice channel first!')
-            .setDescription("You have to be in a voice channel to change volume.")
-
-        const diffvcvol = new Discord.MessageEmbed()
-            .setColor(`#FFA500`)
-            .setTitle(`You are not in the same VC with me!`)
-            .setDescription(`You have to be in the same VC with me to change volume.`)
-
-        const nobotvcvol = new Discord.MessageEmbed()
-            .setColor(`#FFA500`)
-            .setTitle(`You are not in the same VC with me!`)
-            .setDescription(`You have to be in the same VC with me to change volume.`)
-
-        if (!message.member.voice.channel) return message.channel.send(novcvol);
-
-        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
-            return message.channel.send(diffvcvol)
-
-        var dispatchera = serverQueue.connection
-
-        if(!dispatchera) return message.channel.send(nobotvcvol)
-
-        const args = message.content.split(' ').slice(1); 
-        const amount = args.join(' '); 
-
-        if(isNaN(amount)) return message.channel.send("Give me a number")
-        if(amount <= 0 || amount > 100) return message.channel.send("Volume should be a number between a and 100.")
-
-        dispatchera.setVolume(amount)
-
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
@@ -314,8 +280,6 @@ client.on("message", async message => {
             .setTitle('Playing music!')
             .setDescription("Playing ``" + song.title + "`` now! :notes:")
     serverQueue.textChannel.send(playing);
-
-
 
 }
 
