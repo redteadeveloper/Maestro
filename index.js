@@ -49,12 +49,12 @@ client.on("message", async message => {
         const novcr = new Discord.MessageEmbed()
             .setColor('#FFA500')
             .setTitle('Join a voice channel first!')
-            .setDescription("You have to be in a voice channel to remove music.")
+            .setDescription("You have to be in a voice channel to remove song.")
 
         const diffvcr = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
             .setTitle(`You are not in the same VC with me!`)
-            .setDescription(`You have to be in the same VC with me to remove music.`)
+            .setDescription(`You have to be in the same VC with me to remove song.`)
 
         const noqr = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
@@ -63,15 +63,15 @@ client.on("message", async message => {
         
         const invr = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
-            .setTitle(`You provided an invalid music number!`)
-            .setDescription(`Please give me a valid music number.`)
-            .setFooter(`Type =q to view music number.`)
+            .setTitle(`You provided an invalid song number!`)
+            .setDescription(`Please give me a valid song number.`)
+            .setFooter(`Type =q to view song number.`)
 
         const infor = new Discord.MessageEmbed()
             .setColor(`#b19cd9`)
             .setTitle(`Remove command`)
             .setDescription(`Usage: =remove [song number]`)
-            .setFooter(`Type =q to view music number.`)
+            .setFooter(`Type =q to view song number.`)
 
         const args1 = message.content.split(' ').slice(1); 
         const amount = args1.join(' '); 
