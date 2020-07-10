@@ -76,12 +76,14 @@ client.on("message", async message => {
         const args1 = message.content.split(' ').slice(1); 
         const amount = args1.join(' '); 
 
+        if(!amount) message.channel.send(infor)
+
         if(!serverQueue) return message.channel.send(noqr)
 
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcr)
 
-        if(isNaN(amount) || amount >= serverQueue.songs.length || !amount ||  amount <= 0 ) return message.channel.send(invr)
+        if(isNaN(amount) || amount >= serverQueue.songs.length ||  amount <= 0 ) return message.channel.send(invr)
 
         const removed = new Discord.MessageEmbed()
             .setColor(`00ff00`)
