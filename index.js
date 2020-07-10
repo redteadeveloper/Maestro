@@ -26,7 +26,7 @@ client.on("message", async message => {
     const serverQueue = queue.get(message.guild.id);
 
     if(command == `ping`) {
-        message.channel.send(`Pong: ${client.ws.ping}`)
+        message.channel.send(`Pong: ${client.ws.ping}ms!`)
         return
     } else if (command.startsWith(`play`) || command.startsWith(`p`)) {
         execute(message, serverQueue);
