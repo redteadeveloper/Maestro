@@ -55,13 +55,15 @@ client.on("message", async message => {
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcvol)
 
-        if(!dispatcher) return message.channel.send(nobotvcvol)
+        var dispatchera = serverQueue.connection
+
+        if(!dispatchera) return message.channel.send(nobotvcvol)
 
         if(isNaN(message.args[1])) return message.channel.send("Give me a number")
         if(message.args[1] <= 0 || message.args[1] > 100) return message.channel.send("Volume should be a number between a and 100.")
 
-        dispatcher.setVolume(message.args[1])
-        
+        dispatchera.setVolume(message.args[1])
+
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
