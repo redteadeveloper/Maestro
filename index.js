@@ -256,7 +256,7 @@ client.on("message", async message => {
 
     function clearqueue(message, serverQueue) {
         if(serverQueue) {
-            songs = [];
+            serverQueue.songs = [];
             message.react(`✅`)
         } else {
             message.react(`✅`)
