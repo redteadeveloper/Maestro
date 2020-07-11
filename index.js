@@ -31,48 +31,17 @@ client.on("message", async message => {
 
     //Settings command start
 
-    if(command == `logusage on`) {
-        var logusage = 0
-        console.log(`Settings changed | Command log usage enabled`)
-        message.channel.send("```Command usage log enabled```")
-    } else if (command == `logusage off`) {
-        var logusage = 1
-        console.log(`Settings changed | Command usage log disabled`)
-        message.channel.send("```Command usage log disabled```")
-    } else if (command == `logsong on`) {
-        var logsong = 0
-        console.log(`Settings changed | Song log enabled`)
-        message.channel.send("```Song log enabled```")
-    } else if (command == `logsong off`) {
-        var logsong = 1
-        console.log(`Settings changed | Song log disabled`)
-        message.channel.send("```Song log disabled```")
-    } else if (command == `logqueue on`) {
-        var logqueue = 0
-        console.log(`Settings changed | Queue log enabled`)
-        message.channel.send("```Queue log enabled```")
-    } else if (command == `logqueue off`) {
-        var logqueue = 1
-        console.log(`Settings changed | Queue log disabled`)
-        message.channel.send("```Queue log disabled```")
-
-    //Settings command end
-
-    } else if(command == `ping`) {
+    if(command == `ping`) {
         message.channel.send(`Pong: ${client.ws.ping}ms!`)
-        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used ping command`.green)
         return;
     } else if (command.startsWith(`play`) || command.startsWith(`p`)) {
         execute(message, serverQueue);
-        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used play command`)
         return;
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
-        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used skip command`)
         return;
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
-        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used stop command`)
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
@@ -83,8 +52,6 @@ client.on("message", async message => {
         if (!message.member.voice.channel) return message.channel.send(novcjoin);
         message.member.voice.channel.join()
         message.react(`✅`)
-
-        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used join command`)
 
     } else if (command == `remove` || command == `r`) {
 
@@ -138,8 +105,6 @@ client.on("message", async message => {
 
         message.channel.send(removed)
 
-        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used remove command`)
-
     } else if (command == `queue`|| command == `q`) {
 
         if(!serverQueue) {
@@ -179,16 +144,12 @@ client.on("message", async message => {
             message.channel.send(queueembed);
         }
 
-        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used queue command`)
-
     } else if (command.startsWith(`help`)) {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`**Command list**`)
             .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.")
         message.channel.send(helpembed)
-
-        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used help command`)
 
     }});
 
@@ -245,12 +206,8 @@ client.on("message", async message => {
         
             queue.set(message.guild.id, queueContruct);
 
-            if (logqueue = 0) console.warn(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
-        
             queueContruct.songs.push(songyt);
 
-            if (logsong = 0) console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
-        
             try {
                 var connection = await voiceChannel.join();
                 queueContruct.connection = connection;
@@ -275,7 +232,8 @@ client.on("message", async message => {
             if (logsong = 0) console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             return;
-            }
+        }
+
         } else {
         
             const songInfo = await ytdl.getInfo(video);
@@ -296,12 +254,8 @@ client.on("message", async message => {
         
             queue.set(message.guild.id, queueContruct);
 
-            if (logqueue = 0) console.warn(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
-        
             queueContruct.songs.push(song); 
 
-            if (logsong = 0) console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
-        
             try {
                 var connection = await voiceChannel.join();
                 queueContruct.connection = connection;
@@ -321,9 +275,6 @@ client.on("message", async message => {
                 .setTitle('Song added!')
                 .setDescription("``" + song.title + "`` has been added to the queue!")
             message.channel.send(addedsong);
-
-            if (logsong = 0) console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
-        
             return;
         }}
     }
