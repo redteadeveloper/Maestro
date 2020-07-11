@@ -14,6 +14,10 @@ client.on("ready", () => {
 })
 
 var prefix = "="
+
+var logusage = 1
+var logsong = 1
+var logqueue = 1
   
 client.on("message", async message => {
 
@@ -25,21 +29,50 @@ client.on("message", async message => {
   
     const serverQueue = queue.get(message.guild.id);
 
-    if(command == `ping`) {
+    //Settings command start
+
+    if(command == `logusage on`) {
+        var logusage = 0
+        console.log(`Settings changed | Command log usage enabled`)
+        message.channel.send("```Command usage log enabled```")
+    } else if (command == `logusage off`) {
+        var logusage = 1
+        console.log(`Settings changed | Command usage log disabled`)
+        message.channel.send("```Command usage log disabled```")
+    } else if (command == `logsong on`) {
+        var logsong = 0
+        console.log(`Settings changed | Song log enabled`)
+        message.channel.send("```Song log enabled```")
+    } else if (command == `logsong off`) {
+        var logsong = 1
+        console.log(`Settings changed | Song log disabled`)
+        message.channel.send("```Song log disabled```")
+    } else if (command == `logqueue on`) {
+        var logqueue = 0
+        console.log(`Settings changed | Queue log enabled`)
+        message.channel.send("```Queue log enabled```")
+    } else if (command == `logqueue off`) {
+        var logqueue = 1
+        console.log(`Settings changed | Queue log disabled`)
+        message.channel.send("```Queue log disabled```")
+
+    //Settings command end
+
+    } else if(command == `ping`) {
         message.channel.send(`Pong: ${client.ws.ping}ms!`)
-        console.log(`Command Used | ${message.author.tag} used ping command`.green)
-        return
+        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used ping command`.green)
+        return;
     } else if (command.startsWith(`play`) || command.startsWith(`p`)) {
         execute(message, serverQueue);
-        console.log(`Command Used | ${message.author.tag} used play command`)
+        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used play command`)
         return;
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
-        console.log(`Command Used | ${message.author.tag} used skip command`)
+        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used skip command`)
         return;
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
-        console.log(`Command Used | ${message.author.tag} used stop command`)
+        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used stop command`)
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
@@ -51,7 +84,7 @@ client.on("message", async message => {
         message.member.voice.channel.join()
         message.react(`✅`)
 
-        console.log(`Command Used | ${message.author.tag} used join command`)
+        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used join command`)
 
     } else if (command == `remove` || command == `r`) {
 
@@ -105,7 +138,7 @@ client.on("message", async message => {
 
         message.channel.send(removed)
 
-        console.log(`Command Used | ${message.author.tag} used remove command`)
+        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used remove command`)
 
     } else if (command == `queue`|| command == `q`) {
 
@@ -146,7 +179,7 @@ client.on("message", async message => {
             message.channel.send(queueembed);
         }
 
-        console.log(`Command Used | ${message.author.tag} used queue command`)
+        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used queue command`)
 
     } else if (command.startsWith(`help`)) {
         const helpembed = new Discord.MessageEmbed()
@@ -155,7 +188,7 @@ client.on("message", async message => {
             .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.")
         message.channel.send(helpembed)
 
-        console.log(`Command Used | ${message.author.tag} used help command`)
+        if (logusage = 0) console.log(`Command Used | ${message.author.tag} used help command`)
 
     }});
 
@@ -212,11 +245,11 @@ client.on("message", async message => {
         
             queue.set(message.guild.id, queueContruct);
 
-            console.warn(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
+            if (logqueue = 0) console.warn(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
         
             queueContruct.songs.push(songyt);
 
-            console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
+            if (logsong = 0) console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             try {
                 var connection = await voiceChannel.join();
@@ -239,7 +272,7 @@ client.on("message", async message => {
                 .setDescription("``" + songyt.title + "`` has been added to the queue!")
             message.channel.send(addedsong);
 
-            console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
+            if (logsong = 0) console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             return;
             }
@@ -263,11 +296,11 @@ client.on("message", async message => {
         
             queue.set(message.guild.id, queueContruct);
 
-            console.warn(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
+            if (logqueue = 0) console.warn(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
         
             queueContruct.songs.push(song); 
 
-            console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
+            if (logsong = 0) console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             try {
                 var connection = await voiceChannel.join();
@@ -289,7 +322,7 @@ client.on("message", async message => {
                 .setDescription("``" + song.title + "`` has been added to the queue!")
             message.channel.send(addedsong);
 
-            console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
+            if (logsong = 0) console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             return;
         }}
