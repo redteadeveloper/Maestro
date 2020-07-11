@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 const ytdl = require("ytdl-core");
 const YouTube = require("discord-youtube-api");
+const colors = require("colors")
 
 const client = new Discord.Client()
 
@@ -27,15 +28,19 @@ client.on("message", async message => {
 
     if(command == `ping`) {
         message.channel.send(`Pong: ${client.ws.ping}ms!`)
+        console.log(`Command Used | ${message.author.tag} used ping command`.green)
         return
     } else if (command.startsWith(`play`) || command.startsWith(`p`)) {
         execute(message, serverQueue);
+        console.log(`Command Used | ${message.author.tag} used play command`.green)
         return;
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
+        console.log(`Command Used | ${message.author.tag} used skip command`.green)
         return;
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
+        console.log(`Command Used | ${message.author.tag} used stop command`.green)
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
@@ -46,6 +51,8 @@ client.on("message", async message => {
         if (!message.member.voice.channel) return message.channel.send(novcjoin);
         message.member.voice.channel.join()
         message.react(`✅`)
+
+        console.log(`Command Used | ${message.author.tag} used join command`.green)
 
     } else if (command == `remove` || command == `r`) {
 
@@ -97,6 +104,8 @@ client.on("message", async message => {
 
         message.channel.send(removed)
 
+        console.log(`Command Used | ${message.author.tag} used remove command`.green)
+
     } else if (command == `queue`|| command == `q`) {
 
         if(!serverQueue) {
@@ -136,12 +145,17 @@ client.on("message", async message => {
             message.channel.send(queueembed);
         }
 
+        console.log(`Command Used | ${message.author.tag} used queue command`.green)
+
     } else if (command.startsWith(`help`)) {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`**Command list**`)
             .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.")
         message.channel.send(helpembed)
+
+        console.log(`Command Used | ${message.author.tag} used help command`.green)
+
     }});
 
     async function execute(message, serverQueue) {
