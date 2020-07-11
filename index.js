@@ -227,7 +227,7 @@ client.on("message", async message => {
                 queue.delete(message.guild.id);
                 return message.channel.send(err);
             }
-
+ 
             
 
         } else {
