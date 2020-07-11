@@ -150,7 +150,11 @@ client.on("message", async message => {
             .setTitle(`**Command list**`)
             .setDescription("``=ping`` Gets bot ping.\n``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.")
         message.channel.send(helpembed)
-
+    } else if (command == `aliases`) {
+        const aliases = new Discord.MessageEmbed()
+            .setColor(`#1167b1`)
+            .setTitle(`**Command aliases**`)
+            .setDescription("=play - ``=p``\n=join - ``=summon\n=queue - ``=q``\n=stop - ``=disconnect, =dc``\n=remove - ``=r``")
     }});
 
     async function execute(message, serverQueue) {
