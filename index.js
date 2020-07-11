@@ -154,7 +154,7 @@ client.on("message", async message => {
         const aliases = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`**Command aliases**`)
-            .setDescription("=play - ``=p``\n=join - ``=summon\n=queue - ``=q``\n=stop - ``=disconnect, =dc``\n=remove - ``=r``")
+            .setDescription("=play - ``=p``\n=join - ``=summon``\n=queue - ``=q``\n=stop - ``=disconnect, =dc``\n=remove - ``=r``")
         message.channel.send(aliases)
     }});
 
