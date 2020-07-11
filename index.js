@@ -1,7 +1,6 @@
 const Discord = require("discord.js")
 const ytdl = require("ytdl-core");
 const YouTube = require("discord-youtube-api");
-const colors = require("colors")
 
 const client = new Discord.Client()
 
