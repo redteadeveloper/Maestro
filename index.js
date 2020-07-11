@@ -32,15 +32,15 @@ client.on("message", async message => {
         return
     } else if (command.startsWith(`play`) || command.startsWith(`p`)) {
         execute(message, serverQueue);
-        console.log(`Command Used | ${message.author.tag} used play command`.green)
+        console.log(`Command Used | ${message.author.tag} used play command`)
         return;
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
-        console.log(`Command Used | ${message.author.tag} used skip command`.green)
+        console.log(`Command Used | ${message.author.tag} used skip command`)
         return;
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
         stop(message, serverQueue);
-        console.log(`Command Used | ${message.author.tag} used stop command`.green)
+        console.log(`Command Used | ${message.author.tag} used stop command`)
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
@@ -52,7 +52,7 @@ client.on("message", async message => {
         message.member.voice.channel.join()
         message.react(`✅`)
 
-        console.log(`Command Used | ${message.author.tag} used join command`.green)
+        console.log(`Command Used | ${message.author.tag} used join command`)
 
     } else if (command == `remove` || command == `r`) {
 
@@ -90,6 +90,8 @@ client.on("message", async message => {
 
         if(!serverQueue) return message.channel.send(noqr)
 
+        if(!message.member.voice.channel) return message.channel.send(novcr)
+
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcr)
 
@@ -104,7 +106,7 @@ client.on("message", async message => {
 
         message.channel.send(removed)
 
-        console.log(`Command Used | ${message.author.tag} used remove command`.green)
+        console.log(`Command Used | ${message.author.tag} used remove command`)
 
     } else if (command == `queue`|| command == `q`) {
 
@@ -145,7 +147,7 @@ client.on("message", async message => {
             message.channel.send(queueembed);
         }
 
-        console.log(`Command Used | ${message.author.tag} used queue command`.green)
+        console.log(`Command Used | ${message.author.tag} used queue command`)
 
     } else if (command.startsWith(`help`)) {
         const helpembed = new Discord.MessageEmbed()
@@ -154,7 +156,7 @@ client.on("message", async message => {
             .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.")
         message.channel.send(helpembed)
 
-        console.log(`%cCommand used | %c${message.author.tag} %cused help command`,"color: green, color: blue, color: green");
+        console.log(`Command Used | ${message.author.tag} used help command`)
 
     }});
 
@@ -210,8 +212,12 @@ client.on("message", async message => {
             };
         
             queue.set(message.guild.id, queueContruct);
+
+            console.log(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
         
             queueContruct.songs.push(songyt);
+
+            console.log(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             try {
                 var connection = await voiceChannel.join();
@@ -223,6 +229,8 @@ client.on("message", async message => {
                 return message.channel.send(err);
             }
 
+            
+
         } else {
             
             serverQueue.songs.push(songyt);
@@ -230,7 +238,11 @@ client.on("message", async message => {
                 .setColor('#00ff00')
                 .setTitle('Song added!')
                 .setDescription("``" + songyt.title + "`` has been added to the queue!")
-            return message.channel.send(addedsong);
+            message.channel.send(addedsong);
+
+            console.log(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
+        
+            return;
             }
         } else {
         
@@ -251,8 +263,12 @@ client.on("message", async message => {
             };
         
             queue.set(message.guild.id, queueContruct);
+
+            console.log(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
         
             queueContruct.songs.push(song); 
+
+            console.log(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             try {
                 var connection = await voiceChannel.join();
@@ -264,13 +280,19 @@ client.on("message", async message => {
                 return message.channel.send(err);
             }
 
+            
+
         } else {
             serverQueue.songs.push(song);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setTitle('Song added!')
                 .setDescription("``" + song.title + "`` has been added to the queue!")
-            return message.channel.send(addedsong);
+            message.channel.send(addedsong);
+
+            console.log(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
+        
+            return;
         }}
     }
   
