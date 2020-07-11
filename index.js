@@ -154,7 +154,7 @@ client.on("message", async message => {
             .setDescription("``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=help`` This command.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.")
         message.channel.send(helpembed)
 
-        console.log(`Command Used | ${message.author.tag} used help command`.green)
+        console.log(`%cCommand used | %c${message.author.tag} %cused help command`,"color: green, color: blue, color: green");
 
     }});
 
