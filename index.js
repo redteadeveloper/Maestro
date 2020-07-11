@@ -212,11 +212,11 @@ client.on("message", async message => {
         
             queue.set(message.guild.id, queueContruct);
 
-            console.log(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
+            console.warn(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
         
             queueContruct.songs.push(songyt);
 
-            console.log(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
+            console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             try {
                 var connection = await voiceChannel.join();
@@ -239,7 +239,7 @@ client.on("message", async message => {
                 .setDescription("``" + songyt.title + "`` has been added to the queue!")
             message.channel.send(addedsong);
 
-            console.log(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
+            console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             return;
             }
@@ -263,11 +263,11 @@ client.on("message", async message => {
         
             queue.set(message.guild.id, queueContruct);
 
-            console.log(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
+            console.warn(`Queue created | ${message.author.tag} created queue (server ID: ${message.guild.id})`)
         
             queueContruct.songs.push(song); 
 
-            console.log(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
+            console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             try {
                 var connection = await voiceChannel.join();
@@ -289,7 +289,7 @@ client.on("message", async message => {
                 .setDescription("``" + song.title + "`` has been added to the queue!")
             message.channel.send(addedsong);
 
-            console.log(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
+            console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
         
             return;
         }}
