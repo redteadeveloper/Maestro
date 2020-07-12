@@ -15,10 +15,6 @@ client.on("ready", () => {
 })
 
 var prefix = "="
-
-var logusage = 1
-var logsong = 1
-var logqueue = 1
   
 client.on("message", async message => {
 
