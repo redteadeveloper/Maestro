@@ -10,7 +10,7 @@ const youtube = new YouTube("AIzaSyBG_B8arvyYu1FGIGwQsDCHH4YnhCLEVEQ");
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setStatus('idle')
+    bot.user.setStatus('idle')
     client.user.setActivity("songs | =help", {type: "PLAYING"});
 })
 
