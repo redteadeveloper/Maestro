@@ -30,8 +30,6 @@ client.on("message", async message => {
   
     const serverQueue = queue.get(message.guild.id);
 
-    //Settings command start
-
     if(command == `ping`) {
         message.channel.send(`Pong: ${client.ws.ping}ms!`)
         return;
