@@ -15,6 +15,10 @@ client.on("ready", () => {
 })
 
 var prefix = "="
+
+Array.prototype.move = function (from, to) {
+    this.splice(to, 0, this.splice(from, 1)[0]);
+};
   
 client.on("message", async message => {
 
@@ -141,30 +145,51 @@ client.on("message", async message => {
 
     } else if (command.startsWith(`move`) || command.startsWith(`m`)) {
         
-        const args = message.content.split(' ').slice(1); 
-        const amount = args.join(' ');
+        const args = message.content.split(' ');
+        const locbef = args[1]
+        const locaft = args[2]
 
         const infom = new Discord.MessageEmbed()
             .setColor(`#b19cd9`)
             .setTitle(`Move command`)
             .setFooter(`Moves song location in queue.`)
 
-        if(!amount) return message.channel.send(infom)
+        const invm = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`You provided an invalid song number!`)
+            .setDescription(`Please give me a valid song number.`)
+            .setFooter(`Type =q to view song number.`)
+
+        if(!locbef || !locaft) return message.channel.send(infom)
+
+        if(locbef >= serverQueue.songs.length || locaft >= serverQueue.songs.length || locaft <= 0 || locbef <= 0)
+            return message.channel.send(invm)
+
+        const moved = new Discord.MessageEmbed()
+        .setColor(`00ff00`)
+        .setTitle(`Moved song!`)
+        .setDescription("Successfully moved `" + serverQueue.songs[locbef].title + "` in queue.")
+
+        await serverQueue.songs.move(locbef, locaft)
 
         
 
     } else if (command.startsWith(`help`)) {
+
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command list`)
             .setDescription("``=ping`` Gets bot ping.\n``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.\n``=help`` This command.\n``=aliases`` View command aliases.")
         message.channel.send(helpembed)
+
     } else if (command == `aliases`) {
+
         const aliases = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command aliases`)
             .setDescription("``=play`` - ``=p``\n``=join`` - ``=summon``\n``=queue`` - ``=q``\n``=stop`` - ``=disconnect, =dc``\n``=remove`` - ``=r``")
         message.channel.send(aliases)
+
     }});
 
     async function execute(message, serverQueue) {
