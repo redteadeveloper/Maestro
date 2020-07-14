@@ -152,7 +152,8 @@ client.on("message", async message => {
         const infom = new Discord.MessageEmbed()
             .setColor(`#b19cd9`)
             .setTitle(`Move command`)
-            .setFooter(`Changes song location in queue.`)
+            .setDescription(`Changes song location in queue.`)
+            .setFooter(`Usage: =move [song number] [wanted location]`)
 
         const invm = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
