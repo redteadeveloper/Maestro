@@ -11,7 +11,7 @@ const youtube = new YouTube("AIzaSyBG_B8arvyYu1FGIGwQsDCHH4YnhCLEVEQ");
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
     client.user.setStatus('idle')
-    client.user.setActivity("songs | =help", {type: "PLAYING"});
+    client.user.setActivity("Build 0.4.3 | =help", {type: "PLAYING"});
 })
 
 var prefix = "="
@@ -74,8 +74,8 @@ client.on("message", async message => {
         const infor = new Discord.MessageEmbed()
             .setColor(`#b19cd9`)
             .setTitle(`Remove command`)
-            .setDescription(`Usage: =remove [song number]`)
-            .setFooter(`Type =q to view song number.`)
+            .setDescription(`Removes a song from queue.`)
+            .setFooter(`Usage: =remove [song number]`)
 
         const args1 = message.content.split(' ').slice(1); 
         const amount = args1.join(' '); 
@@ -139,6 +139,20 @@ client.on("message", async message => {
             message.channel.send(queueembed);
         }
 
+    } else if (command.startsWith(`move`) || command.startsWith(`m`)) {
+        
+        const args = message.content.split(' ').slice(1); 
+        const amount = args.join(' ');
+
+        const infom = new Discord.MessageEmbed()
+            .setColor(`#b19cd9`)
+            .setTitle(`Move command`)
+            .setFooter(`Moves song location in queue.`)
+
+        if(!amount) return message.channel.send(infom)
+
+        
+
     } else if (command.startsWith(`help`)) {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
@@ -172,7 +186,8 @@ client.on("message", async message => {
             const nosongembed = new Discord.MessageEmbed()
                 .setColor(`#b19cd9`)
                 .setTitle(`Play command`)
-                .setDescription(`Usage: =play [youtube link or search word]`)
+                .setDescription(`Plays a song from youtube.`)
+                .setFooter(`Usage: =play [youtube link or search word]`)
             message.channel.send(nosongembed)
             return
         }
@@ -227,10 +242,8 @@ client.on("message", async message => {
                 .setDescription("``" + songyt.title + "`` has been added to the queue!")
             message.channel.send(addedsong);
 
-            if (logsong = 0) console.warn(`Song added | ${message.author.tag} added a new song to the queue (server ID: ${message.guild.id})`)
-        
             return;
-        }
+        } 
 
         } else {
         
