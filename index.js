@@ -152,7 +152,7 @@ client.on("message", async message => {
         const infom = new Discord.MessageEmbed()
             .setColor(`#b19cd9`)
             .setTitle(`Move command`)
-            .setFooter(`Moves song location in queue.`)
+            .setFooter(`Changes song location in queue.`)
 
         const invm = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
@@ -166,20 +166,20 @@ client.on("message", async message => {
             return message.channel.send(invm)
 
         const moved = new Discord.MessageEmbed()
-        .setColor(`00ff00`)
-        .setTitle(`Moved song!`)
-        .setDescription("Successfully moved `" + serverQueue.songs[locbef].title + "` in queue.")
+            .setColor(`00ff00`)
+            .setTitle(`Moved song!`)
+            .setDescription("Successfully moved `" + serverQueue.songs[locbef].title + "` in queue.")
+
+        message.channel.send(moved)
 
         await serverQueue.songs.move(locbef, locaft)
-
-        
 
     } else if (command.startsWith(`help`)) {
 
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command list`)
-            .setDescription("``=ping`` Gets bot ping.\n``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.\n``=help`` This command.\n``=aliases`` View command aliases.")
+            .setDescription("``=ping`` Gets bot ping.\n``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.\n``=move`` Moves song in queue.\n``=help`` This command.\n``=aliases`` View command aliases.")
         message.channel.send(helpembed)
 
     } else if (command == `aliases`) {
@@ -187,7 +187,7 @@ client.on("message", async message => {
         const aliases = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command aliases`)
-            .setDescription("``=play`` - ``=p``\n``=join`` - ``=summon``\n``=queue`` - ``=q``\n``=stop`` - ``=disconnect, =dc``\n``=remove`` - ``=r``")
+            .setDescription("``=play`` - ``=p``\n``=join`` - ``=summon``\n``=queue`` - ``=q``\n``=stop`` - ``=disconnect, =dc``\n``=remove`` - ``=r``\n``=move`` - ``=m``")
         message.channel.send(aliases)
 
     }});
