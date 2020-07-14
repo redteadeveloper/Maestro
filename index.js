@@ -142,13 +142,13 @@ client.on("message", async message => {
     } else if (command.startsWith(`help`)) {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
-            .setTitle(`**Command list**`)
+            .setTitle(`Command list`)
             .setDescription("``=ping`` Gets bot ping.\n``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.\n``=help`` This command.\n``=aliases`` View command aliases.")
         message.channel.send(helpembed)
     } else if (command == `aliases`) {
         const aliases = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
-            .setTitle(`**Command aliases**`)
+            .setTitle(`Command aliases`)
             .setDescription("``=play`` - ``=p``\n``=join`` - ``=summon``\n``=queue`` - ``=q``\n``=stop`` - ``=disconnect, =dc``\n``=remove`` - ``=r``")
         message.channel.send(aliases)
     }});
@@ -218,8 +218,6 @@ client.on("message", async message => {
                 return message.channel.send(err);
             }
  
-            
-
         } else {
             
             serverQueue.songs.push(songyt);
@@ -265,8 +263,6 @@ client.on("message", async message => {
                 queue.delete(message.guild.id);
                 return message.channel.send(err);
             }
-
-            
 
         } else {
             serverQueue.songs.push(song);
