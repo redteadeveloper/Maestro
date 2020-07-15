@@ -226,6 +226,13 @@ client.on("message", async message => {
 
         if(ytdl.validateURL(video) == false) {
 
+            const notdev = new Discord.MessageEmbed()
+                .setColor(`#FFA500`)
+                .setTitle(`You can't use this feature.`)
+                .setDescription(`Youtube searching is currently developer only.`)
+
+            if(message.author.tag != `611396886418685982`) return message.channel.send(notdev)
+
             var keyword = encodeURI(video)
             const videosearched = await youtube.searchVideos(keyword);
 
