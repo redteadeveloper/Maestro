@@ -10,8 +10,10 @@ const youtube = new YouTube("AIzaSyBG_B8arvyYu1FGIGwQsDCHH4YnhCLEVEQ");
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setStatus('idle')
-    client.user.setActivity("Build 0.4.3 | =help", {type: "PLAYING"});
+    client.user.setActivity("build 0.4.4 | =help", {
+        type: "STREAMING",
+        url: "https://www.twitch.tv/maestromusicbot"
+    });
 })
 
 var prefix = "="
