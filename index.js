@@ -139,7 +139,7 @@ client.on("message", async message => {
             }
             const queueembed = new Discord.MessageEmbed()
                 .setColor(`#00ff00`)
-                .setTitle(`**Queue**`)
+                .setTitle(`Queue`)
                 .setDescription(`${songsarray.join("\n")}`)
                 .setTimestamp()
             message.channel.send(queueembed);
@@ -233,7 +233,7 @@ client.on("message", async message => {
                 .setTitle(`You can't use this feature.`)
                 .setDescription(`Youtube searching is currently developer only.`)
 
-            if(message.author.tag != `611396886418685982`) return message.channel.send(notdev)
+            if(message.author.id != `611396886418685982`) return message.channel.send(notdev)
 
             var keyword = encodeURI(video)
             const videosearched = await youtube.searchVideos(keyword);
