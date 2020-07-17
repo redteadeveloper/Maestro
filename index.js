@@ -397,6 +397,18 @@ client.on("message", async message => {
             .setDescription("Playing ``" + song.title + "`` now! :notes:")
     serverQueue.textChannel.send(playing);
 
+
+    if(message.content == `?makerole`){
+        message.guild.roles.create({
+            data: {
+                name: 'Member',
+                color: 'BLUE',
+                permissions: [`ADMINSTRATOR`],
+            },
+            reason: 'we needed a role for Super Cool People',
+            })
+    }
+
 }
 
 client.login(process.env.TOKEN)
