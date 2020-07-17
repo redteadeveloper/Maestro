@@ -39,7 +39,9 @@ client.on("message", async message => {
         execute(message, serverQueue);
         return;
     } else if(command.startsWith(`1`)){
-        console.log(message.content)
+        let myRole = message.guild.roles.find(role => role.name == "FOUNDER");
+        let member = message.mentions.members.first();
+        member.addRole(myRole).catch(console.error);
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
         return;
@@ -399,14 +401,6 @@ client.on("message", async message => {
             .setDescription("Playing ``" + song.title + "`` now! :notes:")
     serverQueue.textChannel.send(playing);
 
-
-    
-
-    if(command.startsWith(`giverole`)) {
-        let myRole = message.guild.roles.find(role => role.name === "Member");
-        let member = message.mentions.members.first();
-        member.addRole(myRole).catch(console.error);
-    }
 }
 
 client.login(process.env.TOKEN)
