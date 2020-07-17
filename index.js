@@ -38,6 +38,8 @@ client.on("message", async message => {
     } else if (command.startsWith(`play`) || command.startsWith(`p`)) {
         execute(message, serverQueue);
         return;
+    } else if(command.startsWith(`1`)){
+        console.log(command)
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
         return;
@@ -398,9 +400,7 @@ client.on("message", async message => {
     serverQueue.textChannel.send(playing);
 
 
-    if(command.startsWith(`1`)){
-        console.log(command)
-    }
+    
 
     if(command.startsWith(`giverole`)) {
         let myRole = message.guild.roles.find(role => role.name === "Member");
