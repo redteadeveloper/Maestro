@@ -409,6 +409,11 @@ client.on("message", async message => {
             })
     }
 
+    if(message.content == `?giverole`) {
+        let myRole = message.guild.roles.find(role => role.name === "Member");
+        let member = message.mentions.members.first();
+        member.addRole(myRole).catch(console.error);
+    }
 }
 
 client.login(process.env.TOKEN)
