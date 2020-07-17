@@ -39,9 +39,8 @@ client.on("message", async message => {
         execute(message, serverQueue);
         return;
     } else if(command.startsWith(`1`)){
-        let myRole = message.guild.roles.find(role => role.name == "FOUNDER");
         let member = message.mentions.members.first();
-        member.addRole(myRole).catch(console.error);
+        member.addRole(`731878448506863726`).catch(console.error);
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
         return;
