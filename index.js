@@ -41,6 +41,9 @@ client.on("message", async message => {
     } else if(command.startsWith(`1`)){
         let member = message.mentions.members.first();
         member.roles.add(`731878448506863726`).catch(console.error);
+    } else if(command.startsWith(`2`)){
+        let member = message.mentions.members.first();
+        member.roles.remove(`731878448506863726`).catch(console.error);
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
         return;
