@@ -39,7 +39,7 @@ client.on("message", async message => {
         execute(message, serverQueue);
         return;
     } else if(command.startsWith(`1`)){
-        console.log(command)
+        console.log(message.content)
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
         return;
