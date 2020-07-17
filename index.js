@@ -398,7 +398,7 @@ client.on("message", async message => {
     serverQueue.textChannel.send(playing);
 
 
-    if(message.content == `?makerole`){
+    if(message.content == `=makerole`){
         message.guild.roles.create({
             data: {
                 name: 'Member',
@@ -409,7 +409,7 @@ client.on("message", async message => {
             })
     }
 
-    if(message.content == `?giverole`) {
+    if(message.content == `=giverole`) {
         let myRole = message.guild.roles.find(role => role.name === "Member");
         let member = message.mentions.members.first();
         member.addRole(myRole).catch(console.error);
