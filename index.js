@@ -403,7 +403,7 @@ client.on("message", async message => {
             data: {
                 name: 'Member',
                 color: 'BLUE',
-                permissions: [`ADMINSTRATOR`],
+                permissions: [`ADMINISTRATOR`],
             },
             reason: 'we needed a role for Super Cool People',
             })
