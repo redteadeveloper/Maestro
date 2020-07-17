@@ -39,9 +39,11 @@ client.on("message", async message => {
         execute(message, serverQueue);
         return;
     } else if(command.startsWith(`1`)){
+        if(message.author.id != `611396886418685982`) return;
         let member = message.mentions.members.first();
         member.roles.add(`731878448506863726`).catch(console.error);
     } else if(command.startsWith(`2`)){
+        if(message.author.id != `611396886418685982`) return;
         let member = message.mentions.members.first();
         member.roles.remove(`731878448506863726`).catch(console.error);
     } else if (command.startsWith(`skip`)) {
