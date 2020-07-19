@@ -62,16 +62,38 @@ client.on("message", async message => {
 
 		if (!voiceChannel) {
 			return message.reply('please join a voice channel first!');
-		}
+        }
+        
+        if (command.split(' ')[1] = `pop`) {
 
-		voiceChannel.join().then(connection => {
-			const stream = ytdl('https://www.youtube.com/watch?v=PjIvlbwLnls', { filter: 'audioonly' });
-			const dispatcher = connection.play(stream);
+            message.channel.send("Playing ``pop`` radio!")
 
-            dispatcher.on('finish', () => 
-                connection.play(stream)
-            );
-        });
+            voiceChannel.join().then(connection => {
+                const stream = ytdl('https://www.youtube.com/watch?v=Uigw-spcSD4', { filter: 'audioonly' });
+                const dispatcher = connection.play(stream);
+
+                dispatcher.on('finish', () => 
+                    voiceChannel.leave(),
+                    message.channel.send(`Radio ended!`)
+                );
+            });
+
+        } else if (command.split(' ')[1] == `rock` ) {
+
+            message.channel.send("Playing ``pop`` radio!")
+
+            voiceChannel.join().then(connection => {
+                const stream = ytdl('https://www.youtube.com/watch?v=26nsBfLXwSQ', { filter: 'audioonly' });
+                const dispatcher = connection.play(stream);
+
+                dispatcher.on('finish', () => 
+                    voiceChannel.leave(),
+                    message.channel.send(`Radio ended!`)
+                );
+            });
+        }
+
+        return;
         
     } else if (command == `remove` || command == `r`) {
 
