@@ -10,7 +10,7 @@ const youtube = new YouTube("AIzaSyBG_B8arvyYu1FGIGwQsDCHH4YnhCLEVEQ");
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity("build 0.4.4 | =help", {
+    client.user.setActivity("build 0.4.5 | =help", {
         type: "STREAMING",
         url: "https://www.twitch.tv/maestromusicbot"
     });
@@ -26,6 +26,7 @@ client.on("message", async message => {
 
     if (message.author.bot) return;
     if (message.content.indexOf(prefix) !== 0) return;
+    if (message.channel.type !== 'text') return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -38,14 +39,6 @@ client.on("message", async message => {
     } else if (command.startsWith(`play`) || command.startsWith(`p`)) {
         execute(message, serverQueue);
         return;
-    } else if(command.startsWith(`1`)){
-        if(message.author.id != `611396886418685982`) return;
-        let member = message.mentions.members.first();
-        member.roles.add(`731878448506863726`).catch(console.error);
-    } else if(command.startsWith(`2`)){
-        if(message.author.id != `611396886418685982`) return;
-        let member = message.mentions.members.first();
-        member.roles.remove(`731878448506863726`).catch(console.error);
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
         return;
@@ -62,6 +55,24 @@ client.on("message", async message => {
         message.member.voice.channel.join()
         message.react(`✅`)
 
+
+    } else if (command == `radio`) {
+
+		const voiceChannel = message.member.voice.channel;
+
+		if (!voiceChannel) {
+			return message.reply('please join a voice channel first!');
+		}
+
+		voiceChannel.join().then(connection => {
+			const stream = ytdl('https://www.youtube.com/watch?v=PjIvlbwLnls', { filter: 'audioonly' });
+			const dispatcher = connection.play(stream);
+
+            dispatcher.on('finish', () => 
+                connection.play(stream)
+            );
+        });
+        
     } else if (command == `remove` || command == `r`) {
 
         const novcr = new Discord.MessageEmbed()
