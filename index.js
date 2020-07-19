@@ -54,46 +54,6 @@ client.on("message", async message => {
         if (!message.member.voice.channel) return message.channel.send(novcjoin);
         message.member.voice.channel.join()
         message.react(`✅`)
-
-
-    } else if (command.startsWith(`radio`)) {
-
-		const voiceChannel = message.member.voice.channel;
-
-		if (!voiceChannel) {
-			return message.reply('please join a voice channel first!');
-        }
-        
-        if (command.split(' ')[1] = `pop`) {
-
-            message.channel.send("Playing ``pop`` radio!")
-
-            voiceChannel.join().then(connection => {
-                const stream = ytdl('https://www.youtube.com/watch?v=Uigw-spcSD4', { filter: 'audioonly' });
-                const dispatcher = connection.play(stream);
-
-                dispatcher.on('finish', () => 
-                    voiceChannel.leave(),
-                    message.channel.send(`Radio ended!`)
-                );
-            });
-
-        } else if (command.split(' ')[1] == `rock` ) {
-
-            message.channel.send("Playing ``rock`` radio!")
-
-            voiceChannel.join().then(connection => {
-                const stream = ytdl('https://www.youtube.com/watch?v=26nsBfLXwSQ', { filter: 'audioonly' });
-                const dispatcher = connection.play(stream);
-
-                dispatcher.on('finish', () => 
-                    voiceChannel.leave(),
-                    message.channel.send(`Radio ended!`)
-                );
-            });
-        }
-
-        return;
         
     } else if (command == `remove` || command == `r`) {
 
