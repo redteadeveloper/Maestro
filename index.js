@@ -80,7 +80,7 @@ client.on("message", async message => {
 
         } else if (command.split(' ')[1] == `rock` ) {
 
-            message.channel.send("Playing ``pop`` radio!")
+            message.channel.send("Playing ``rock`` radio!")
 
             voiceChannel.join().then(connection => {
                 const stream = ytdl('https://www.youtube.com/watch?v=26nsBfLXwSQ', { filter: 'audioonly' });
