@@ -56,7 +56,7 @@ client.on("message", async message => {
         message.react(`✅`)
 
 
-    } else if (command == `radio`) {
+    } else if (command.startsWith(`radio`)) {
 
 		const voiceChannel = message.member.voice.channel;
 
