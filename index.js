@@ -6,7 +6,7 @@ const client = new Discord.Client()
 
 const queue = new Map();
 
-const youtube = new YouTube("AIzaSyBG_B8arvyYu1FGIGwQsDCHH4YnhCLEVEQ");
+const youtube = new YouTube(process.env.YOUTUBEKEY);
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
