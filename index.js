@@ -174,7 +174,7 @@ client.on("message", async message => {
             .setTitle(`Moved song!`)
             .setDescription("Successfully moved `" + serverQueue.songs[locbef].title + "` in queue.")
 
-        message.channel.send(moved)
+        message.channel.send(moved) 
 
         await serverQueue.songs.move(locbef, locaft)
 
