@@ -18,9 +18,23 @@ client.on("ready", () => {
 
 var prefix = "=" 
 
+//Element moving function
 Array.prototype.move = function (from, to) {
     this.splice(to, 0, this.splice(from, 1)[0]);
 }; 
+
+//Seconds to time string function
+String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10);
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return hours+':'+minutes+':'+seconds;
+}
   
 client.on("message", async message => {
 
@@ -242,7 +256,8 @@ client.on("message", async message => {
             const songInfoa = await ytdl.getInfo(videosearched.url);
             const songyt = {
                 title: songInfoa.title,
-                url: songInfoa.video_url
+                url: songInfoa.video_url,
+                length: songInfo.length_seconds
             };
   
             if (!serverQueue) {
@@ -276,6 +291,7 @@ client.on("message", async message => {
                 .setColor('#00ff00')
                 .setTitle('Song added!')
                 .setDescription("``" + songyt.title + "`` has been added to the queue!")
+                .setFooter("Song duration: " + song.length.toHHMMSS())
             message.channel.send(addedsong);
 
             return;
@@ -286,7 +302,8 @@ client.on("message", async message => {
             const songInfo = await ytdl.getInfo(video);
             const song = {
                 title: songInfo.title,
-                url: songInfo.video_url
+                url: songInfo.video_url,
+                length: songInfo.length_seconds
             };
     
             if (!serverQueue) {
@@ -319,6 +336,7 @@ client.on("message", async message => {
                 .setColor('#00ff00')
                 .setTitle('Song added!')
                 .setDescription("``" + song.title + "`` has been added to the queue!")
+                .setFooter("Song duration: " + song.length.toHHMMSS())
             message.channel.send(addedsong);
             return;
         }}
