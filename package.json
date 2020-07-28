@@ -1,5 +1,5 @@
 {
-  "name": "harmony",
+  "name": "maestro",
   "version": "1.0.0",
   "main": "index.js",
   "engines": {
@@ -15,7 +15,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "ytdl-core": "^2.1.7"
   },
-  "description": "music bot",
+  "description": "discord music bot",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,12 +23,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/calvinjung/Harmony.git"
+    "url": "git+https://github.com/calvinjung/Maestro.git"
   },
   "author": "redtea",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/calvinjung/Harmony/issues"
+    "url": "https://github.com/calvinjung/Masetro/issues"
   },
-  "homepage": "https://github.com/calvinjung/Harmony#readme"
+  "homepage": "https://github.com/calvinjung/Maestro#readme"
 }
