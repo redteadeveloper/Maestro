@@ -1,5 +1,5 @@
 # Maestro
-Maestro is my own Discord music bot based on ytdl-core.
+Maestro is my a Discord music bot based on JavaScript and ytdl-core.
 
 ## Links
 [discord.js](https://discord.js.org/#/ "discord.js")\
