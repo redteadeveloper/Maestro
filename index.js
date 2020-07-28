@@ -414,6 +414,7 @@ client.on("message", async message => {
             .setColor('#00ff00')
             .setTitle('Playing music!')
             .setDescription("Playing ``" + song.title + "`` now! :notes:")
+            .setFooter("Song duration: " + song.length.toHHMMSS())
     serverQueue.textChannel.send(playing);
 
 }
