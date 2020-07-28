@@ -257,7 +257,7 @@ client.on("message", async message => {
             const songyt = {
                 title: songInfoa.title,
                 url: songInfoa.video_url,
-                length: songInfo.length_seconds
+                length: songInfoa.length_seconds
             };
   
             if (!serverQueue) {
