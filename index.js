@@ -200,7 +200,7 @@ client.on("message", async message => {
 
     } else if (command.startsWith(`lyrics`)) {
 
-        const G = new Genius.client(process.env.GENIUSKEY)
+        const G = new Genius.Client(process.env.GENIUSKEY)
 
         G.tracks.search(message.content.split(' ').slice(1).join, {limit: 1})
         .then(results => {
