@@ -2,7 +2,6 @@ const Discord = require("discord.js")
 const ytdl = require("ytdl-core");
 const YouTube = require("discord-youtube-api");
 const Genius = require("genius-lyrics");
-const { split } = require("ffmpeg-static");
 
 const client = new Discord.Client()
 
@@ -18,7 +17,7 @@ client.on("ready", () => {
     });
 })
 
-var prefix = "=" 
+var prefix = ">" 
 
 //Element moving function
 Array.prototype.move = function (from, to) {
@@ -92,13 +91,13 @@ client.on("message", async message => {
             .setColor(`#FFA500`)
             .setTitle(`You provided an invalid song number!`)
             .setDescription(`Please give me a valid song number.`)
-            .setFooter(`Type =q to view song number.`)
+            .setFooter(`Type >q to view song number.`)
 
         const infor = new Discord.MessageEmbed()
             .setColor(`#b19cd9`)
             .setTitle(`Remove command`)
             .setDescription(`Removes a song from queue.`)
-            .setFooter(`Usage: =remove [song number]`)
+            .setFooter(`Usage: >remove [song number]`)
 
         const args1 = message.content.split(' ').slice(1); 
         const amount = args1.join(' '); 
@@ -172,13 +171,13 @@ client.on("message", async message => {
             .setColor(`#b19cd9`)
             .setTitle(`Move command`)
             .setDescription(`Changes song location in queue.`)
-            .setFooter(`Usage: =move [song number] [wanted location]`)
+            .setFooter(`Usage: >move [song number] [wanted location]`)
 
         const invm = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
             .setTitle(`You provided an invalid song number!`)
             .setDescription(`Please give me a valid song number.`)
-            .setFooter(`Type =q to view song number.`)
+            .setFooter(`Type >q to view song number.`)
 
         if(!locbef || !locaft) return message.channel.send(infom)
 
@@ -224,7 +223,7 @@ client.on("message", async message => {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command list`)
-            .setDescription("``=ping`` Gets bot ping.\n``=play`` Plays music.\n``=stop`` Stops playing music.\n``=skip`` Skips music.\n``=queue`` Displays queue.\n``=remove`` Removes song from queue.\n``=move`` Moves song in queue.\n``=help`` This command.\n``=aliases`` View command aliases.")
+            .setDescription("``>ping`` Gets bot ping.\n``>play`` Plays music.\n``>stop`` Stops playing music.\n``>skip`` Skips music.\n``>queue`` Displays queue.\n``>remove`` Removes song from queue.\n``>move`` Moves song in queue.\n``>help`` This command.\n``>aliases`` View command aliases.")
         message.channel.send(helpembed)
 
     } else if (command == `aliases`) {
@@ -232,7 +231,7 @@ client.on("message", async message => {
         const aliases = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command aliases`)
-            .setDescription("``=play`` - ``=p``\n``=join`` - ``=summon``\n``=queue`` - ``=q``\n``=stop`` - ``=disconnect, =dc``\n``=remove`` - ``=r``\n``=move`` - ``=m``")
+            .setDescription("``>play`` - ``>p``\n``>join`` - ``>summon``\n``>queue`` - ``>q``\n``>stop`` - ``>disconnect, >dc``\n``>remove`` - ``>r``\n``>move`` - ``>m``")
         message.channel.send(aliases)
 
     }});
@@ -257,7 +256,7 @@ client.on("message", async message => {
                 .setColor(`#b19cd9`)
                 .setTitle(`Play command`)
                 .setDescription(`Plays a song from youtube.`)
-                .setFooter(`Usage: =play [youtube link or search word]`)
+                .setFooter(`Usage: >play [youtube link or search word]`)
             message.channel.send(nosongembed)
             return
         }
@@ -270,12 +269,12 @@ client.on("message", async message => {
 
         if(ytdl.validateURL(video) == false) {
 
-            const notdev = new Discord.MessageEmbed()
-                .setColor(`#FFA500`)
-                .setTitle(`You can't use this feature.`)
-                .setDescription(`Youtube searching is currently developer only.`)
+            // const notdev = new Discord.MessageEmbed()
+            //     .setColor(`#FFA500`)
+            //     .setTitle(`DISCLAIMER.`)
+            //     .setDescription(`DON'T ABUSE YT SEARCHING FEATURE!!!`)
 
-            if(message.author.id != `611396886418685982`) return message.channel.send(notdev)
+            // message.channel.send(notdev)
 
             var keyword = encodeURI(video)
             const videosearched = await youtube.searchVideos(keyword);
