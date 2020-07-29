@@ -1,7 +1,8 @@
 const Discord = require("discord.js")
 const ytdl = require("ytdl-core");
 const YouTube = require("discord-youtube-api");
-const Genius = require("genius-lyrics")
+const Genius = require("genius-lyrics");
+const { split } = require("ffmpeg-static");
 
 const client = new Discord.Client()
 
@@ -210,8 +211,13 @@ client.on("message", async message => {
             const result = results[0]
             result.lyrics()
             .then(lyrics => {
-                message.channel.send(lyrics)
-                console.log(lyrics)
+                if(lyrics.length > 2000) {
+                    message.channel.send(lyrics, {split: true})
+                    console.log(lyrics)
+                } else {
+                    message.channel.send(lyrics)
+                    console.log(lyrics)
+                }
             })
         }).catch(err => message.reply(err));
 
