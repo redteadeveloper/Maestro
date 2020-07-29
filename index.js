@@ -198,19 +198,21 @@ client.on("message", async message => {
         const nowembed = new Discord.MessageEmbed()
             .setColor
 
-    } else if (command.startsWith(`lyrics`)) {
+    } else if (command.startsWith(`lyrics`) || command.startsWith(`l`)) {
 
         const G = new Genius.Client(process.env.GENIUSKEY)
 
-        G.tracks.search("faded", {limit: 1})
+        const args = message.content.split(' ').slice(1); 
+        const songname = args.join(' '); 
+
+        G.tracks.search(songname, {limit: 1})
         .then(results => {
             const result = results[0]
             result.lyrics()
             .then(lyrics => {
                 console.log(lyrics)
             })
-        })
-            .catch(err => message.reply(err));
+        }).catch(err => message.reply(err));
 
     } else if (command.startsWith(`help`)) {
 
