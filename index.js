@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 const ytdl = require("ytdl-core");
 const YouTube = require("discord-youtube-api");
+const Genius = require("genius-lyrics")
 
 const client = new Discord.Client()
 
@@ -191,6 +192,22 @@ client.on("message", async message => {
         message.channel.send(moved) 
 
         await serverQueue.songs.move(locbef, locaft)
+
+    } else if (command == `now` || command == `n` || command == `np`) {
+        
+        const nowembed = new Discord.MessageEmbed()
+            .setColor
+
+    } else if (command.startsWith(`lyrics`)) {
+
+        const G = new Genius.client(process.env.GENIUSKEY)
+
+        G.tracks.search(message.content.split(' ').slice(1).join, {limit: 1})
+        .then(results => {
+            const result = results[0]
+            message.channel.send(result.lyrics)
+        })
+            .catch(err => message.reply(err));
 
     } else if (command.startsWith(`help`)) {
 
