@@ -10,7 +10,7 @@ const queue = new Map();
 const youtube = new YouTube(process.env.YOUTUBEKEY);
 
 client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}!`)
+    console.log(`Logged in as ${client.user.tag} | Online in ${client.guilds.cache.size} servers.`)
     client.user.setActivity("Lyrics on the way! | =help", {
         type: "STREAMING",
         url: "https://www.twitch.tv/maestromusicbot"
