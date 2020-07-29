@@ -205,7 +205,9 @@ client.on("message", async message => {
         const args = message.content.split(' ').slice(1); 
         const songname = args.join(' '); 
 
-        G.tracks.search(songname, {limit: 1})
+        const searchword = encodeURI(songname)
+
+        G.tracks.search(searchword, {limit: 1})
         .then(results => {
             const result = results[0]
             result.lyrics()
