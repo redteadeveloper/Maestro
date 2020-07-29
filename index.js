@@ -202,16 +202,11 @@ client.on("message", async message => {
 
         const G = new Genius.Client(process.env.GENIUSKEY)
 
-        G.tracks.search(message.content.split(' ').slice(1).join, {limit: 1})
+        G.tracks.search("faded", {limit: 1})
         .then(results => {
             const result = results[0]
             result.lyrics()
             .then(lyrics => {
-                let longlyrics
-                for(let i = 0; i < lyrics.length; i += 2000) {
-                    longlyrics = lyrics.substring(i, Math.min(lyrics.length, i + 2000));                                
-                }
-                message.channel.send(longlyrics);
                 console.log(lyrics)
             })
         })
