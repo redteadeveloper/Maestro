@@ -205,7 +205,10 @@ client.on("message", async message => {
         G.tracks.search(message.content.split(' ').slice(1).join, {limit: 1})
         .then(results => {
             const result = results[0]
-            message.channel.send(result.lyrics)
+            result.lyrics()
+            .then(lyrics => {
+                message.channel.send(lyrics);
+            })
         })
             .catch(err => message.reply(err));
 
