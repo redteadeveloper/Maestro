@@ -207,6 +207,7 @@ client.on("message", async message => {
             const result = results[0]
             result.lyrics()
             .then(lyrics => {
+                console.log(lyrics)
                 message.channel.send(lyrics);
             })
         })
