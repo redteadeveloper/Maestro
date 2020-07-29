@@ -212,6 +212,7 @@ client.on("message", async message => {
                     longlyrics = lyrics.substring(i, Math.min(lyrics.length, i + 2000));                                
                 }
                 message.channel.send(longlyrics);
+                console.log(lyrics)
             })
         })
             .catch(err => message.reply(err));
