@@ -23,7 +23,7 @@ var prefix = ">"
 Array.prototype.move = function (from, to) {
     this.splice(to, 0, this.splice(from, 1)[0]);
 }; 
-
+ 
 //Seconds to time string function
 String.prototype.toHHMMSS = function () {
     var sec_num = parseInt(this, 10);
