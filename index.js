@@ -319,7 +319,7 @@ client.on("message", async message => {
                 .setColor('#00ff00')
                 .setTitle('Song added!')
                 .setDescription("``" + songyt.title + "`` has been added to the queue!")
-                .setFooter("Song duration: " + song.length.toHHMMSS())
+                .setFooter("Song duration: " + songyt.length.toHHMMSS())
             message.channel.send(addedsong);
 
             return;
