@@ -212,9 +212,9 @@ client.on("message", async message => {
             result.lyrics()
             .then(lyrics => {
                 if(lyrics.length > 2000) {
-                    message.channel.send(">>>" + lyrics, {split: true})
+                    message.channel.send(">>> " + lyrics, {split: true})
                 } else {
-                    message.channel.send(">>>" + lyrics)
+                    message.channel.send(">>> " + lyrics)
                 }
             })
         }).catch(err => message.reply(err));
