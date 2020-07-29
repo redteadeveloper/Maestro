@@ -207,7 +207,11 @@ client.on("message", async message => {
             const result = results[0]
             result.lyrics()
             .then(lyrics => {
-                message.channel.send(lyrics, {split: true});
+                let longlyrics
+                for(let i = 0; i < lyrics.length; i += 2000) {
+                    longlyrics = lyrics.substring(i, Math.min(lyrics.length, i + 2000));                                
+                }
+                message.channel.send(longlyrics);
             })
         })
             .catch(err => message.reply(err));
