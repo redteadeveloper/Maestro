@@ -17,7 +17,7 @@ client.on("ready", () => {
     });
 })
 
-var prefix = ">" 
+var prefix = "$" 
 
 //Element moving function
 Array.prototype.move = function (from, to) {
@@ -91,13 +91,13 @@ client.on("message", async message => {
             .setColor(`#FFA500`)
             .setTitle(`You provided an invalid song number!`)
             .setDescription(`Please give me a valid song number.`)
-            .setFooter(`Type >q to view song number.`)
+            .setFooter(`Type $q to view song number.`)
 
         const infor = new Discord.MessageEmbed()
             .setColor(`#b19cd9`)
             .setTitle(`Remove command`)
             .setDescription(`Removes a song from queue.`)
-            .setFooter(`Usage: >remove [song number]`)
+            .setFooter(`Usage: $remove [song number]`)
 
         const args1 = message.content.split(' ').slice(1); 
         const amount = args1.join(' '); 
@@ -171,13 +171,13 @@ client.on("message", async message => {
             .setColor(`#b19cd9`)
             .setTitle(`Move command`)
             .setDescription(`Changes song location in queue.`)
-            .setFooter(`Usage: >move [song number] [wanted location]`)
+            .setFooter(`Usage: $move [song number] [wanted location]`)
 
         const invm = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
             .setTitle(`You provided an invalid song number!`)
             .setDescription(`Please give me a valid song number.`)
-            .setFooter(`Type >q to view song number.`)
+            .setFooter(`Type $q to view song number.`)
 
         if(!locbef || !locaft) return message.channel.send(infom)
 
@@ -204,7 +204,7 @@ client.on("message", async message => {
             .setColor(`#b19cd9`)
             .setTitle(`Lyrics command`)
             .setDescription(`Searches for the lyrics of a song.`)
-            .setFooter(`Usage: >lyrics [search word]`)
+            .setFooter(`Usage: &lyrics [search word]`)
 
         const G = new Genius.Client(process.env.GENIUSKEY)
 
@@ -231,7 +231,7 @@ client.on("message", async message => {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command list`)
-            .setDescription("``>ping`` Gets bot ping.\n``>play`` Plays music.\n``>lyrics`` Searches for the lyrics of a song.\n``>stop`` Stops playing music.\n``>skip`` Skips music.\n``>queue`` Displays queue.\n``>remove`` Removes song from queue.\n``>move`` Moves song in queue.\n``>help`` This command.\n``>aliases`` View command aliases.")
+            .setDescription("``$ping`` Gets bot ping.\n``$play`` Plays music.\n``$lyrics`` Searches for the lyrics of a song.\n``$stop`` Stops playing music.\n``$skip`` Skips music.\n``$queue`` Displays queue.\n``$remove`` Removes song from queue.\n``$move`` Moves song in queue.\n``$help`` This command.\n``$aliases`` View command aliases.")
         message.channel.send(helpembed)
 
     } else if (command == `aliases`) {
@@ -239,7 +239,7 @@ client.on("message", async message => {
         const aliases = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command aliases`)
-            .setDescription("``>play`` - ``>p``\n``>lyrics`` - ``>l``\n``>join`` - ``>summon``\n``>queue`` - ``>q``\n``>stop`` - ``>disconnect, >dc``\n``>remove`` - ``>r``\n``>move`` - ``>m``")
+            .setDescription("``$play`` - ``$p``\n``$lyrics`` - ``$l``\n``$join`` - ``$summon``\n``$queue`` - ``$q``\n``$stop`` - ``$disconnect, $dc``\n``$remove`` - ``$r``\n``$move`` - ``$m``")
         message.channel.send(aliases)
 
     }});
@@ -264,7 +264,7 @@ client.on("message", async message => {
                 .setColor(`#b19cd9`)
                 .setTitle(`Play command`)
                 .setDescription(`Plays a song from youtube.`)
-                .setFooter(`Usage: >play [youtube link or search word]`)
+                .setFooter(`Usage: $play [youtube link or search word]`)
             message.channel.send(nosongembed)
             return
         }
