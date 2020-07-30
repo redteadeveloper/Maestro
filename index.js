@@ -200,7 +200,7 @@ client.on("message", async message => {
 
     } else if (command.startsWith(`lyrics`) || command.startsWith(`l`)) {
 
-        const infol = new Discord.MessageEmbed()
+        const infol = new Discord.MessageEmbed() 
             .setColor(`#b19cd9`)
             .setTitle(`Lyrics command`)
             .setDescription(`Searches for the lyrics of a song.`)
