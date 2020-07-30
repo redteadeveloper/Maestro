@@ -218,13 +218,11 @@ client.on("message", async message => {
         G.tracks.search(searchword, {limit: 1})
         .then(results => {
             const result = results[0]
+            const artist = result.artist.name
+            const title = result.title
             result.lyrics()
             .then(lyrics => {
-                if(lyrics.length > 2000) {
-                    message.channel.send(lyrics, {split: true})
-                } else {
-                    message.channel.send(lyrics)
-                }
+                message.channel.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
             })
         }).catch(err => message.reply(err));
 
