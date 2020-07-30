@@ -193,10 +193,10 @@ client.on("message", async message => {
 
         await serverQueue.songs.move(locbef, locaft)
 
-    } else if (command == `now` || command == `n` || command == `np`) {
+    // } else if (command == `now` || command == `n` || command == `np`) {
         
-        const nowembed = new Discord.MessageEmbed()
-            .setColor
+        // const nowembed = new Discord.MessageEmbed()
+        //     .setColor
 
     } else if (command.startsWith(`lyrics`) || command.startsWith(`l`)) {
 
@@ -279,12 +279,12 @@ client.on("message", async message => {
 
         if(ytdl.validateURL(video) == false) {
 
-            // const notdev = new Discord.MessageEmbed()
+            // const e = new Discord.MessageEmbed()
             //     .setColor(`#FFA500`)
             //     .setTitle(`DISCLAIMER.`)
             //     .setDescription(`DON'T ABUSE YT SEARCHING FEATURE!!!`)
 
-            // message.channel.send(notdev)
+            // message.channel.send(e)
 
             var keyword = encodeURI(video)
             const videosearched = await youtube.searchVideos(keyword);
