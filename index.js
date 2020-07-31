@@ -300,7 +300,7 @@ client.on("message", async message => {
             const songInfoa = await ytdl.getInfo(videosearched.url);
             const songyt = {
                 title: songInfoa.title,
-                url: songInfoa.video_url,
+                url: videosearched.url,
                 length: songInfoa.length_seconds
             };
   
@@ -330,7 +330,7 @@ client.on("message", async message => {
  
         } else { 
 
-            const link = "https://www.youtube.com" + songyt.url
+            const link = songyt.url
             
             serverQueue.songs.push(songyt);
             const addedsong = new Discord.MessageEmbed()
