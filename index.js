@@ -435,7 +435,7 @@ client.on("message", async message => {
         serverQueue.voiceChannel.leave();
         queue.delete(guild.id);
         return;
-    }
+    } 
 
     const dispatcher = serverQueue.connection
         .play(ytdl(song.url, { filter: 'audioonly' }))
