@@ -322,6 +322,7 @@ client.on("message", async message => {
                 .setDescription(`[${songyt.title}](${encodeURI(songyt.url)})`)
                 .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
             message.channel.send(addedsong);
+            console.log(songyt.url)
 
             return;
         } 
@@ -367,6 +368,7 @@ client.on("message", async message => {
                 .setDescription(`[${song.title}](${encodeURI(song.url)})`)
                 .setFooter(`Song duration: ${song.length.toHHMMSS()}`)
             message.channel.send(addedsong);
+            console.log(song.url)
             return;
         }}
     }
@@ -449,6 +451,7 @@ client.on("message", async message => {
         .setFooter("Song duration: " + song.length.toHHMMSS())
 
     serverQueue.textChannel.send(playing);
+    console.log(song.url)
 
 }
 
