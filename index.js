@@ -399,7 +399,7 @@ client.on("message", async message => {
         if (!serverQueue) return message.channel.send(nosongskip);
 
         serverQueue.songs.shift();
-        message.react("⏭️")
+        message.react("⏭️") 
         play(message.guild, serverQueue.songs[0]);
     } 
     
