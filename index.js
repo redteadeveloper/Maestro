@@ -43,6 +43,8 @@ client.on("message", async message => {
     if (message.content.indexOf(prefix) !== 0) return;
     if (message.channel.type !== 'text') return;
 
+    const talkedRecently = new Set();
+
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
   
@@ -52,8 +54,21 @@ client.on("message", async message => {
         message.channel.send(`Pong: ${client.ws.ping}ms!`)
         return;
     } else if (command.startsWith(`play`) || command.startsWith(`p`)) {
-        execute(message, serverQueue);
-        return;
+
+        if(message.author.id == "611396886418685982") {
+            execute(message, serverQueue);
+            return;
+        } else {
+            if (talkedRecently.has(message.author.id)) return message.reply("You can use this command once every 10 seconds.")
+            talkedRecently.add(message.author.id);
+            setTimeout(() => {
+                talkedRecently.delete(message.author.id);
+            }, 10000);
+    
+            execute(message, serverQueue);
+            return;
+        }
+
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
         return;
