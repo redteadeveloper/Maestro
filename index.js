@@ -319,7 +319,7 @@ client.on("message", async message => {
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setAuthor('Song added!', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-                .setDescription([songyt.title](songyt.url, 'Song URL'))
+                .setDescription(`[${songyt.title}](${songyt.url}, 'Song URL')`)
                 .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
             message.channel.send(addedsong);
 
@@ -364,7 +364,7 @@ client.on("message", async message => {
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setAuthor('Song added!', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-                .setDescription([song.title](song.url, 'Song URL'))
+                .setDescription(`[${song.title}](${song.url}, 'Song URL')`)
                 .setFooter(`Song duration: ${song.length.toHHMMSS()}`)
             message.channel.send(addedsong);
             return;
@@ -445,7 +445,7 @@ client.on("message", async message => {
     const playing = new Discord.MessageEmbed()
         .setColor('#00ff00')
         .setAuthor('Playing music!', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-        .setDescription([song.title](song.url, 'Song URL'))
+        .setDescription(`[${song.title}](${song.url}, 'Song URL')`)
         .setFooter("Song duration: " + song.length.toHHMMSS())
 
     serverQueue.textChannel.send(playing);
