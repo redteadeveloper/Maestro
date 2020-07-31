@@ -193,11 +193,11 @@ client.on("message", async message => {
 
         await serverQueue.songs.move(locbef, locaft)
 
-    } else if (command == `now` || command == `n` || command == `np`) {
+    // } else if (command == `now` || command == `n` || command == `np`) {
         
-        const nowembed = new Discord.MessageEmbed()
-            .setColor(`#00ff00`)
-            .setTitle("Now playing!")
+    //     const nowembed = new Discord.MessageEmbed()
+    //         .setColor(`#00ff00`)
+    //         .setTitle("Now playing!")
 
     } else if (command.startsWith(`lyrics`) || command.startsWith(`l`)) {
 
@@ -320,7 +320,7 @@ client.on("message", async message => {
             serverQueue.songs.push(songyt);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
-                .setAuthor('Song added!', client.users.cache.get(`729484903476887672`).displayAvatarURL())
+                .setAuthor('Song added! :notes:', client.users.cache.get(`729484903476887672`).displayAvatarURL())
                 .setDescription(`[${songyt.title}](${link})`)
                 .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
             message.channel.send(addedsong)
@@ -368,7 +368,7 @@ client.on("message", async message => {
             serverQueue.songs.push(song);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
-                .setAuthor('Song added!', client.users.cache.get(`729484903476887672`).displayAvatarURL())
+                .setAuthor('Song added! :notes:', client.users.cache.get(`729484903476887672`).displayAvatarURL())
                 .setDescription(`[${song.title}](${linka})`)
                 .setFooter(`Song duration: ${song.length.toHHMMSS()}`)
             message.channel.send(addedsong);
@@ -451,7 +451,7 @@ client.on("message", async message => {
 
     const playing = new Discord.MessageEmbed()
         .setColor('#00ff00')
-        .setAuthor('Playing music!', client.users.cache.get(`729484903476887672`).displayAvatarURL())
+        .setAuthor('Playing music! :notes:', client.users.cache.get(`729484903476887672`).displayAvatarURL())
         .setDescription(`[${song.title}](${linkb})`)
         .setFooter("Song duration: " + song.length.toHHMMSS())
 
