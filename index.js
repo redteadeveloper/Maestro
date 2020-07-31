@@ -11,7 +11,7 @@ const youtube = new YouTube(process.env.YOUTUBEKEY);
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag} | Online in ${client.guilds.cache.size} servers.`)
-    client.user.setActivity("e | >help", {
+    client.user.setActivity("Ver 0.4.5 | $help", {
         type: "STREAMING",
         url: "https://www.twitch.tv/maestromusicbot"
     });
