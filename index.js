@@ -223,13 +223,8 @@ client.on("message", async message => {
             const title = result.title
             result.lyrics()
             .then(lyrics => {
-                try {
-                    member.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
-                } catch(error) {
-                    message.reply("Couldn't send DM!")
-                    return
-                }
-                message.react("📬")
+                member.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
+                    .catch(() => message.reply("Couldn't send DM!"));
             })
         }).catch(err => message.reply(err));
 
