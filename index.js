@@ -314,12 +314,14 @@ client.on("message", async message => {
             }
  
         } else {
+
+            const link = "https://www.youtube.com" + songyt.url
             
             serverQueue.songs.push(songyt);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setAuthor('Song added!', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-                .setDescription(`[${songyt.title}](https://www.youtube.com/ + ${encodeURI(songyt.url)})`)
+                .setDescription(`[${songyt.title}](${link})`)
                 .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
             message.channel.send(addedsong);
             console.log(songyt.url)
@@ -361,11 +363,14 @@ client.on("message", async message => {
             }
 
         } else {
+
+            const linka = "https://www.youtube.com" + song.url
+
             serverQueue.songs.push(song);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setAuthor('Song added!', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-                .setDescription(`[${song.title}](https://www.youtube.com/ + ${encodeURI(song.url)})`)
+                .setDescription(`[${song.title}](${linka})`)
                 .setFooter(`Song duration: ${song.length.toHHMMSS()}`)
             message.channel.send(addedsong);
             console.log(song.url)
@@ -444,10 +449,12 @@ client.on("message", async message => {
 
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
+    const linkb = "https://www.youtube.com" + song.url
+
     const playing = new Discord.MessageEmbed()
         .setColor('#00ff00')
         .setAuthor('Playing music!', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-        .setDescription(`[${song.title}](https://www.youtube.com/ + ${song.url})`)
+        .setDescription(`[${song.title}](${linkb})`)
         .setFooter("Song duration: " + song.length.toHHMMSS())
 
     serverQueue.textChannel.send(playing);
