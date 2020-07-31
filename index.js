@@ -323,8 +323,7 @@ client.on("message", async message => {
                 .setAuthor('Song added!', client.users.cache.get(`729484903476887672`).displayAvatarURL())
                 .setDescription(`[${songyt.title}](${link})`)
                 .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
-            message.channel.send(addedsong);
-            console.log(songyt.url)
+            message.channel.send(addedsong)
 
             return;
         } 
@@ -373,7 +372,6 @@ client.on("message", async message => {
                 .setDescription(`[${song.title}](${linka})`)
                 .setFooter(`Song duration: ${song.length.toHHMMSS()}`)
             message.channel.send(addedsong);
-            console.log(song.url)
             return;
         }}
     }
@@ -458,7 +456,6 @@ client.on("message", async message => {
         .setFooter("Song duration: " + song.length.toHHMMSS())
 
     serverQueue.textChannel.send(playing);
-    console.log(song.url)
 
 }
 
