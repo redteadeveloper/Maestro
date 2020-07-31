@@ -1,7 +1,7 @@
 # Maestro
 ![Generic badge](https://img.shields.io/badge/Version-0.4.6-brightgreen.svg)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)\
-Maestro is my a Discord music bot based on JavaScript and ytdl-core.
+Maestro is a Discord music bot based on JavaScript and ytdl-core.
 
 ## Bot testing Discord server
 [Click to join](https://discord.gg/t2sRz6T "Bot testing Discord server")
