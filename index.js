@@ -224,7 +224,7 @@ client.on("message", async message => {
             result.lyrics()
             .then(lyrics => {
                 try {
-                    member.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
+                    member.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true}),
                     message.react("📬")
                 } catch (err) {
                     message.reply("Couldn't send DM!");
