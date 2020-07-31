@@ -318,9 +318,9 @@ client.on("message", async message => {
             serverQueue.songs.push(songyt);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
-                .setTitle('Song added!')
-                .setDescription("``" + songyt.title + "`` has been added to the queue!")
-                .setFooter("Song duration: " + songyt.length.toHHMMSS())
+                .setAuthor('Song added!', bot.users.cache.get(`729484903476887672`).displayAvatarURL())
+                .setDescription([songyt.title](songyt.url, 'Song URL'))
+                .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
             message.channel.send(addedsong);
 
             return;
@@ -331,7 +331,7 @@ client.on("message", async message => {
             const songInfo = await ytdl.getInfo(video);
             const song = {
                 title: songInfo.title,
-                url: songInfo.video_url,
+                url: songInfo.url,
                 length: songInfo.length_seconds
             };
     
@@ -363,9 +363,9 @@ client.on("message", async message => {
             serverQueue.songs.push(song);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
-                .setTitle('Song added!')
-                .setDescription("``" + song.title + "`` has been added to the queue!")
-                .setFooter("Song duration: " + song.length.toHHMMSS())
+                .setAuthor('Song added!', bot.users.cache.get(`729484903476887672`).displayAvatarURL())
+                .setDescription([song.title](song.url, 'Song URL'))
+                .setFooter(`Song duration: ${song.length.toHHMMSS()}`)
             message.channel.send(addedsong);
             return;
         }}
@@ -439,12 +439,15 @@ client.on("message", async message => {
             play(guild, serverQueue.songs[0]);
         })
         .on("error", error => console.error(error));
+
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+
     const playing = new Discord.MessageEmbed()
-            .setColor('#00ff00')
-            .setTitle('Playing music!')
-            .setDescription("Playing ``" + song.title + "`` now! :notes:")
-            .setFooter("Song duration: " + song.length.toHHMMSS())
+        .setColor('#00ff00')
+        .setAuthor('Playing music!', bot.users.cache.get(`729484903476887672`).displayAvatarURL())
+        .setDescription([song.title](song.url, 'Song URL'))
+        .setFooter("Song duration: " + song.length.toHHMMSS())
+
     serverQueue.textChannel.send(playing);
 
 }
