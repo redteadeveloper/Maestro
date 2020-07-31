@@ -398,7 +398,7 @@ client.on("message", async message => {
             return message.channel.send(diffvcskip)
         if (!serverQueue) return message.channel.send(nosongskip);
 
-        serverQueue.songs.shift();
+        serverQueue.songs.shift(); 
         message.react("⏭️") 
         play(message.guild, serverQueue.songs[0]);
     } 
