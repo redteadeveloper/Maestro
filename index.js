@@ -227,7 +227,7 @@ client.on("message", async message => {
                 } 
             ) 
         }).catch(err => message.reply(err));
-
+ 
     } else if (command.startsWith(`help`)) {
 
         const helpembed = new Discord.MessageEmbed()
