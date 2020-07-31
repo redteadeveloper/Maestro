@@ -410,7 +410,7 @@ client.on("message", async message => {
             .setDescription("You have to be in a voice channel to disconnect me.")
 
         const diffvcstop = new Discord.MessageEmbed()
-            .setColor(`#FFA500`)
+            .setColor(`#FFA500`) 
             .setTitle(`You are not in the same VC with me!`)
             .setDescription(`You have to be in the same VC with me to disconnect me.`)
 
