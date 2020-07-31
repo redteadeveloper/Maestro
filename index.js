@@ -221,12 +221,13 @@ client.on("message", async message => {
             const result = results[0]
             const artist = result.artist.name
             const title = result.title
+            let m
             result.lyrics()
             .then(lyrics => {
                 member.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
-                message.reply("DM sent!");
+                m = message.reply("Searching for lyrics, sending DM!");
                 }
-            ).catch(err => console.log(err), message.reply("Couldn't send DM!") );
+            ).catch(async err => console.log(err), await m.edit(member + ", Couldn't send DM!") );
         }).catch(err => message.reply(err));
 
     } else if (command.startsWith(`help`)) {
