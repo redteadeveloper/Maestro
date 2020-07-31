@@ -11,9 +11,9 @@ const youtube = new YouTube(process.env.YOUTUBEKEY);
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag} | Online in ${client.guilds.cache.size} servers.`)
-    client.user.setActivity("Ver 0.4.5 | $help", {
-        type: "STREAMING",
-        url: "https://www.twitch.tv/maestromusicbot"
+    client.user.setActivity("$help | Build 0.4.5 - Lyrics on the way!", {
+        type: "PLAYING",
+        //url: "https://www.twitch.tv/maestromusicbot"
     });
 })
 
@@ -217,7 +217,6 @@ client.on("message", async message => {
 
         G.tracks.search(searchword, {limit: 1})
         .then(results => {
-            const member = message.author
             const result = results[0]
             const artist = result.artist.name
             const title = result.title
