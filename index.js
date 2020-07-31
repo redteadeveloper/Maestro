@@ -226,7 +226,7 @@ client.on("message", async message => {
                 member.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
                     .catch( err => message.reply("Couldn't send DM!") );
                 }
-            )
+            ) 
         }).catch(err => message.reply(err));
 
     } else if (command.startsWith(`help`)) {
