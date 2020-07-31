@@ -223,8 +223,7 @@ client.on("message", async message => {
             const title = result.title
             result.lyrics()
             .then(lyrics => {
-                member.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
-                    .catch( err => message.reply("Couldn't send DM!") );
+                message.channel.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
                 }
             ) 
         }).catch(err => message.reply(err));
