@@ -321,7 +321,7 @@ client.on("message", async message => {
             serverQueue.songs.push(songyt);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
-                .setAuthor('Song added!', client.users.cache.get('729484903476887672').displayAvatarURL)
+                .setAuthor('Song added!', client.users.cache.get('729484903476887672').displayAvatarURL())
                 .setTitle(songyt.title)
                 .setURL(songyt.url)
                 .setDescription("Song duration: " + songyt.length.toHHMMSS())
@@ -372,7 +372,7 @@ client.on("message", async message => {
             //     .setFooter("Song duration: " + song.length.toHHMMSS())
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
-                .setAuthor('Song added!', client.users.cache.get('729484903476887672').displayAvatarURL)
+                .setAuthor('Song added!', client.users.cache.get('729484903476887672').displayAvatarURL())
                 .setTitle(song.title)
                 .setURL(song.url)
                 .setDescription("Song duration: " + song.length.toHHMMSS())
@@ -452,8 +452,8 @@ client.on("message", async message => {
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
     const playing = new Discord.MessageEmbed()
             .setColor('#00ff00')
-            .setTitle('Playing music!')
-            .setDescription("Playing ``" + song.title + "`` now! :notes:")
+            .setAuthor('Playing music!', client.users.cache.get('729484903476887672').displayAvatarURL())
+            .setTitle(song.title, song.url)
             .setFooter("Song duration: " + song.length.toHHMMSS())
     serverQueue.textChannel.send(playing);
 
