@@ -313,7 +313,7 @@ client.on("message", async message => {
                 return message.channel.send(err);
             }
  
-        } else {
+        } else { 
 
             const link = "https://www.youtube.com" + songyt.url
             
