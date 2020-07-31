@@ -217,12 +217,18 @@ client.on("message", async message => {
 
         G.tracks.search(searchword, {limit: 1})
         .then(results => {
+            const member = message.author
             const result = results[0]
             const artist = result.artist.name
             const title = result.title
             result.lyrics()
             .then(lyrics => {
-                message.channel.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
+                try {
+                    member.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
+                    message.react("📬")
+                } catch {
+                    message.reply("Couldn't send DM!")
+                }
             })
         }).catch(err => message.reply(err));
 
