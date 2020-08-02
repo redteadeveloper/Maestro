@@ -298,9 +298,9 @@ client.on("message", async message => {
             const videosearched = await youtube.searchVideos(keyword);
 
             let songyt = {
-                title: songInfoa.title,
-                url: videosearched.url,
-                length: songInfoa.length_seconds
+                title: null,
+                url: null,
+                length: null
             };
             
             try {
