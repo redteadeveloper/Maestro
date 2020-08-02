@@ -297,12 +297,24 @@ client.on("message", async message => {
             var keyword = encodeURI(video)
             const videosearched = await youtube.searchVideos(keyword);
 
-            const songInfoa = await ytdl.getInfo(videosearched.url);
-            const songyt = {
+            let songyt = {
                 title: songInfoa.title,
                 url: videosearched.url,
                 length: songInfoa.length_seconds
             };
+            
+            try {
+                const songInfoa = await ytdl.getInfo(videosearched.url);
+                songyt = {
+                    title: songInfoa.title,
+                    url: videosearched.url,
+                    length: songInfoa.length_seconds
+                };
+            } catch (error) {
+                message.channel.send("Error while playing music.")
+                message.channel.send(error)
+                console.log(error)
+            }
   
             if (!serverQueue) {
             const queueContruct = {
@@ -344,13 +356,27 @@ client.on("message", async message => {
         } 
 
         } else {
-        
-            const songInfo = await ytdl.getInfo(video);
-            const song = {
-                title: songInfo.title,
-                url: songInfo.url,
-                length: songInfo.length_seconds
+
+            let song = {
+                title: null,
+                url: null,
+                length: null
             };
+
+            try {
+        
+                const songInfo = await ytdl.getInfo(video);
+                song = {
+                    title: songInfo.title,
+                    url: songInfo.url,
+                    length: songInfo.length_seconds
+                };
+
+            } catch (error) {
+                message.channel.send("Error while playing music.")
+                message.channel.send(error)
+                console.log(error)
+            }
     
             if (!serverQueue) {
             const queueContruct = {
