@@ -256,7 +256,7 @@ client.on("message", async message => {
                         .setColor(`#00ff00`)
                         .setTitle(`${artist} - ${title}`)
                         .setDescription(parts[i])
-                        .setFooter(`Page ${i + 1} of ${parts.length} | Powered by Genius.`)
+                        .setFooter(`Powered by Genius | Page ${i + 1} of ${parts.length}`, `https://ibb.co/dpmxL6r`)
                     message.channel.send(lyricsembed)
                     }
                 }
