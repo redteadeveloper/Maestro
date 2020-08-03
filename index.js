@@ -238,7 +238,15 @@ client.on("message", async message => {
             const title = result.title
             result.lyrics()
             .then(lyrics => {
-                message.channel.send(`**${artist} - ${title}**\n\n` + lyrics, {split: true})
+                var parts = lyrics.split(/(.{1800})/).filter(O=>O)
+                for(var i = 0; i < parts.length; i++) {
+                    var lyricsembed = new Discord.MessageEmbed()
+                        .setColor(`#00ff00`)
+                        .setTitle(`**${artist} - ${title}**`)
+                        .setDescription(parts[i])
+                        .setFooter(`Page ${i + 1} of ${parts.length + 1}`)
+                    message.channel.send(lyricsembed)
+                    }
                 } 
             ) 
         }).catch(err => message.reply(err));
