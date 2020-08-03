@@ -256,7 +256,7 @@ client.on("message", async message => {
                         .setColor(`#00ff00`)
                         .setTitle(`${artist} - ${title}`)
                         .setDescription(parts[i])
-                        .setFooter(`Powered by Genius | Page ${i + 1} of ${parts.length}`, `https://ibb.co/dpmxL6r`)
+                        .setFooter(`Powered by Genius | Page ${i + 1} of ${parts.length}`, `https://i.ibb.co/n1Ptnfb/59-598221-genius-lyrics-logo-transparent-clipart.png`)
                     message.channel.send(lyricsembed)
                     }
                 }
