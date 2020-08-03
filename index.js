@@ -238,8 +238,10 @@ client.on("message", async message => {
             const title = result.title
             result.lyrics()
             .then(lyrics => {
-                var parts = lyrics.split(/(.{1000})/).filter(O=>O)
+                var lyric = lyrics.join("")
+                var parts = lyric.split(/(.{1000})/).filter(O=>O)
                 console.log(lyrics)
+                console.log(lyric)
                 console.log(parts)
                 for(var i = 0; i < parts.length; i++) {
                     var lyricsembed = new Discord.MessageEmbed()
