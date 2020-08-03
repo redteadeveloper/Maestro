@@ -261,7 +261,7 @@ client.on("message", async message => {
                     message.channel.send(lyricsembed)
                     }
 
-                for(var j = 1; j < parts.length - 1; j++) {
+                for(var j = 1; j < parts.length; j++) {
                     var lyricsembed = new Discord.MessageEmbed()
                         .setColor(`#00ff00`)
                         .setDescription(parts[j])
