@@ -254,7 +254,7 @@ client.on("message", async message => {
                 for(var i = 0; i < parts.length; i++) {
                     var lyricsembed = new Discord.MessageEmbed()
                         .setColor(`#00ff00`)
-                        .setTitle(`**${artist} - ${title}**`)
+                        .setTitle(`${artist} - ${title}`)
                         .setDescription(parts[i])
                         .setFooter(`Page ${i + 1} of ${parts.length} | Powered by Genius.`)
                     message.channel.send(lyricsembed)
