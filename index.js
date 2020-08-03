@@ -433,7 +433,7 @@ client.on("message", async message => {
 
         } else {
 
-            const linka = "https://www.youtube.com" + song.url
+            const linka = "https://youtube.com" + song.url
 
             serverQueue.songs.push(song);
             const addedsong = new Discord.MessageEmbed()
@@ -517,7 +517,7 @@ client.on("message", async message => {
 
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
-    const linkb = "https://www.youtube.com" + song.url
+    const linkb = song.url
 
     const playing = new Discord.MessageEmbed()
         .setColor('#00ff00')
