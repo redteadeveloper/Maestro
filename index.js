@@ -36,6 +36,18 @@ String.prototype.toHHMMSS = function () {
     if (seconds < 10) {seconds = "0"+seconds;}
     return hours+':'+minutes+':'+seconds;
 }
+
+//String splitting function
+function chunkSubstr(str, size) {
+    const numChunks = Math.ceil(str.length / size)
+    const chunks = new Array(numChunks)
+  
+    for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
+      chunks[i] = str.substr(o, size)
+    }
+  
+    return chunks
+  }
   
 client.on("message", async message => {
 
@@ -238,11 +250,7 @@ client.on("message", async message => {
             const title = result.title
             result.lyrics()
             .then(lyrics => {
-                var lyric = lyrics.join("")
-                var parts = lyric.split(/(.{1000})/).filter(O=>O)
-                console.log(lyrics)
-                console.log(lyric)
-                console.log(parts)
+                var parts = chunkSubstr(lyrics, 1500)
                 for(var i = 0; i < parts.length; i++) {
                     var lyricsembed = new Discord.MessageEmbed()
                         .setColor(`#00ff00`)
