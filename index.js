@@ -250,7 +250,7 @@ client.on("message", async message => {
             const title = result.title
             result.lyrics()
             .then(lyrics => {
-                var parts = chunkSubstr(lyrics, 1500)
+                var parts = chunkSubstr(lyrics, 1930)
 
                 for(var i = 0; i < 1; i++) {
                     var lyricsembed = new Discord.MessageEmbed()
