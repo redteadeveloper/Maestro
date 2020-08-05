@@ -244,34 +244,56 @@ client.on("message", async message => {
 
         const searchword = encodeURI(songname)
 
-        G.tracks.search(searchword, {limit: 1})
-        .then(results => {
-            const result = results[0]
-            const artist = result.artist.name
-            const title = result.title
-            result.lyrics()
-            .then(lyrics => {
-                var parts = chunkSubstr(lyrics, 1500)
+        const lyric = await lyrics.parseLyrics(searchword);
 
-                for(var i = 0; i < 1; i++) {
-                    var lyricsembed = new Discord.MessageEmbed()
-                        .setColor(`#00ff00`)
-                        .setTitle(`${artist} - ${title}`)
-                        .setDescription(parts[i])
-                        .setFooter(`Powered by Genius | Page ${i + 1} of ${parts.length}`, `https://i.ibb.co/n1Ptnfb/59-598221-genius-lyrics-logo-transparent-clipart.png`)
-                    message.channel.send(lyricsembed)
-                    }
+        var parts = chunkSubstr(lyric, 1930)
 
-                for(var j = 1; j < parts.length; j++) {
-                    var lyricsembed = new Discord.MessageEmbed()
-                        .setColor(`#00ff00`)
-                        .setDescription(parts[j])
-                        .setFooter(`Powered by Genius | Page ${j + 1} of ${parts.length}`, `https://i.ibb.co/n1Ptnfb/59-598221-genius-lyrics-logo-transparent-clipart.png`)
-                    message.channel.send(lyricsembed)
-                    }
-                }
-            )
-        }).catch(err => message.reply(err));
+        for(var i = 0; i < 1; i++) {
+            var lyricsembed = new Discord.MessageEmbed()
+                .setColor(`#00ff00`)
+                .setTitle(`${artist} - ${title}`)
+                .setDescription(parts[i])
+                .setFooter(`Page ${i + 1} of ${parts.length}`)
+            message.channel.send(lyricsembed)
+            }
+
+        for(var j = 1; j < parts.length; j++) {
+            var lyricsembed = new Discord.MessageEmbed()
+                .setColor(`#00ff00`)
+                .setDescription(parts[j])
+                .setFooter(`Page ${j + 1} of ${parts.length}`)
+            message.channel.send(lyricsembed)
+            
+        }
+
+        // G.tracks.search(searchword, {limit: 1})
+        // .then(results => {
+        //     const result = results[0]
+        //     const artist = result.artist.name
+        //     const title = result.title
+        //     result.lyrics()
+        //     .then(lyrics => {
+        //         var parts = chunkSubstr(lyrics, 1500)
+
+        //         for(var i = 0; i < 1; i++) {
+        //             var lyricsembed = new Discord.MessageEmbed()
+        //                 .setColor(`#00ff00`)
+        //                 .setTitle(`${artist} - ${title}`)
+        //                 .setDescription(parts[i])
+        //                 .setFooter(`Powered by Genius | Page ${i + 1} of ${parts.length}`, `https://i.ibb.co/n1Ptnfb/59-598221-genius-lyrics-logo-transparent-clipart.png`)
+        //             message.channel.send(lyricsembed)
+        //             }
+
+        //         for(var j = 1; j < parts.length; j++) {
+        //             var lyricsembed = new Discord.MessageEmbed()
+        //                 .setColor(`#00ff00`)
+        //                 .setDescription(parts[j])
+        //                 .setFooter(`Powered by Genius | Page ${j + 1} of ${parts.length}`, `https://i.ibb.co/n1Ptnfb/59-598221-genius-lyrics-logo-transparent-clipart.png`)
+        //             message.channel.send(lyricsembed)
+        //             }
+        //         }
+        //     )
+        // }).catch(err => message.reply(err));
  
     } else if (command.startsWith(`help`)) {
 
