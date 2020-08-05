@@ -4,7 +4,7 @@ const YouTube = require("discord-youtube-api");
 const Genius = require("genius-lyrics");
 const lyrics = require('node-lyrics');
 
-const client = new Discord.Client()
+const client = new Discord.Client() 
 
 const queue = new Map();
 
