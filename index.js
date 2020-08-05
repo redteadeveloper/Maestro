@@ -228,6 +228,8 @@ client.on("message", async message => {
 
     } else if (command.startsWith(`lyrics`) || command.startsWith(`l`)) {
 
+        message.channel.startTyping()
+
         const infol = new Discord.MessageEmbed() 
             .setColor(`#b19cd9`)
             .setTitle(`Lyrics command`)
@@ -239,8 +241,11 @@ client.on("message", async message => {
         const args = message.content.split(' ').slice(1); 
         const songname = args.join(' '); 
 
-        if(!songname) return message.channel.send(infol)
-
+        if(!songname) {
+            message.channel.send(infol)
+            return message.channel.stopTyping()
+        }
+        
         const searchword = encodeURI(songname)
 
         G.tracks.search(searchword, {limit: 1})
@@ -271,6 +276,8 @@ client.on("message", async message => {
                 }
             )
         }).catch(err => message.reply(err));
+
+        message.channel.stopTyping()
  
     } else if (command.startsWith(`help`)) {
 
