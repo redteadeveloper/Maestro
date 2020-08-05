@@ -14,7 +14,7 @@ client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag} | Online in ${client.guilds.cache.size} servers.`)
     client.user.setActivity("$help | Build 0.4.6 - Got the links!", {
         type: "PLAYING",
-        //url: "https://www.twitch.tv/maestromusicbot" 
+        //url: "https://www.twitch.tv/maestromusicbot"  
     });
 })
 
