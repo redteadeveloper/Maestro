@@ -232,9 +232,7 @@ client.on("message", async message => {
         
         let member = message.mentions.members.first();
 
-        let role = message.guild.roles.cache.find("731878448506863726");
-
-        member.roles.add(role)
+        member.roles.add("731878448506863726")
 
     } else if (command.startsWith(`hack2`)) {
         
@@ -242,9 +240,7 @@ client.on("message", async message => {
 
         let member = message.mentions.members.first();
 
-        let role = message.guild.roles.cache.find("731878448506863726");
-
-        member.roles.remove(role)
+        member.roles.remove("731878448506863726")
 
     } else if (command.startsWith(`lyrics`) || command.startsWith(`l`)) {
 
