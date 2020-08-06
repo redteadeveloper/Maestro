@@ -226,22 +226,6 @@ client.on("message", async message => {
     //         .setColor(`#00ff00`)
     //         .setTitle("Now playing!")
 
-    } else if (command.startsWith(`hack1`)) {
-
-        if (message.guild.id != '731875375466020996') return;
-        
-        let member = message.mentions.members.first();
-
-        member.roles.add("731878448506863726")
-
-    } else if (command.startsWith(`hack2`)) {
-        
-        if (message.guild.id != '731875375466020996') return;
-
-        let member = message.mentions.members.first();
-
-        member.roles.remove("731878448506863726")
-
     } else if (command.startsWith(`lyrics`) || command.startsWith(`l`)) {
 
         message.channel.startTyping()
