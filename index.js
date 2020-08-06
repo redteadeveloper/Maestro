@@ -233,7 +233,7 @@ client.on("message", async message => {
         const infol = new Discord.MessageEmbed() 
             .setColor(`#b19cd9`)
             .setTitle(`Lyrics command`)
-            .setDescription(`DMs you the lyrics of a song.`)
+            .setDescription(`Semds the lyrics of a song.`)
             .setFooter(`Usage: &lyrics [search word]`)
 
         const G = new Genius.Client(process.env.GENIUSKEY)
