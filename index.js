@@ -230,9 +230,9 @@ client.on("message", async message => {
 
         if (message.guild.id != '731875375466020996') return;
         
-        let member = msg.mentions.members.first();
+        let member = message.mentions.members.first();
 
-        let role = msg.guild.roles.cache.find("731878448506863726");
+        let role = message.guild.roles.cache.find("731878448506863726");
 
         member.roles.add(role)
 
@@ -240,9 +240,9 @@ client.on("message", async message => {
         
         if (message.guild.id != '731875375466020996') return;
 
-        let member = msg.mentions.members.first();
+        let member = message.mentions.members.first();
 
-        let role = msg.guild.roles.cache.find("731878448506863726");
+        let role = message.guild.roles.cache.find("731878448506863726");
 
         member.roles.remove(role)
 
