@@ -255,7 +255,18 @@ client.on("message", async message => {
             const title = result.title
             result.lyrics()
             .then(lyrics => {
-                var parts = chunkSubstr(lyrics, 1500)
+                var parts = chunkSubstr(lyrics, 1930)
+
+                if(parts.length > 7) {
+                    const longlyrics = new Discord.MessageEmbed()
+                        .setColor(`#00ff00`)
+                        .setTitle(`${artist} - ${title}`)
+                        .setDescription(`Click [${here}](${result.link}) too check the lyrics!\nSince the lyrics are too long, I am provided a link instead.`)
+                        .setFooter(`Powered by Genius`, `https://i.ibb.co/n1Ptnfb/59-598221-genius-lyrics-logo-transparent-clipart.png`)
+
+                    message.channel.send(longlyrics)
+                    return message.channel.stopTyping()
+                }
 
                 for(var i = 0; i < 1; i++) {
                     var lyricsembed = new Discord.MessageEmbed()
