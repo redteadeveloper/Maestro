@@ -261,7 +261,7 @@ client.on("message", async message => {
                     const longlyrics = new Discord.MessageEmbed()
                         .setColor(`#00ff00`)
                         .setTitle(`${artist} - ${title}`)
-                        .setDescription(`Click [${here}](${result.link}) too check the lyrics!\nSince the lyrics are too long, I am provided a link instead.`)
+                        .setDescription(`Click [here](${result.link}) too check the lyrics!\nSince the lyrics are too long, I am provided a link instead.`)
                         .setFooter(`Powered by Genius`, `https://i.ibb.co/n1Ptnfb/59-598221-genius-lyrics-logo-transparent-clipart.png`)
 
                     message.channel.send(longlyrics)
