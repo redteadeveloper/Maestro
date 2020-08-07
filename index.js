@@ -221,7 +221,7 @@ client.on("message", async message => {
         await serverQueue.songs.move(locbef, locaft)
 
     } else if (command == `now` || command == `n` || command == `np`) {
-        
+ 
         const nowembed = new Discord.MessageEmbed()
             .setColor(`#00ff00`)
             .setAuthor('Now playing 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
