@@ -225,7 +225,7 @@ client.on("message", async message => {
         const nowembed = new Discord.MessageEmbed()
             .setColor(`#00ff00`)
             .setAuthor('Now playing 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-            .setDescription(`[${serverQueue[0].title}](${serverQueue[0].url})`)
+            .setDescription(`[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`)
             .setFooter(`Song duration: ${toHHMMSS(serverQueue[0].length)}`)
 
         message.channel.send(nowembed)
