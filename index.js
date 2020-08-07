@@ -245,7 +245,7 @@ client.on("message", async message => {
         const args = message.content.split(' ').slice(1); 
         const songname = args.join(' '); 
 
-        if(!songname) {
+        if(!songname) { 
             message.channel.send(infol)
             return message.channel.stopTyping()
         }
