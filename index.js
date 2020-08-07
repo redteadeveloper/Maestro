@@ -226,7 +226,7 @@ client.on("message", async message => {
             .setColor(`#00ff00`)
             .setAuthor('Now playing 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
             .setDescription(`[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`)
-            .setFooter(`Song duration: ${serverQueue[0].length.toHHMMSS()}`)
+            .setFooter(`Song duration: ${serverQueue.songs[0].length.toHHMMSS()}`)
 
         message.channel.send(nowembed)
 
