@@ -47,7 +47,7 @@ function chunkSubstr(str, size) {
     }
   
     return chunks
-  }
+}
   
 client.on("message", async message => {
 
@@ -208,7 +208,7 @@ client.on("message", async message => {
 
         if(!locbef || !locaft) return message.channel.send(infom)
 
-        if(locbef >= serverQueue.songs.length || locaft >= serverQueue.songs.length || locaft <= 0 || locbef <= 0)
+        if(locbef >= serverQueue.songs.length || locaft >= serverQueue.songs.length || locaft <= 0 || locbef <= 0 || !serverQueue.length)
             return message.channel.send(invm)
 
         const moved = new Discord.MessageEmbed()
