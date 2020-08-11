@@ -208,7 +208,7 @@ client.on("message", async message => {
 
         if(!locbef || !locaft) return message.channel.send(infom)
 
-        if(locbef >= serverQueue.songs.length || locaft >= serverQueue.songs.length || locaft <= 0 || locbef <= 0 || !serverQueue.songs.length)
+        if(locbef >= serverQueue.songs.length || locaft >= serverQueue.songs.length || locaft <= 0 || locbef <= 0 || !serverQueue.songs.length || !serverQueue.songs)
             return message.channel.send(invm)
 
         const moved = new Discord.MessageEmbed()
