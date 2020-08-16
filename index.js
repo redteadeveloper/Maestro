@@ -190,15 +190,15 @@ client.on("message", async message => {
 
     } else if (command.startsWith('volume') || command.startsWith('v')) {
 
-        var args = command.split(" ")
+        var argsb = command.split(" ")
 
         if (!serverQueue) return message.channel.send("Not playing");
     
-        if (!args[0]) return message.channel.send(`🎵 Current Volume: **${serverQueue.volume}/100**`)];
-        if (isNaN(args[0])) return message.channel.send(please input a volume between 0 and 100 only!)
-        if (args[0] < 0 || args[0] > 100) return message.channel.send(please input a volume between 0 and 100 only!)
-        serverQueue.volume = args[0];
-        queue.connection.dispatcher.setVolumeLogarithmic(args[0] / 100);
+        if (!argsb[0]) return message.channel.send(`🎵 Current Volume: **${serverQueue.volume}/100**`)];
+        if (isNaN(argsb[0])) return message.channel.send(please input a volume between 0 and 100 only!)
+        if (argsb[0] < 0 || args[0] > 100) return message.channel.send(please input a volume between 0 and 100 only!)
+        serverQueue.volume = argsb[0];
+        queue.connection.dispatcher.setVolumeLogarithmic(argsb[0] / 100);
 
     } else if (command.startsWith(`move`) || command.startsWith(`m`)) {
         
