@@ -197,8 +197,8 @@ client.on("message", async message => {
         if (!argsb[1]) return message.channel.send(`Current Volume: **${serverQueue.volume}/100**`);
         if (isNaN(argsb[1])) return message.channel.send("Please input a volume between 0 and 100 only!")
         if (argsb[1] < 0 || args[1] > 100) return message.channel.send("Please input a volume between 0 and 100 only!")
-        serverQueue.volume = argsb[1];
-        dispatcher.setVolumeLogarithmic(parseInt(argsb[1] / 100));
+        serverQueue.volume = parseInt(argsb[1]);
+        serverQueue.connection.setVolumeLogarithmic(argsb[1] / 100);
 
         message.channel.send(`Volume has now been set to **${serverQueue.volume}/100**`);
 
