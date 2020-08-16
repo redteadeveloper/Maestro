@@ -188,6 +188,18 @@ client.on("message", async message => {
             message.channel.send(queueembed);
         }
 
+    } else if (command.startsWith('volume') || command.startsWith('v')) {
+
+        var args = command.split(" ")
+
+        if (!serverQueue) return message.channel.send("Not playing");
+    
+        if (!args[0]) return message.channel.send(`🎵 Current Volume: **${serverQueue.volume}/100**`)];
+        if (isNaN(args[0])) return message.channel.send(please input a volume between 0 and 100 only!)
+        if (args[0] < 0 || args[0] > 100) return message.channel.send(please input a volume between 0 and 100 only!)
+        serverQueue.volume = args[0];
+        queue.connection.dispatcher.setVolumeLogarithmic(args[0] / 100);
+
     } else if (command.startsWith(`move`) || command.startsWith(`m`)) {
         
         const args = message.content.split(' ');
@@ -373,7 +385,7 @@ client.on("message", async message => {
                 voiceChannel: voiceChannel,
                 connection: null,
                 songs: [],
-                volume: 5,
+                volume: 50,
                 playing: true
             };
         
@@ -435,7 +447,7 @@ client.on("message", async message => {
                 voiceChannel: voiceChannel,
                 connection: null,
                 songs: [],
-                volume: 5,
+                volume: 50,
                 playing: true
             };
         
@@ -537,7 +549,7 @@ client.on("message", async message => {
         })
         .on("error", error => console.error(error)); 
 
-    dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+    dispatcher.setVolumeLogarithmic(serverQueue.volume / 100);
 
     const linkb = song.url
 
