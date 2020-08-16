@@ -192,15 +192,17 @@ client.on("message", async message => {
 
         var argsb = command.split(" ")
 
+        const givenvolume
+
         if (!serverQueue) return message.channel.send("Not playing");
     
-        if (!argsb[0]) return message.channel.send(`Current Volume: **${serverQueue.volume}/100**`);
-        if (isNaN(argsb[0])) return message.channel.send("Please input a volume between 0 and 100 only!")
-        if (argsb[0] < 0 || args[0] > 100) return message.channel.send("Please input a volume between 0 and 100 only!")
-        serverQueue.volume = argsb[0];
-        queue.connection.dispatcher.setVolumeLogarithmic(argsb[0] / 100);
+        if (!argsb[1]) return message.channel.send(`Current Volume: **${serverQueue.volume}/100**`);
+        if (isNaN(argsb[1])) return message.channel.send("Please input a volume between 0 and 100 only!")
+        if (argsb[1] < 0 || args[1] > 100) return message.channel.send("Please input a volume between 0 and 100 only!")
+        serverQueue.volume = argsb[1];
+        queue.connection.dispatcher.setVolumeLogarithmic(argsb[1] / 100);
 
-        message.channel.send(`Volume has now been set to **${queue.volume}/100**`);
+        message.channel.send(`Volume has now been set to **${serverQueue.volume}/100**`);
 
     } else if (command.startsWith(`move`) || command.startsWith(`m`)) {
         
