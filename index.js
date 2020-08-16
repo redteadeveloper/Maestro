@@ -194,7 +194,7 @@ client.on("message", async message => {
 
         if (!serverQueue) return message.channel.send("Not playing");
     
-        if (!argsb[0]) return message.channel.send(`🎵 Current Volume: **${serverQueue.volume}/100**`)];
+        if (!argsb[0]) return message.channel.send(`🎵 Current Volume: **${serverQueue.volume}/100**`);
         if (isNaN(argsb[0])) return message.channel.send(please input a volume between 0 and 100 only!)
         if (argsb[0] < 0 || args[0] > 100) return message.channel.send(please input a volume between 0 and 100 only!)
         serverQueue.volume = argsb[0];
