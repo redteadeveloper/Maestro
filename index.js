@@ -5,7 +5,7 @@ const Genius = require("genius-lyrics");
 
 const client = new Discord.Client() 
 
-const queue = new Map(); 
+const queue = new Map();
 
 const youtube = new YouTube(process.env.YOUTUBEKEY);
 
