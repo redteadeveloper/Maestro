@@ -192,8 +192,6 @@ client.on("message", async message => {
 
         var argsb = command.split(" ")
 
-        const givenvolume
-
         if (!serverQueue) return message.channel.send("Not playing");
     
         if (!argsb[1]) return message.channel.send(`Current Volume: **${serverQueue.volume}/100**`);
