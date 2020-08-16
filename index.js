@@ -190,7 +190,7 @@ client.on("message", async message => {
 
     } else if (command.startsWith('volume') || command.startsWith('v')) {
 
-        var argsb = command.split(" ")
+        var argsb = message.content.split(" ")
 
         if (!serverQueue) return message.channel.send("Not playing");
     
