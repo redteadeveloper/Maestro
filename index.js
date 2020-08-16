@@ -313,7 +313,7 @@ client.on("message", async message => {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command list`)
-            .setDescription("``$ping`` Gets bot ping.\n``$play`` Plays music.\n``$lyrics`` Searches for the lyrics of a song.\n``$stop`` Stops playing music.\n``$skip`` Skips music.\n``$queue`` Displays queue.\n``$remove`` Removes song from queue.\n``$move`` Moves song in queue.\n``$help`` This command.\n``$aliases`` View command aliases.")
+            .setDescription("``$ping`` Gets bot ping.\n``$play`` Plays music.\n``$volume`` Sets bot volume.\n``$lyrics`` Searches for the lyrics of a song.\n``$stop`` Stops playing music.\n``$skip`` Skips music.\n``$queue`` Displays queue.\n``$remove`` Removes song from queue.\n``$move`` Moves song in queue.\n``$help`` This command.\n``$aliases`` View command aliases.")
         message.channel.send(helpembed)
 
     } else if (command == `aliases`) {
@@ -321,7 +321,7 @@ client.on("message", async message => {
         const aliases = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command aliases`)
-            .setDescription("``$play`` - ``$p``\n``$lyrics`` - ``$l``\n``$join`` - ``$summon``\n``$queue`` - ``$q``\n``$stop`` - ``$disconnect, $dc``\n``$remove`` - ``$r``\n``$move`` - ``$m``")
+            .setDescription("``$play`` - ``$p``\n``$lyrics`` - ``$l``\n``$volume`` - ``$v``\n``$join`` - ``$summon``\n``$queue`` - ``$q``\n``$stop`` - ``$disconnect, $dc``\n``$remove`` - ``$r``\n``$move`` - ``$m``")
         message.channel.send(aliases)
 
     }});
