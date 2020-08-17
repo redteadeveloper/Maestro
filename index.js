@@ -111,7 +111,7 @@ client.on("message", async message => {
 
         const noqr = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
-            .setTitle(`No queue!`)
+            .setTitle(`Not playing!`)
             .setDescription(`I have no song to remove.`)
         
         const invr = new Discord.MessageEmbed()
@@ -215,6 +215,11 @@ client.on("message", async message => {
         const locbef = args[1]
         const locaft = args[2]
 
+        const noqm = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`Not playing!`)
+            .setDescription(`I have no song to move.`)
+   
         const diffvcm = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
             .setTitle(`You are not in the same VC with me!`)
@@ -234,10 +239,12 @@ client.on("message", async message => {
 
         if(!locbef || !locaft) return message.channel.send(infom)
 
+        if(!serverQueue) return message.channel.send(noqm)
+
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcm)
 
-        if(!serverQueue || locbef >= serverQueue.songs.length || locaft >= serverQueue.songs.length || locaft <= 0 || locbef <= 0 || !serverQueue.songs.length || !serverQueue.songs)
+        if(locbef >= serverQueue.songs.length || locaft >= serverQueue.songs.length || locaft <= 0 || locbef <= 0 || !serverQueue.songs.length || !serverQueue.songs)
             return message.channel.send(invm)
 
         const moved = new Discord.MessageEmbed()
