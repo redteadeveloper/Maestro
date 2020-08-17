@@ -84,7 +84,7 @@ client.on("message", async message => {
 
         if(!serverQueue) return message.channel.send("Not playing")
 
-        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
+        if(message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send("You're not in the same VC with me!")
 
         if(serverQueue.playing == false) return message.channel.send("Already paused!")
@@ -97,7 +97,7 @@ client.on("message", async message => {
 
         if(!serverQueue) return message.channel.send("Not playing")
 
-        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
+        if(message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send("You're not in the same VC with me!")
         
         if(serverQueue.playing == true) return message.channel.send("Not paused!")
