@@ -103,8 +103,8 @@ client.on("message", async message => {
         if(serverQueue.playing == true) return message.channel.send("Not paused!")
 
         serverQueue.playing = false
-        serverQueue.connection.dispatcher.pause()
-        message.channel.send("Paused!")
+        serverQueue.connection.dispatcher.resume()
+        message.channel.send("Resumed!")
 
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
