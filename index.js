@@ -80,6 +80,31 @@ client.on("message", async message => {
             execute(message, serverQueue);
             return;
         }
+    } else if (command == "pause") {
+
+        if(!serverQueue) return message.channel.send("Not playing")
+
+        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
+            return message.channel.send("You're not in the same VC with me!")
+
+        if(serverQueue.playing == false) return message.channel.send("Already paused!")
+
+        serverQueue.playing = false
+        serverQueue.connection.dispatcher.pause()
+        message.channel.send("Paused!")
+
+    } else if (command == "resume") {
+
+        if(!serverQueue) return message.channel.send("Not playing")
+
+        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
+            return message.channel.send("You're not in the same VC with me!")
+        
+        if(serverQueue.playing == true) return message.channel.send("Not paused!")
+
+        serverQueue.playing = false
+        serverQueue.connection.dispatcher.pause()
+        message.channel.send("Paused!")
 
     } else if (command.startsWith(`skip`)) {
         skip(message, serverQueue);
