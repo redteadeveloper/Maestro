@@ -102,7 +102,7 @@ client.on("message", async message => {
         
         if(serverQueue.playing == true) return message.channel.send("Not paused!")
 
-        serverQueue.playing = false
+        serverQueue.playing = true
         serverQueue.connection.dispatcher.resume()
         message.channel.send("Resumed!")
 
