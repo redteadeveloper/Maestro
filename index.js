@@ -192,9 +192,16 @@ client.on("message", async message => {
 
         var argsb = message.content.split(" ")
 
+        const diffvcv = new Discord.MessageEmbed()
+          .setColor(`#FFA500`)
+          .setTitle(`You are not in the same VC with me!`)
+          .setDescription(`You have to be in the same VC with me to set volume.`)
+     
         if (!serverQueue) return message.channel.send("Not playing");
     
         if (!argsb[1]) return message.channel.send(`Current Volume: **${serverQueue.volume}/100**`);
+        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
+            return message.channel.send(diffvcv)
         if (isNaN(argsb[1])) return message.channel.send("Please input a volume between 0 and 100 only!")
         if (argsb[1] < 0 || argsb[1] > 100) return message.channel.send("Please input a volume between 0 and 100 only!")
         serverQueue.volume = parseInt(argsb[1]);
@@ -207,6 +214,11 @@ client.on("message", async message => {
         const args = message.content.split(' ');
         const locbef = args[1]
         const locaft = args[2]
+
+        const diffvcm = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`You are not in the same VC with me!`)
+            .setDescription(`You have to be in the same VC with me to move song.`)
 
         const infom = new Discord.MessageEmbed()
             .setColor(`#b19cd9`)
@@ -221,6 +233,9 @@ client.on("message", async message => {
             .setFooter(`Type $q to view song number.`)
 
         if(!locbef || !locaft) return message.channel.send(infom)
+
+        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
+            return message.channel.send(diffvcm)
 
         if(!serverQueue || locbef >= serverQueue.songs.length || locaft >= serverQueue.songs.length || locaft <= 0 || locbef <= 0 || !serverQueue.songs.length || !serverQueue.songs)
             return message.channel.send(invm)
