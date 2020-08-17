@@ -531,11 +531,6 @@ client.on("message", async message => {
   
     function skip(message, serverQueue) {
 
-        const novcskip = new Discord.MessageEmbed()
-            .setColor('#FFA500')
-            .setTitle('Join a voice channel first!')
-            .setDescription("You have to be in a voice channel to skip music.")
-
         const nosongskip = new Discord.MessageEmbed()
             .setColor('#FFA500')
             .setTitle('No song anymore!')
@@ -546,8 +541,7 @@ client.on("message", async message => {
             .setTitle(`You are not in the same VC with me!`)
             .setDescription(`You have to be in the same VC with me to skip music.`)
 
-        if (!message.member.voice.channel) return message.channel.send(novcskip);
-        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
+        if(!message.member.voice.channel || message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcskip)
         if (!serverQueue) return message.channel.send(nosongskip);
 
@@ -557,19 +551,13 @@ client.on("message", async message => {
     } 
     
     function stop(message, serverQueue) {
-        const novcstop = new Discord.MessageEmbed()
-            .setColor('#FFA500')
-            .setTitle('Join a voice channel first!')
-            .setDescription("You have to be in a voice channel to disconnect me.")
-
+       
         const diffvcstop = new Discord.MessageEmbed()
             .setColor(`#FFA500`) 
             .setTitle(`You are not in the same VC with me!`)
             .setDescription(`You have to be in the same VC with me to disconnect me.`)
 
-        if (!message.member.voice.channel) return message.channel.send(novcstop);
-
-        if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
+        if(!message.member.voice.channel || message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcstop)
 
         if (!serverQueue) {
