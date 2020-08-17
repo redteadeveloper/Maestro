@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+const Discord = require("discord.js") 
 const ytdl = require("ytdl-core");
 const YouTube = require("discord-youtube-api");
 const Genius = require("genius-lyrics");
