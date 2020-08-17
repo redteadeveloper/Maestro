@@ -65,7 +65,7 @@ client.on("message", async message => {
     if(command == `ping`) {
         message.channel.send(`Pong: ${client.ws.ping}ms!`)
         return;
-    } else if (command.startsWith(`play`) || command.startsWith(`p`)) {
+    } else if (command.startsWith(`play`) || command.startsWith(`p`) && command != "pause") {
 
         if(message.author.id == "611396886418685982") {
             execute(message, serverQueue);
