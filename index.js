@@ -456,10 +456,20 @@ client.on("message", async message => {
 
             const link = songyt.url
             
+            var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = link.match(regExp);
+
+            if (match && match[2].length == 11) {
+                return match[2];
+            } else {
+                //error
+            }
+
             serverQueue.songs.push(songyt);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
+                .setThumbnail("http://i.ytimg.com/vi/" + match + "/default.jpg")
                 .setDescription(`[${songyt.title}](${link})`)
                 .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
             message.channel.send(addedsong)
@@ -518,10 +528,20 @@ client.on("message", async message => {
 
             const linka = song.url
 
+            var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = linka.match(regExp);
+
+            if (match && match[2].length == 11) {
+                return match[2];
+            } else {
+                //error
+            }
+
             serverQueue.songs.push(song);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
+                .setThumbnail("http://i.ytimg.com/vi/" + match + "/default.jpg")
                 .setDescription(`[${song.title}](${linka})`)
                 .setFooter(`Song duration: ${song.length.toHHMMSS()}`)
             message.channel.send(addedsong);
@@ -590,9 +610,19 @@ client.on("message", async message => {
 
     const linkb = song.url
 
+    var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = linkb.match(regExp);
+
+    if (match && match[2].length == 11) {
+        return match[2];
+    } else {
+        //error
+    }           
+
     const playing = new Discord.MessageEmbed()
         .setColor('#00ff00')
         .setAuthor('Playing music! 🎶', client.users.cache.get(`729484903476887672`).displayAvatarURL())
+        .setThumbnail("http://i.ytimg.com/vi/" + match + "/default.jpg")
         .setDescription(`[${song.title}](${linkb})`)
         .setFooter("Song duration: " + song.length.toHHMMSS())
 
