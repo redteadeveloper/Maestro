@@ -77,8 +77,10 @@ client.on("message", async message => {
     const serverQueue = queue.get(message.guild.id);
 
     if(command == `ping`) {
+
         message.channel.send(`Pong: ${client.ws.ping}ms!`)
         return;
+
     } else if (command.startsWith(`play`) || command.startsWith(`p`) && command != "pause") {
 
         if(message.author.id == "611396886418685982") {
@@ -94,6 +96,7 @@ client.on("message", async message => {
             execute(message, serverQueue);
             return;
         }
+
     } else if (command == "pause") {
 
         if(!serverQueue) return message.channel.send("Not playing")
@@ -121,10 +124,14 @@ client.on("message", async message => {
         message.channel.send("Resumed!")
 
     } else if (command.startsWith(`skip`)) {
+
         skip(message, serverQueue);
         return;
+
     } else if (command == `stop` || command == `disconnect` || command == `dc`) {
+
         stop(message, serverQueue);
+
     } else if (command == `join` || command == `summon`) {
 
         const novcjoin = new Discord.MessageEmbed()
@@ -238,15 +245,18 @@ client.on("message", async message => {
      
         if (!serverQueue) return message.channel.send("Not playing");
     
-        if (!argsb[1]) return message.channel.send(`Current Volume: **${serverQueue.volume}/100**`);
+        if (!argsb[1]) return message.channel.send(`Current volume: **${serverQueue.volume}/100**`);
+
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcv)
-        if (isNaN(argsb[1])) return message.channel.send("Please input a volume between 0 and 100 only!")
-        if (argsb[1] < 0 || argsb[1] > 100) return message.channel.send("Please input a volume between 0 and 100 only!")
+
+        if (isNaN(argsb[1])) return message.channel.send("Please input a volume between 0 and 100!")
+        if (argsb[1] < 0 || argsb[1] > 100) return message.channel.send("Please input a volume between 0 and 100!")
+
         serverQueue.volume = parseInt(argsb[1]);
         serverQueue.connection.dispatcher.setVolumeLogarithmic(argsb[1] / 100);
 
-        message.channel.send(`Volume has now been set to **${serverQueue.volume}/100**`);
+        message.channel.send(`Volume has been set to **${serverQueue.volume}/100**`);
 
     } else if (command.startsWith(`move`) || command.startsWith(`m`)) {
         
@@ -295,7 +305,7 @@ client.on("message", async message => {
 
         await serverQueue.songs.move(locbef, locaft)
 
-    } else if (command == `now` || command == `n` || command == `np`) {
+    } else if (command == `now` || command == `n` || command == `np` || command == `nowplaying`) {
  
         const nowembed = new Discord.MessageEmbed()
             .setColor(`#00ff00`)
@@ -375,7 +385,7 @@ client.on("message", async message => {
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command list`)
-            .setDescription("``$ping`` Gets bot ping.\n``$play`` Plays music.\n``$volume`` Sets bot volume.\n``$pause`` Pauses playback.\n``$resume`` Resumes playback.\n``$lyrics`` Searches for the lyrics of a song.\n``$stop`` Stops playing music.\n``$skip`` Skips music.\n``$queue`` Displays queue.\n``$remove`` Removes song from queue.\n``$move`` Moves song in queue.\n``$help`` This command.\n``$aliases`` View command aliases.")
+            .setDescription("``$ping`` Gets bot ping.\n``$play`` Plays music.\n``$volume`` Sets bot volume.\n``$pause`` Pauses playback.\n``$resume`` Resumes playback.\n``$lyrics`` Searches for the lyrics of a song.\n``$stop`` Stops playing music.\n``$skip`` Skips music.\n``$queue`` Displays queue.\n``$now`` Displays song currently playing.\n``$remove`` Removes song from queue.\n``$move`` Moves song in queue.\n``$help`` This command.\n``$aliases`` View command aliases.")
         message.channel.send(helpembed)
 
     } else if (command == `aliases`) {
@@ -383,7 +393,7 @@ client.on("message", async message => {
         const aliases = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
             .setTitle(`Command aliases`)
-            .setDescription("``$play`` - ``$p``\n``$lyrics`` - ``$l``\n``$volume`` - ``$v``\n``$join`` - ``$summon``\n``$queue`` - ``$q``\n``$stop`` - ``$disconnect, $dc``\n``$remove`` - ``$r``\n``$move`` - ``$m``")
+            .setDescription("``$play`` - ``$p``\n``$lyrics`` - ``$l``\n``$volume`` - ``$v``\n``$join`` - ``$summon``\n``$queue`` - ``$q``\n``$now`` - ``$n, $np, $nowplaying``\n``$stop`` - ``$disconnect, $dc``\n``$remove`` - ``$r``\n``$move`` - ``$m``")
         message.channel.send(aliases)
 
     }});
@@ -444,44 +454,44 @@ client.on("message", async message => {
             }
   
             if (!serverQueue) {
-            const queueContruct = {
-                textChannel: message.channel,
-                voiceChannel: voiceChannel,
-                connection: null,
-                songs: [],
-                volume: 50,
-                playing: true
-            };
+                const queueContruct = {
+                    textChannel: message.channel,
+                    voiceChannel: voiceChannel,
+                    connection: null,
+                    songs: [],
+                    volume: 50,
+                    playing: true
+                };
         
-            queue.set(message.guild.id, queueContruct);
+                queue.set(message.guild.id, queueContruct);
 
-            queueContruct.songs.push(songyt);
+                queueContruct.songs.push(songyt);
 
-            try {
-                var connection = await voiceChannel.join();
-                queueContruct.connection = connection;
-                play(message.guild, queueContruct.songs[0]);
-            } catch (err) {
-                console.log(err);
-                queue.delete(message.guild.id);
-                return message.channel.send(err);
-            }
+                try {
+                    var connection = await voiceChannel.join();
+                    queueContruct.connection = connection;
+                    play(message.guild, queueContruct.songs[0]);
+               } catch (err) {
+                    console.log(err);
+                    queue.delete(message.guild.id);
+                    return message.channel.send(err);
+               }
  
-        } else { 
+            } else { 
 
-            const link = songyt.url
+                const link = songyt.url
                     
-            serverQueue.songs.push(songyt);
-            const addedsong = new Discord.MessageEmbed()
-                .setColor('#00ff00')
-                .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-                .setThumbnail("http://i.ytimg.com/vi/" + ytid(link) + "/default.jpg")
-                .setDescription(`[${songyt.title}](${link})`)
-                .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
-            message.channel.send(addedsong)
+                serverQueue.songs.push(songyt);
+                const addedsong = new Discord.MessageEmbed()
+                    .setColor('#00ff00')
+                    .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
+                    .setThumbnail("http://i.ytimg.com/vi/" + ytid(link) + "/default.jpg")
+                    .setDescription(`[${songyt.title}](${link})`)
+                    .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
+                message.channel.send(addedsong)
 
-            return;
-        } 
+                return;
+            } 
 
         } else {
 
