@@ -300,6 +300,7 @@ client.on("message", async message => {
         const nowembed = new Discord.MessageEmbed()
             .setColor(`#00ff00`)
             .setAuthor('Now playing 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
+            .setThumbnail("http://i.ytimg.com/vi/" + ytid(serverQueue.songs[0].url) + "/default.jpg")
             .setDescription(`[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`)
             .setFooter(`Song duration: ${serverQueue.songs[0].length.toHHMMSS()}`)
 
