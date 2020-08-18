@@ -48,6 +48,20 @@ function chunkSubstr(str, size) {
   
     return chunks
 }
+
+//Get ID from URL function
+function ytid(url) {
+    var ID = '';
+    url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+    if(url[2] !== undefined) {
+        ID = url[2].split(/[^0-9a-z_\-]/i);
+        ID = ID[0];
+    }
+    else {
+        ID = url;
+    }
+    return ID;
+}
   
 client.on("message", async message => {
 
@@ -455,26 +469,25 @@ client.on("message", async message => {
         } else { 
 
             const link = songyt.url
-            
-            var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-            var match = link.match(regExp);
 
-            if (match && match[2].length == 11) {
-                return match[2];
-            } else {
-                //error
+            try {
+                     
+                serverQueue.songs.push(songyt);
+                const addedsong = new Discord.MessageEmbed()
+                    .setColor('#00ff00')
+                    .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
+                    .setThumbnail("http://i.ytimg.com/vi/" + ytid(link) + "/default.jpg")
+                    .setDescription(`[${songyt.title}](${link})`)
+                    .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
+                message.channel.send(addedsong)
+
+                console.log(ytid(link))
+
+            catch(error) {
+
+                console.log(error)
+
             }
-
-            colsole.log(match)
-
-            serverQueue.songs.push(songyt);
-            const addedsong = new Discord.MessageEmbed()
-                .setColor('#00ff00')
-                .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-                .setThumbnail("http://i.ytimg.com/vi/" + match + "/default.jpg")
-                .setDescription(`[${songyt.title}](${link})`)
-                .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
-            message.channel.send(addedsong)
 
             return;
         } 
@@ -530,25 +543,17 @@ client.on("message", async message => {
 
             const linka = song.url
 
-            var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-            var match = linka.match(regExp);
-
-            if (match && match[2].length == 11) {
-                return match[2];
-            } else {
-                //error
-            }
-
             console.log(match)
 
             serverQueue.songs.push(song);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-                .setThumbnail("http://i.ytimg.com/vi/" + match + "/default.jpg")
+                .setThumbnail("http://i.ytimg.com/vi/" + ytid(linka) + "/default.jpg")
                 .setDescription(`[${song.title}](${linka})`)
                 .setFooter(`Song duration: ${song.length.toHHMMSS()}`)
             message.channel.send(addedsong);
+            console.log(ytid(linka))
             return;
         }}
     }
@@ -612,25 +617,16 @@ client.on("message", async message => {
 
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 100);
 
-    const linkb = song.url
-
-    var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    var match = linkb.match(regExp);
-
-    if (match && match[2].length == 11) {
-        return match[2];
-    } else {
-        //error
-    }  
-
-    console.log(match)         
+    const linkb = song.url         
 
     const playing = new Discord.MessageEmbed()
         .setColor('#00ff00')
         .setAuthor('Playing music! 🎶', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-        .setThumbnail("http://i.ytimg.com/vi/" + match + "/default.jpg")
+        .setThumbnail("http://i.ytimg.com/vi/" + ytid(linkb) + "/default.jpg")
         .setDescription(`[${song.title}](${linkb})`)
         .setFooter("Song duration: " + song.length.toHHMMSS())
+
+    console.log(ytid(linkb))
 
     serverQueue.textChannel.send(playing);
 
