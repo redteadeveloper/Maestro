@@ -474,7 +474,7 @@ client.on("message", async message => {
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-                .setThumbnail("http://i.ytimg.com/vi/" + ytid(link) + "/maxresdefault.jpg")
+                .setThumbnail("http://i.ytimg.com/vi/" + ytid(link) + "/default.jpg")
                 .setDescription(`[${songyt.title}](${link})`)
                 .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
             message.channel.send(addedsong)
@@ -537,7 +537,7 @@ client.on("message", async message => {
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
                 .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-                .setThumbnail("http://i.ytimg.com/vi/" + ytid(linka) + "/maxresdefault.jpg")
+                .setThumbnail("http://i.ytimg.com/vi/" + ytid(linka) + "/default.jpg")
                 .setDescription(`[${song.title}](${linka})`)
                 .setFooter(`Song duration: ${song.length.toHHMMSS()}`)
             message.channel.send(addedsong);
@@ -610,7 +610,7 @@ client.on("message", async message => {
     const playing = new Discord.MessageEmbed()
         .setColor('#00ff00')
         .setAuthor('Playing music! 🎶', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-        .setThumbnail("http://i.ytimg.com/vi/" + ytid(linkb) + "/maxresdefault.jpg")
+        .setThumbnail("http://i.ytimg.com/vi/" + ytid(linkb) + "/default.jpg")
         .setDescription(`[${song.title}](${linkb})`)
         .setFooter("Song duration: " + song.length.toHHMMSS())
 
