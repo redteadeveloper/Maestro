@@ -543,8 +543,6 @@ client.on("message", async message => {
 
             const linka = song.url
 
-            console.log(match)
-
             serverQueue.songs.push(song);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
