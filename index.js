@@ -465,6 +465,8 @@ client.on("message", async message => {
                 //error
             }
 
+            colsole.log(match)
+
             serverQueue.songs.push(songyt);
             const addedsong = new Discord.MessageEmbed()
                 .setColor('#00ff00')
@@ -536,6 +538,8 @@ client.on("message", async message => {
             } else {
                 //error
             }
+
+            console.log(match)
 
             serverQueue.songs.push(song);
             const addedsong = new Discord.MessageEmbed()
@@ -617,7 +621,9 @@ client.on("message", async message => {
         return match[2];
     } else {
         //error
-    }           
+    }  
+
+    console.log(match)         
 
     const playing = new Discord.MessageEmbed()
         .setColor('#00ff00')
