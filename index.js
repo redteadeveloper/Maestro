@@ -483,7 +483,7 @@ client.on("message", async message => {
 
                 console.log(ytid(link))
 
-            catch(error) {
+            } catch(error) {
 
                 console.log(error)
 
