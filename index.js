@@ -172,7 +172,7 @@ client.on("message", async message => {
             .setDescription(`Removes a song from queue.`)
             .setFooter(`Usage: $remove [song number]`)
 
-        const args1 = message.content.split(' ').slice(1); 
+        const args1 = message.content.split(' ').slice(1);
         const amount = args1.join(' '); 
 
         if(!amount) return message.channel.send(infor)
