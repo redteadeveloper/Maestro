@@ -216,7 +216,7 @@ client.on("message", async message => {
         var songsarray = [];
         for (var i = 0; i < serverQueue.songs.length; i++) {
             songsarray.push(serverQueue.songs[i].title);
-        }
+        } 
 
         if(songsarray.length > 0) {
             
