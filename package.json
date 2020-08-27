@@ -14,7 +14,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "genius-lyrics": "^3.0.0",
     "utils": "^0.3.1",
-    "ytdl-core": "^2.1.7"
+    "ytdl-core": "^3.2.2"
   },
   "description": "discord music bot",
   "devDependencies": {},
