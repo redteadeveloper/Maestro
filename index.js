@@ -173,7 +173,7 @@ client.on("message", async message => {
             .setFooter(`Usage: $remove [song number]`)
 
         const args1 = message.content.split(' ').slice(1);
-        const amount = args1.join(' '); 
+        const amount = args1.join(' ');
 
         if(!amount) return message.channel.send(infor)
 
