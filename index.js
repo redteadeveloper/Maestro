@@ -431,67 +431,69 @@ client.on("message", async message => {
 
         if(ytdl.validateURL(video) == false) {
 
-            var keyword = encodeURI(video)
-            const videosearched = await youtube.searchVideos(keyword);
+            message.channel.send("Trying to fix.")
 
-            let songyt = {
-                title: null,
-                url: null,
-                length: null
-            };
+        //     var keyword = encodeURI(video)
+        //     const videosearched = await youtube.searchVideos(keyword);
+
+        //     let songyt = {
+        //         title: null,
+        //         url: null,
+        //         length: null
+        //     };
             
-            try {
-                const songInfoa = await ytdl.getInfo(videosearched.url);
-                songyt = {
-                    title: songInfoa.title || null,
-                    url: videosearched.url || null,
-                    length: songInfoa.length_seconds || null
-                };
-            } catch (error) {
-                message.channel.send("Error while playing music.")
-                message.channel.send(error)
-                console.log(error)
-            }
+        //     try {
+        //         const songInfoa = await ytdl.getInfo(videosearched.url);
+        //         songyt = {
+        //             title: songInfoa.title || null,
+        //             url: videosearched.url || null,
+        //             length: songInfoa.length_seconds || null
+        //         };
+        //     } catch (error) {
+        //         message.channel.send("Error while playing music.")
+        //         message.channel.send(error)
+        //         console.log(error)
+        //     }
   
-            if (!serverQueue) {
-                const queueContruct = {
-                    textChannel: message.channel,
-                    voiceChannel: voiceChannel,
-                    connection: null,
-                    songs: [],
-                    volume: 50,
-                    playing: true
-                };
+        //     if (!serverQueue) {
+        //         const queueContruct = {
+        //             textChannel: message.channel,
+        //             voiceChannel: voiceChannel,
+        //             connection: null,
+        //             songs: [],
+        //             volume: 50,
+        //             playing: true
+        //         };
         
-                queue.set(message.guild.id, queueContruct);
+        //         queue.set(message.guild.id, queueContruct);
 
-                queueContruct.songs.push(songyt);
+        //         queueContruct.songs.push(songyt);
 
-                try {
-                    var connection = await voiceChannel.join();
-                    queueContruct.connection = connection;
-                    play(message.guild, queueContruct.songs[0]);
-               } catch (err) {
-                    console.log(err);
-                    queue.delete(message.guild.id);
-                    return message.channel.send(err);
-               }
+        //         try {
+        //             var connection = await voiceChannel.join();
+        //             queueContruct.connection = connection;
+        //             play(message.guild, queueContruct.songs[0]);
+        //        } catch (err) {
+        //             console.log(err);
+        //             queue.delete(message.guild.id);
+        //             return message.channel.send(err);
+        //        }
  
-            } else { 
+        //     } else { 
 
-                const link = songyt.url
+        //         const link = songyt.url
                     
-                serverQueue.songs.push(songyt);
-                const addedsong = new Discord.MessageEmbed()
-                    .setColor('#00ff00')
-                    .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
-                    .setThumbnail("http://i.ytimg.com/vi/" + ytid(link) + "/default.jpg")
-                    .setDescription(`[${songyt.title}](${link})`)
-                    .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
-                message.channel.send(addedsong)
+        //         serverQueue.songs.push(songyt);
+        //         const addedsong = new Discord.MessageEmbed()
+        //             .setColor('#00ff00')
+        //             .setAuthor('Song added! 🎵', client.users.cache.get(`729484903476887672`).displayAvatarURL())
+        //             .setThumbnail("http://i.ytimg.com/vi/" + ytid(link) + "/default.jpg")
+        //             .setDescription(`[${songyt.title}](${link})`)
+        //             .setFooter(`Song duration: ${songyt.length.toHHMMSS()}`)
+        //         message.channel.send(addedsong)
 
-                return;
-            } 
+        //         return;
+        //     } 
 
         } else {
 
@@ -505,15 +507,19 @@ client.on("message", async message => {
         
                 const songInfo = await ytdl.getInfo(video);
                 song = {
-                    title: songInfo.title || null,
-                    url: "https://youtube.com" + songInfo.url || null,
-                    length: songInfo.length_seconds || null
+                    title: songInfo.title,
+                    url: "https://youtube.com" + songInfo.url,
+                    length: songInfo.length_seconds
                 };
 
             } catch (error) {
-                message.channel.send("Error while playing music.")
-                message.channel.send(error)
+                message.channel.send("Failed to get video info.")
                 console.log(error)
+                song = {
+                    title: null,
+                    url: video,
+                    length: null
+                };
             }
     
             if (!serverQueue) {
