@@ -443,9 +443,9 @@ client.on("message", async message => {
             try {
                 const songInfoa = await ytdl.getInfo(videosearched.url);
                 songyt = {
-                    title: songInfoa.title,
-                    url: videosearched.url,
-                    length: songInfoa.length_seconds
+                    title: songInfoa.title || null,
+                    url: videosearched.url || null,
+                    length: songInfoa.length_seconds || null
                 };
             } catch (error) {
                 message.channel.send("Error while playing music.")
@@ -505,9 +505,9 @@ client.on("message", async message => {
         
                 const songInfo = await ytdl.getInfo(video);
                 song = {
-                    title: songInfo.title,
-                    url: "https://youtube.com" + songInfo.url,
-                    length: songInfo.length_seconds
+                    title: songInfo.title || null,
+                    url: "https://youtube.com" + songInfo.url || null,
+                    length: songInfo.length_seconds || null
                 };
 
             } catch (error) {
