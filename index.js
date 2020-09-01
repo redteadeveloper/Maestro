@@ -656,6 +656,7 @@ function stop(message, serverQueue) {
     } else {
         serverQueue.songs = [];
         serverQueue.connection.dispatcher.end();
+        message.member.voice.channel.leave()
     }
     
     message.react(`👋`) 
