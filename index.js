@@ -99,29 +99,67 @@ client.on("message", async message => {
 
     } else if (command == "pause") {
 
-        if(!serverQueue) return message.channel.send("Not playing")
+        const notplayingp = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`Not playing!`)
+            .setDescription(`I'm not playing songs now.`)
+
+        if(!serverQueue) return message.channel.send(notplayingp)
+
+        const diffvcpause = new Discord.MessageEmbed()
+            .setColor(`#FFA500`) 
+            .setTitle(`You are not in the same VC with me!`)
+            .setDescription(`You have to be in the same VC with me to pause music.`)
 
         if(message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
-            return message.channel.send("You're not in the same VC with me!")
+            return message.channel.send(diffvcpause)
 
-        if(serverQueue.playing == false) return message.channel.send("Already paused!")
+        const apaused = new Discord.MessageEmbed()
+            .setColor("00ff00")
+            .setTitle("Already paused!")
+
+        if(serverQueue.playing == false) return message.channel.send(apaused)
 
         serverQueue.playing = false
         serverQueue.connection.dispatcher.pause()
-        message.channel.send("Paused!")
+        
+        const pauseembed = new Discord.MessageEmbed()
+            .setColor("00ff00")
+            .setTitle("Paused!")
+
+        message.channel.send(pauseembed)
 
     } else if (command == "resume") {
 
-        if(!serverQueue) return message.channel.send("Not playing")
+        const notplayingr = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`Not playing!`)
+            .setDescription(`I'm not playing songs now.`)
+
+        if(!serverQueue) return message.channel.send(notplayingr)
+
+        const diffvcresume = new Discord.MessageEmbed()
+            .setColor(`#FFA500`) 
+            .setTitle(`You are not in the same VC with me!`)
+            .setDescription(`You have to be in the same VC with me to resume music.`)
 
         if(message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
-            return message.channel.send("You're not in the same VC with me!")
+            return message.channel.send(diffvcresume)
+
+        const npause = new Discord.MessageEmbed()
+            .setColor("00ff00")
+            .setTitle("Not paused!")
         
-        if(serverQueue.playing == true) return message.channel.send("Not paused!")
+        if(serverQueue.playing == true) return message.channel.send(npause)
 
         serverQueue.playing = true
         serverQueue.connection.dispatcher.resume()
-        message.channel.send("Resumed!")
+
+        const resumeembed = new Discord.MessageEmbed()
+            .setColor("00ff00")
+            .setTitle("Resumed")
+
+        message.channel.send(resumeembed)
 
     } else if (command.startsWith(`skip`)) {
 
@@ -236,6 +274,11 @@ client.on("message", async message => {
 
     } else if (command.startsWith('volume') || command.startsWith('v')) {
 
+        const notplayingv = new Discord.MessageEmbed()
+            .setColor(`#FFA500`)
+            .setTitle(`Not playing!`)
+            .setDescription(`I'm not playing songs now.`)
+
         var argsb = message.content.split(" ")
 
         const diffvcv = new Discord.MessageEmbed()
@@ -243,20 +286,36 @@ client.on("message", async message => {
           .setTitle(`You are not in the same VC with me!`)
           .setDescription(`You have to be in the same VC with me to set volume.`)
      
-        if (!serverQueue) return message.channel.send("Not playing");
+        if (!serverQueue) return message.channel.send(notplayingv);
     
-        if (!argsb[1]) return message.channel.send(`Current volume: **${serverQueue.volume}/100**`);
+        if (!argsb[1]) {
+            const volumeembed = new Discord.MessageEmbed()
+                .setColor("#9932cc")
+                .setTitle("Current volume: **" + serverQueue.volume + "/100**")
+
+            return message.channel.send(volumeembed);
+        }
 
         if(message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel != message.guild.me.voice.channel) 
             return message.channel.send(diffvcv)
 
-        if (isNaN(argsb[1])) return message.channel.send("Please input a volume between 0 and 100!")
-        if (argsb[1] < 0 || argsb[1] > 100) return message.channel.send("Please input a volume between 0 and 100!")
+        const invnumber = new Discord.MessageEmbed()
+            .setColor('#FFA500')
+            .setTitle('Invalid argument')
+            .setDescription("Volume must be a number between 0 and 100!")
+
+
+        if (isNaN(argsb[1])) return message.channel.send(invnumber)
+        if (argsb[1] < 0 || argsb[1] > 100) return message.channel.send(invnumber)
 
         serverQueue.volume = parseInt(argsb[1]);
         serverQueue.connection.dispatcher.setVolumeLogarithmic(argsb[1] / 100);
 
-        message.channel.send(`Volume has been set to **${serverQueue.volume}/100**`);
+        const set = new Discord.MessageEmbed()
+            .setColor("00ff00")
+            .setTitle(`Volume has been set to **${serverQueue.volume}/100**`)
+
+        message.channel.send(set);
 
     } else if (command.startsWith(`move`) || command.startsWith(`m`)) {
         
@@ -606,7 +665,7 @@ function play(guild, song) {
 
         const serverQueue = queue.get(guild.id);
         if (!song) {
-            message.member.voice.channel.leave();
+            message.guild.me.voice.channel.leave();
             queue.delete(guild.id);
         return;
         } 
