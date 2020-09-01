@@ -565,7 +565,7 @@ async function execute(message, serverQueue) {
             const songInfo = await ytdl.getInfo(video);
             song = {
                 title: songInfo.videoDetails.title,
-                url: "https://youtube.com" + songInfo.videoDetails.url,
+                url: "https://youtube.com" + songInfo.url,
                 length: songInfo.videoDetails.lengthSeconds
             };
 
