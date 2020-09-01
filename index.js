@@ -664,12 +664,12 @@ function stop(message, serverQueue) {
   
 function play(guild, song) {
 
-        const serverQueue = queue.get(guild.id);
-        if (!song) {
-            message.guild.me.voice.channel.leave();
-            queue.delete(guild.id);
-        return;
-        } 
+    const serverQueue = queue.get(guild.id);
+    if (!song) {
+        serverQueue.voiceChannel.leave();
+        queue.delete(guild.id);
+    return;
+    } 
 
     const dispatcher = serverQueue.connection
         .play(ytdl(song.url, { filter: 'audioonly' }))
