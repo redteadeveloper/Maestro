@@ -157,7 +157,7 @@ client.on("message", async message => {
 
         const resumeembed = new Discord.MessageEmbed()
             .setColor("00ff00")
-            .setTitle("Resumed")
+            .setTitle("Resumed!")
 
         message.channel.send(resumeembed)
 
