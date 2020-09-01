@@ -503,9 +503,9 @@ async function execute(message, serverQueue) {
         try {
             const songInfoa = await ytdl.getInfo(videosearched.url);
             songyt = {
-                title: songInfoa.title || null,
+                title: songInfoa.videoDetails.title || null,
                 url: videosearched.url || null,
-                length: songInfoa.length_seconds || null
+                length: songInfoa.videoDetails.lengthSeconds || null
             };
         } catch (error) {
             message.channel.send("Error while playing music. Try playing with a link.")
@@ -564,9 +564,9 @@ async function execute(message, serverQueue) {
     
             const songInfo = await ytdl.getInfo(video);
             song = {
-                title: songInfo.title,
-                url: "https://youtube.com" + songInfo.url,
-                length: songInfo.length_seconds
+                title: songInfo.videoDetails.title,
+                url: "https://youtube.com" + songInfo.videoDetails.url,
+                length: songInfo.videoDetails.lengthSeconds
             };
 
         } catch (error) {
