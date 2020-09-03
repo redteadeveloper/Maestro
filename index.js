@@ -2,12 +2,22 @@ const Discord = require("discord.js")
 const ytdl = require("ytdl-core");
 const YouTube = require("discord-youtube-api");
 const Genius = require("genius-lyrics");
+const mongoose = require('mongoose')
 
 const client = new Discord.Client() 
 
 const queue = new Map();
 
+mongoose.connect(process.env.MONGODB,  { useNewUrlParser: true, useUnifiedTopology: true } )
+
 const youtube = new YouTube(process.env.YOUTUBEKEY);
+
+mongoose.connection.on('connecting', function () { console.log('MongoDB: Trying to connect to MongoDB');});
+mongoose.connection.on('connected', function () { console.log('MongoDB: Successfully connected to MongoDB');});
+mongoose.connection.on('error', function (err) { console.log('MongoDB: ERROR connecting to MongoDB' + ' - ' + err);  });
+mongoose.connection.on('close', function (err) { console.log('MongoDB: Connection closed');});
+mongoose.connection.on('reconnected', function () { console.log('MongoDB: Database link was reconnected');});
+mongoose.connection.on('disconnected', function () { console.log('MongoDB: Connection ended');});
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag} | Online in ${client.guilds.cache.size} servers.`)
@@ -16,8 +26,6 @@ client.on("ready", () => {
         //url: "https://www.twitch.tv/maestromusicbot"  
     });
 })
-
-var prefix = "$" 
 
 //Element moving function
 Array.prototype.move = function (from, to) {
