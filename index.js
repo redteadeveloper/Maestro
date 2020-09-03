@@ -78,7 +78,7 @@ const guildprefix = mongoose.model('guildprefix', new mongoose.Schema({
   
 client.on("message", async message => {
 
-    const prefixmap = await guildprefix.findOne({ serverid: msg.guild.id }) || { prefix: "$" }
+    const prefixmap = await guildprefix.findOne({ serverid: message.guild.id }) || { prefix: "$" }
     let prefix = prefixmap.prefix
 
     if (message.author.bot) return;
@@ -98,35 +98,35 @@ client.on("message", async message => {
         return;
 
     } else if (command.startsWith(`prefix`)) {
-        
-        const args1 = msg.content.split(' ').slice(1);
-        const newprefix = args1.join(' ');
+
+        const args = message.content.split(' ').slice(1);
+        const newprefix = args.join(' ');
 
         const noperm = new Discord.MessageEmbed()
             .setColor('#FF665B')
             .setTitle('Missing permissions')
             .setDescription("You need ``Manage guild`` permission to use this command.")
 
-        if(!newprefix) return msg.channel.send("Current prefix is ``"+ prefix + "``")
+        if(!newprefix) return message.channel.send("Current prefix is ``"+ prefix + "``")
 
-        if(!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(noperm)
+        if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send(noperm)
 
-        const test = await guildprefix.findOne({ serverid: msg.guild.id })
+        const test = await guildprefix.findOne({ serverid: message.guild.id })
 
         if (test == null) {
-            await new guildprefix({ serverid: msg.guild.id, prefix: newprefix }).save();
+            await new guildprefix({ serverid: message.guild.id, prefix: newprefix }).save();
         } else {
-            await guildprefix.updateOne({ serverid: msg.guild.id }, { prefix: newprefix });
+            await guildprefix.updateOne({ serverid: message.guild.id }, { prefix: newprefix });
         }
 
-        const setprefix = await guildprefix.findOne({ serverid: msg.guild.id })
+        const setprefix = await guildprefix.findOne({ serverid: message.guild.id })
 
         const prefixembed = new Discord.MessageEmbed()
             .setColor(`#0859C6`)
             .setTitle(`Successfully set prefix`)
             .setDescription("The new prefix is ``" + setprefix.prefix + "``")
 
-        await msg.channel.send(prefixembed)
+        await message.channel.send(prefixembed)
 
     } else if (command.startsWith(`play`) || command.startsWith(`p`) && command != "pause") {
 
