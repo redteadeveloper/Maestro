@@ -1,5 +1,5 @@
 # Maestro
-![Generic badge](https://img.shields.io/badge/Version-0.4.8-brightgreen.svg)
+![Generic badge](https://img.shields.io/badge/Version-0.4.9-brightgreen.svg)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)\
 Maestro is a Discord music bot based on JavaScript and ytdl-core.
 

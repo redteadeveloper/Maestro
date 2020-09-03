@@ -21,7 +21,7 @@ mongoose.connection.on('disconnected', function () { console.log('MongoDB: Conne
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag} | Online in ${client.guilds.cache.size} servers.`)
-    client.user.setActivity("$help | Build 0.4.8 - Getting YouTube thumbnails", {
+    client.user.setActivity("$help | Build 0.4.9 - Getting guild prefix from DB", {
         type: "PLAYING",
         //url: "https://www.twitch.tv/maestromusicbot"  
     });
