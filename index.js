@@ -70,8 +70,16 @@ function ytid(url) {
     }
     return ID;
 }
+
+const guildprefix = mongoose.model('guildprefix', new mongoose.Schema({
+    serverid: String,
+    prefix: String
+}));
   
 client.on("message", async message => {
+
+    const prefixmap = await guildprefix.findOne({ serverid: msg.guild.id }) || { prefix: "$" }
+    let prefix = prefixmap.prefix
 
     if (message.author.bot) return;
     if (message.content.indexOf(prefix) !== 0) return;
@@ -88,6 +96,37 @@ client.on("message", async message => {
 
         message.channel.send(`Pong: ${client.ws.ping}ms!`)
         return;
+
+    } else if (command.startsWith(`prefix`)) {
+        
+        const args1 = msg.content.split(' ').slice(1);
+        const newprefix = args1.join(' ');
+
+        const noperm = new Discord.MessageEmbed()
+            .setColor('#FF665B')
+            .setTitle('Missing permissions')
+            .setDescription("You need ``Manage guild`` permission to use this command.")
+
+        if(!newprefix) return msg.channel.send("Current prefix is ``"+ prefix + "``")
+
+        if(!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send(noperm)
+
+        const test = await guildprefix.findOne({ serverid: msg.guild.id })
+
+        if (test == null) {
+            await new guildprefix({ serverid: msg.guild.id, prefix: newprefix }).save();
+        } else {
+            await guildprefix.updateOne({ serverid: msg.guild.id }, { prefix: newprefix });
+        }
+
+        const setprefix = await guildprefix.findOne({ serverid: msg.guild.id })
+
+        const prefixembed = new Discord.MessageEmbed()
+            .setColor(`#0859C6`)
+            .setTitle(`Successfully set prefix`)
+            .setDescription("The new prefix is ``" + setprefix.prefix + "``")
+
+        await msg.channel.send(prefixembed)
 
     } else if (command.startsWith(`play`) || command.startsWith(`p`) && command != "pause") {
 
