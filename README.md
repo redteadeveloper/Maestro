@@ -3,7 +3,7 @@
 # Maestro <br> ![Generic badge](https://img.shields.io/badge/Version-0.4.9-brightgreen.svg) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Build Status](https://travis-ci.com/redteadeveloper/Maestro.svg?branch=master)](https://travis-ci.com/redteadeveloper/Maestro)
 Maestro is a Discord music bot based on JavaScript and ytdl-core.
 ## Bot testing Discord server
-<iframe src="https://discord.com/widget?id=717895996155101244&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
 [Click to join](https://discord.gg/t2sRz6T "Bot testing Discord server")
 
 ## Other links
@@ -11,3 +11,5 @@ Maestro is a Discord music bot based on JavaScript and ytdl-core.
 [ytdl-core](https://github.com/fent/node-ytdl-core "ytdl-core")\
 [genius-lyrics](https://github.com/zyrouge/genius-lyrics "genius-lyrics npm module")
 </div>
+
+<iframe src="https://discord.com/widget?id=717895996155101244&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
