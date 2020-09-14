@@ -11,5 +11,3 @@ Maestro is a Discord music bot based on JavaScript and ytdl-core.
 [ytdl-core](https://github.com/fent/node-ytdl-core "ytdl-core")\
 [genius-lyrics](https://github.com/zyrouge/genius-lyrics "genius-lyrics npm module")
 </div>
-
-<iframe src="https://discord.com/widget?id=717895996155101244&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
