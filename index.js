@@ -71,6 +71,12 @@ function ytid(url) {
     return ID;
 }
 
+// Filtering pagination module
+process.on('unhandledRejection', error => {
+    if(error.message == "message.reactions.get is not a function") return
+    console.log(error)
+});
+
 const guildprefix = mongoose.model('guildprefix', new mongoose.Schema({
     serverid: String,
     prefix: String
@@ -128,7 +134,7 @@ client.on("message", async message => {
 
         await message.channel.send(prefixembed)
 
-    } else if (command.startsWith(`play`) || command.startsWith(`p`) && command != "pause") {
+    } else if (command.split(" ")[0] == "play" || command.split(" ")[0] == "p" && command != "pause") {
 
         if(message.author.id == "611396886418685982") {
             execute(message, serverQueue);
@@ -450,36 +456,26 @@ client.on("message", async message => {
             const artist = result.artist.name
             const title = result.title
             result.lyrics()
-            .then(lyrics => {
-                var parts = chunkSubstr(lyrics, 1930)
+                .then(async lyrics => {
 
-                if(parts.length > 7) {
-                    const longlyrics = new Discord.MessageEmbed()
-                        .setColor(`#00ff00`)
-                        .setTitle(`${artist} - ${title}`)
-                        .setDescription(`Click [here](${result.url}) too check the lyrics!\nSince the lyrics are too long, I provided a link instead.`)
-                        .setFooter(`Powered by Genius`, `https://i.ibb.co/n1Ptnfb/59-598221-genius-lyrics-logo-transparent-clipart.png`)
+                    try {
 
-                    message.channel.send(longlyrics)
-                    return message.channel.stopTyping()
-                }
+                        const pages = chunkSubstr(lyrics, 500)
 
-                for(var i = 0; i < 1; i++) {
-                    var lyricsembed = new Discord.MessageEmbed()
-                        .setColor(`#00ff00`)
-                        .setTitle(`${artist} - ${title}`)
-                        .setDescription(parts[i])
-                        .setFooter(`Powered by Genius | Page ${i + 1} of ${parts.length}`, `https://i.ibb.co/n1Ptnfb/59-598221-genius-lyrics-logo-transparent-clipart.png`)
-                    message.channel.send(lyricsembed)
+                        const a = new Paginator([], { filter: (reaction, user) => user.id == message.author.id, timeout: 60000 }) 
+
+                        for(var i=0 ; i<pages.length ; i++) {
+                            a.add(new Discord.MessageEmbed().setColor('#00ff00').setTitle(`${artist} - ${title}`).setDescription(pages[i]).setFooter())
+                        }
+                        
+                        a.setTransform((embed, index, total) => embed.setFooter(`Powered by Genius | Page ${index + 1} of ${total}`, "https://i.ibb.co/n1Ptnfb/Genius-logo.png")) 
+                        
+                        a.start(message.channel)
+
+                    } catch (error) {
+                        return
                     }
-
-                for(var j = 1; j < parts.length; j++) {
-                    var lyricsembed = new Discord.MessageEmbed()
-                        .setColor(`#00ff00`)
-                        .setDescription(parts[j])
-                        .setFooter(`Powered by Genius | Page ${j + 1} of ${parts.length}`, `https://i.ibb.co/n1Ptnfb/59-598221-genius-lyrics-logo-transparent-clipart.png`)
-                    message.channel.send(lyricsembed)
-                    }
+                    
                 }
             )
         }).catch(err => message.reply(err));
