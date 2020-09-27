@@ -32,7 +32,7 @@ class Paginator {
 		return this;
 	}
 
-	async start(channel) {
+	async start(channel, userid) {
 		if (!this.pages.length) return;
 		const message = await channel.send(this.pages[0]);
 		for (const emoji of Object.values(EMOJIS)) await message.react(emoji);
@@ -59,11 +59,11 @@ class Paginator {
 				this.page = this.pages.length - 1;
 				break;
 			}
-            const userReactions = message.reactions.cache.filter(reaction => reaction.users.cache.has(message.author.id));
+            const userReactions = message.reactions.cache.filter(reaction => reaction.users.cache.has(userid));
             async function removereaction() {
                 try {
                     for (const reaction of userReactions.values()) {
-                        await reaction.users.remove(message.author.id);
+                        await reaction.users.remove(userid);
                     }
                 } catch (error) {
                     console.error('Failed to remove reactions.');
