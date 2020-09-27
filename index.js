@@ -436,7 +436,7 @@ client.on("message", async message => {
             .setColor(`#b19cd9`)
             .setTitle(`Lyrics command`)
             .setDescription(`Sends the lyrics of a song.`)
-            .setFooter(`Usage: &lyrics [search word]`)
+            .setFooter(`Usage: $lyrics [search word]`)
 
         const G = new Genius.Client(process.env.GENIUSKEY)
 
