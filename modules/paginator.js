@@ -59,14 +59,17 @@ class Paginator {
 				this.page = this.pages.length - 1;
 				break;
 			}
-			const userReactions = message.reactions.cache.filter(reaction => reaction.users.cache.has(message.author.id));
-            try {
-                for (const reaction of userReactions.values()) {
-                    await reaction.users.remove(message.author.id);
+            const userReactions = message.reactions.cache.filter(reaction => reaction.users.cache.has(message.author.id));
+            async function removereaction() {
+                try {
+                    for (const reaction of userReactions.values()) {
+                        await reaction.users.remove(message.author.id);
+                    }
+                } catch (error) {
+                    console.error('Failed to remove reactions.');
                 }
-            } catch (error) {
-                console.error('Failed to remove reactions.');
             }
+            removereaction()
 		});
 
 		collector.on('end', () => {
