@@ -473,7 +473,7 @@ client.on("message", async message => {
                         a.start(message.channel)
 
                     } catch (error) {
-                        return
+                        console.log(error)
                     }
                     
                 }
