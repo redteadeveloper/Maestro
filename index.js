@@ -3,6 +3,7 @@ const ytdl = require("ytdl-core");
 const YouTube = require("discord-youtube-api");
 const Genius = require("genius-lyrics");
 const mongoose = require('mongoose')
+const Paginator = require('djs-pagination')
 
 const client = new Discord.Client() 
 
@@ -73,7 +74,7 @@ function ytid(url) {
 
 // Filtering pagination module
 process.on('unhandledRejection', error => {
-    if(error.message == "message.reactions.get is not a function") return
+    if(error.message === "message.reactions.get is not a function") return
     console.log(error)
 });
 
