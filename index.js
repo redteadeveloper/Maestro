@@ -22,7 +22,7 @@ mongoose.connection.on('disconnected', function () { console.log('MongoDB: Conne
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag} | Online in ${client.guilds.cache.size} servers.`)
-    client.user.setActivity("$help | Build 0.4.9 - Getting guild prefixes from DB", {
+    client.user.setActivity("$help | Build 0.5.0 - Embed pagination is live!", {
         type: "PLAYING",
         //url: "https://www.twitch.tv/maestromusicbot"  
     });

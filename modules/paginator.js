@@ -1,3 +1,11 @@
+/*
+Copyright (C) 2019 Jo3-L
+MIT license
+https://github.com/Jo3-L/discord-paginator
+
+Slightly modified by RedTea.
+*/
+
 const EMOJIS = { first: '⏪', prev: '◀️', stop: '⏹️', next: '▶️', last: '⏩' };
 
 class Paginator {
