@@ -72,12 +72,6 @@ function ytid(url) {
     return ID;
 }
 
-// Filtering pagination module
-process.on('unhandledRejection', error => {
-    if(error.message === "message.reactions.get is not a function") return
-    console.log(error)
-});
-
 const guildprefix = mongoose.model('guildprefix', new mongoose.Schema({
     serverid: String,
     prefix: String
