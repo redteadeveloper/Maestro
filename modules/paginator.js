@@ -1,6 +1,6 @@
 /*
-Copyright (C) 2019 Jo3-L
-MIT license
+Copyright (c) 2019-present Joe-L
+MIT License
 https://github.com/Jo3-L/discord-paginator
 
 Slightly modified by RedTea.
