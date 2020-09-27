@@ -471,7 +471,7 @@ client.on("message", async message => {
                         
                         a.setTransform((embed, index, total) => embed.setFooter(`Powered by Genius | Page ${index + 1} of ${total}`, "https://i.ibb.co/n1Ptnfb/Genius-logo.png")) 
                         
-                        a.start(message.channel, msg.author.id)
+                        a.start(message.channel, message.author.id)
 
                     } catch (error) {
                         console.log(error)
