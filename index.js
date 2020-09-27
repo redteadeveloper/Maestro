@@ -3,7 +3,7 @@ const ytdl = require("ytdl-core");
 const YouTube = require("discord-youtube-api");
 const Genius = require("genius-lyrics");
 const mongoose = require('mongoose')
-const Paginator = require('djs-pagination')
+const Paginator = require('./modules/paginator.js')
 
 const client = new Discord.Client() 
 
