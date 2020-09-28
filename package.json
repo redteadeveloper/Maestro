@@ -8,15 +8,15 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
     "discord-youtube-api": "^0.1.0",
-    "discord.js": "^12.2.0",
+    "discord.js": "^12.3.1",
     "djs-pagination": "^1.0.2",
     "ffmpeg": "0.0.4",
-    "ffmpeg-static": "^4.2.5",
+    "ffmpeg-static": "^4.2.7",
     "fluent-ffmpeg": "^2.1.2",
-    "genius-lyrics": "^3.0.0",
-    "mongoose": "^5.10.2",
+    "genius-lyrics": "^4.0.0",
+    "mongoose": "^5.10.7",
     "utils": "^0.3.1",
-    "ytdl-core": "^3.2.2"
+    "ytdl-core": "^3.3.0"
   },
   "description": "discord music bot",
   "devDependencies": {},
