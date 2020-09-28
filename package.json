@@ -11,7 +11,7 @@
     "discord.js": "^12.2.0",
     "djs-pagination": "^1.0.2",
     "ffmpeg": "0.0.4",
-    "ffmpeg-static": "^4.2.5",
+    "ffmpeg-static": "^4.2.7",
     "fluent-ffmpeg": "^2.1.2",
     "genius-lyrics": "^4.0.0",
     "mongoose": "^5.10.2",
