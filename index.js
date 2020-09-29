@@ -425,8 +425,6 @@ client.on("message", async message => {
 
     } else if (command.startsWith(`lyrics`) || command.startsWith(`l`)) {
 
-        message.channel.startTyping()
-
         const infol = new Discord.MessageEmbed() 
             .setColor(`#b19cd9`)
             .setTitle(`Lyrics command`)
@@ -439,11 +437,12 @@ client.on("message", async message => {
         const songname = args.join(' '); 
 
         if(!songname) { 
-            message.channel.send(infol)
-            return message.channel.stopTyping()
+            return message.channel.send(infol)
         }
         
         const searchword = encodeURI(songname)
+
+        message.channel.startTyping()
 
         G.tracks.search(searchword, {limit: 1})
         .then(results => {
