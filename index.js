@@ -97,7 +97,7 @@ client.on("message", async message => {
 
         message.channel.send(`:ping_pong: Pong: ${client.ws.ping}ms!`)
 
-    } else if (command.startsWith(`prefix`)) {
+    } else if (command = `prefix`) {
 
         const args = message.content.split(' ').slice(1);
         const newprefix = args.join(' ');
