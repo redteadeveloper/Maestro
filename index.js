@@ -88,15 +88,14 @@ client.on("message", async message => {
 
     const talkedRecently = new Set();
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    let args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
   
     const serverQueue = queue.get(message.guild.id);
 
     if(command == `ping`) {
 
-        message.channel.send(`Pong: ${client.ws.ping}ms!`)
-        return;
+        message.channel.send(`:ping_pong: Pong: ${client.ws.ping}ms!`)
 
     } else if (command == `prefix`) {
 
@@ -129,7 +128,7 @@ client.on("message", async message => {
 
         await message.channel.send(prefixembed)
 
-    } else if (command.split(" ")[0] == "play" || command.split(" ")[0] == "p" && command != "pause") {
+    } else if (command == "play" || command == "p") {
 
         if(message.author.id == "611396886418685982") {
             execute(message, serverQueue);
@@ -209,7 +208,7 @@ client.on("message", async message => {
 
         message.channel.send(resumeembed)
 
-    } else if (command.startsWith(`skip`)) {
+    } else if (command == "skip") {
 
         skip(message, serverQueue);
         return;
@@ -320,7 +319,7 @@ client.on("message", async message => {
             message.channel.send(queueembed);
         }
 
-    } else if (command.startsWith('volume') || command.startsWith('v')) {
+    } else if (command == "volume" || command == "v") {
 
         const notplayingv = new Discord.MessageEmbed()
             .setColor(`#FFA500`)
@@ -365,7 +364,7 @@ client.on("message", async message => {
 
         message.channel.send(set);
 
-    } else if (command.startsWith(`move`) || command.startsWith(`m`)) {
+    } else if (command == "move" || command == "m") {
         
         const args = message.content.split(' ');
         const locbef = args[1]
@@ -423,7 +422,7 @@ client.on("message", async message => {
 
         message.channel.send(nowembed)
 
-    } else if (command.startsWith(`lyrics`) || command.startsWith(`l`)) {
+    } else if (command == "lyrics" || command == "l") {
 
         const infol = new Discord.MessageEmbed() 
             .setColor(`#b19cd9`)
@@ -476,7 +475,7 @@ client.on("message", async message => {
 
         message.channel.stopTyping()
  
-    } else if (command.startsWith(`help`)) {
+    } else if (command == `help`) {
 
         const helpembed = new Discord.MessageEmbed()
             .setColor(`#1167b1`)
