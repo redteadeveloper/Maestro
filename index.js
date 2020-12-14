@@ -98,10 +98,10 @@ client.on("message", async message => {
         message.channel.send(`Pong: ${client.ws.ping}ms!`)
         return;
 
-    } else if (command.startsWith(`prefix`)) {
+    } else if (command == `prefix`) {
 
-        const args = message.content.split(' ').slice(1);
-        const newprefix = args.join(' ');
+        const arg = message.content.split(' ').slice(1);
+        const newprefix = arg.join(' ');
 
         const noperm = new Discord.MessageEmbed()
             .setColor('#FF665B')
