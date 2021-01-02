@@ -28,7 +28,7 @@
     "url": "git+https://github.com/calvinjung/Maestro.git"
   },
   "author": "redtea",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/calvinjung/Masetro/issues"
   },
