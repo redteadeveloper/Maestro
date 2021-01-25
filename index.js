@@ -456,7 +456,7 @@ client.on("message", async message => {
 
                         const pages = chunkSubstr(lyrics, 500)
 
-                        const a = new Paginator([], { filter: (reaction, user) => user.id == message.author.id, timeout: 60000 }) 
+                        const a = new Paginator([], { filter: (reaction, user) => user.id == message.author.id, timeout: 240000 }) 
 
                         for(var i=0 ; i<pages.length ; i++) {
                             a.add(new Discord.MessageEmbed().setColor('#00ff00').setTitle(`${artist} - ${title}`).setDescription(pages[i]).setFooter())
