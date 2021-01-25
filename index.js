@@ -497,26 +497,26 @@ client.on("message", async message => {
         message.channel.send(aliases)
 
     } else if (command == 'eval') {
-        if (msg.author.id !== '611396886418685982') return;
+        if (message.author.id !== '611396886418685982') return;
 
-        const args1 = msg.content.split(' ').slice(1); 
+        const args1 = message.content.split(' ').slice(1); 
         const evalcmd = args1.join(' '); 
 
         let evaled;
 
         try {
             evaled = await eval(`if (1>0) { ${evalcmd} }`);
-            msg.channel.send("```yaml\n" + 
+            message.channel.send("```yaml\n" + 
             inspect(evaled)
             + "\n```").catch(error => {
-                msg.channel.send("Result too long, check logs.")
+                message.channel.send("Result too long, check logs.")
             });
             console.log("-- Inspection result --\n" + inspect(evaled) + "\n------------------------");
         }
         catch (error) {
             console.error(error);
-            msg.reply('An error occurred during evaluation.');
-            msg.channel.send("```" + error + "```").catch(error => {msg.channel.send("Error too long, chack logs.")})
+            message.reply('An error occurred during evaluation.');
+            message.channel.send("```" + error + "```").catch(error => { message.channel.send("Error too long, chack logs.")})
         }
     }
 });
