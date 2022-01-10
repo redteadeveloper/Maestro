@@ -13,7 +13,7 @@
     "ffmpeg-static": "^4.4.0",
     "fluent-ffmpeg": "^2.1.2",
     "genius-lyrics": "^3.0.0",
-    "mongoose": "^5.12.0",
+    "mongoose": "^6.1.6",
     "util": "^0.12.4",
     "utils": "^0.3.1",
     "ytdl-core": "^4.9.1"
